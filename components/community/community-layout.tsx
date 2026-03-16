@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IconRail } from "./icon-rail";
+// Icon rail removed for simpler navigation
 import { Sidebar } from "./sidebar";
 import { TopNav } from "./top-nav";
 import { MobileNav } from "./mobile-nav";
@@ -17,9 +17,6 @@ export function CommunityLayout({ children, rightPanel }: CommunityLayoutProps) 
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Icon Rail */}
-      <IconRail />
-
       {/* Sidebar - Desktop */}
       <Sidebar />
 

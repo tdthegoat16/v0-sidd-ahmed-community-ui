@@ -62,7 +62,7 @@ export function Sidebar({ className }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "hidden lg:flex w-60 flex-col border-r border-gray-100 bg-white",
+        "hidden md:flex w-60 flex-col border-r border-gray-100 bg-white",
         className
       )}
     >
