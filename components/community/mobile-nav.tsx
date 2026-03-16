@@ -6,7 +6,7 @@ import {
   MessageSquare,
   MessageCircle,
   GraduationCap,
-  User,
+  CalendarDays,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -16,15 +16,15 @@ const navItems = [
   { name: "Community", href: "/community/announcements", icon: MessageSquare },
   { name: "Chat", href: "/chatrooms", icon: MessageCircle },
   { name: "Courses", href: "/courses", icon: GraduationCap },
-  { name: "Profile", href: "/profile", icon: User },
+  { name: "Events", href: "/events", icon: CalendarDays },
 ];
 
 export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-100 bg-white md:hidden">
-      <div className="flex items-center justify-around py-2">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-gray-200 bg-white lg:hidden safe-area-bottom">
+      <div className="flex items-center justify-around py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         {navItems.map((item) => {
           const isActive = pathname === item.href || 
             (item.href !== "/" && pathname.startsWith(item.href));
@@ -33,12 +33,17 @@ export function MobileNav() {
               key={item.name}
               href={item.href}
               className={cn(
-                "flex flex-col items-center gap-1 px-3 py-1",
-                isActive ? "text-blue-600" : "text-gray-500"
+                "flex flex-col items-center gap-0.5 px-3 py-1.5 min-w-[64px]",
+                isActive ? "text-blue-600" : "text-gray-400"
               )}
             >
-              <item.icon className="h-5 w-5" />
-              <span className="text-xs font-medium">{item.name}</span>
+              <item.icon className={cn("h-6 w-6", isActive && "stroke-[2.5px]")} />
+              <span className={cn(
+                "text-[10px]",
+                isActive ? "font-semibold" : "font-medium"
+              )}>
+                {item.name}
+              </span>
             </Link>
           );
         })}

@@ -28,7 +28,7 @@ export default async function SpacePage({ params }: SpacePageProps) {
   const spaceMembers = communityMembers.slice(0, 8);
 
   return (
-    <CommunityLayout rightPanel={<SpaceRightPanel space={spaceName} />}>
+    <CommunityLayout title={spaceName} rightPanel={<SpaceRightPanel space={spaceName} />}>
       <div className="mx-auto max-w-3xl px-4 py-6">
         {/* Space Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

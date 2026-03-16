@@ -20,7 +20,7 @@ export default function LeaderboardPage() {
   const rest = leaderboard.slice(3);
 
   return (
-    <CommunityLayout>
+    <CommunityLayout title="Leaderboard">
       <div className="mx-auto max-w-4xl px-4 py-6">
         {/* Header */}
         <div>

@@ -18,7 +18,7 @@ export default function MembersPage() {
   );
 
   return (
-    <CommunityLayout>
+    <CommunityLayout title="Members">
       <div className="mx-auto max-w-5xl px-4 py-6">
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

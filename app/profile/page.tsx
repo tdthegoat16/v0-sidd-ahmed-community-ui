@@ -25,7 +25,7 @@ export default function ProfilePage() {
   const userCourses = courses.filter((c) => c.progress > 0);
 
   return (
-    <CommunityLayout>
+    <CommunityLayout title="Profile">
       <div className="mx-auto max-w-4xl px-4 py-6">
         {/* Profile Header */}
         <div className="rounded-2xl border border-gray-100 bg-white overflow-hidden shadow-sm">

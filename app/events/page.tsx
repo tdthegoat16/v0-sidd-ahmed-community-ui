@@ -14,7 +14,7 @@ export default function EventsPage() {
   const [activeTab, setActiveTab] = useState("Upcoming");
 
   return (
-    <CommunityLayout>
+    <CommunityLayout title="Events">
       <div className="mx-auto max-w-4xl px-4 py-6">
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
