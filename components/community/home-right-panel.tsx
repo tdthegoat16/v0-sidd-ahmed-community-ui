@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Instagram, Linkedin, Youtube, Twitter, Sparkles } from "lucide-react";
 import { events, communityMembers, courses, currentUser } from "@/lib/data";
@@ -111,10 +111,7 @@ export function HomeRightPanel() {
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={member.avatar} alt={member.name} />
                   <AvatarFallback className={cn(member.color, "text-white text-xs")}>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(member.name)}
                   </AvatarFallback>
                 </Avatar>
                 <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500" />

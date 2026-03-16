@@ -188,27 +188,32 @@ export const spaces = [
   {
     category: "Welcome",
     items: [
-      { id: "start-here", name: "Start Here", icon: "map-pin", emoji: "📍" },
-      { id: "introduce-yourself", name: "Introduce Yourself", icon: "hand", emoji: "👋" },
+      { id: "start-here", name: "Start Here", icon: "map-pin", emoji: "📍", href: "/community/start-here" },
+      { id: "introduce-yourself", name: "Introduce Yourself", icon: "hand", emoji: "👋", href: "/community/introduce-yourself" },
     ],
   },
   {
     category: "Positive Tribe",
     items: [
-      { id: "announcements", name: "Announcements", icon: "megaphone", emoji: "📢" },
-      { id: "open-discussions", name: "Open Discussions", icon: "message-circle", emoji: "💬" },
-      { id: "wins-milestones", name: "Wins & Milestones", icon: "trophy", emoji: "🏆" },
-      { id: "mindset-growth", name: "Mindset & Growth", icon: "brain", emoji: "🧠" },
-      { id: "business-entrepreneurship", name: "Business & Entrepreneurship", icon: "briefcase", emoji: "💼" },
-      { id: "career-mentorship", name: "Career & Mentorship", icon: "target", emoji: "🎯" },
-      { id: "resources-playbooks", name: "Resources & Playbooks", icon: "book", emoji: "📚" },
+      { id: "announcements", name: "Announcements", icon: "megaphone", emoji: "📢", href: "/community/announcements" },
+      { id: "open-discussions", name: "Open Discussions", icon: "message-circle", emoji: "💬", href: "/community/open-discussions" },
+      { id: "wins-milestones", name: "Wins & Milestones", icon: "trophy", emoji: "🏆", href: "/community/wins-milestones" },
+      { id: "mindset-growth", name: "Mindset & Growth", icon: "brain", emoji: "🧠", href: "/community/mindset-growth" },
+      { id: "business-entrepreneurship", name: "Business & Entrepreneurship", icon: "briefcase", emoji: "💼", href: "/community/business-entrepreneurship" },
+      { id: "career-mentorship", name: "Career & Mentorship", icon: "target", emoji: "🎯", href: "/community/career-mentorship" },
+      { id: "resources-playbooks", name: "Resources & Playbooks", icon: "book", emoji: "📚", href: "/community/resources-playbooks" },
     ],
   },
   {
     category: "Events",
-    items: [{ id: "replay-vault", name: "Replay Vault", icon: "video", emoji: "🎥" }],
+    items: [{ id: "replay-vault", name: "Replay Vault", icon: "video", emoji: "🎥", href: "/community/replay-vault" }],
   },
 ];
+
+// Derive space name lookup from canonical spaces data
+export const spaceNamesBySlug: Record<string, string> = Object.fromEntries(
+  spaces.flatMap((group) => group.items.map((item) => [item.id, item.name]))
+);
 
 export const chatChannels = [
   {
@@ -412,6 +417,7 @@ export const notifications = [
     message: "posted a new lesson in",
     target: "Career Acceleration Blueprint",
     timestamp: "5m ago",
+    category: "today" as const,
     isRead: false,
   },
   {
@@ -421,6 +427,7 @@ export const notifications = [
     message: "liked your post in",
     target: "Wins & Milestones",
     timestamp: "1h ago",
+    category: "today" as const,
     isRead: false,
   },
   {
@@ -430,6 +437,7 @@ export const notifications = [
     message: "Positive Tribe Monthly Q&A starts in 1 hour",
     target: null,
     timestamp: "3h ago",
+    category: "today" as const,
     isRead: false,
   },
   {
@@ -439,6 +447,7 @@ export const notifications = [
     message: "commented on your discussion",
     target: "Mindset & Growth",
     timestamp: "Yesterday",
+    category: "earlier" as const,
     isRead: true,
   },
   {
@@ -448,6 +457,7 @@ export const notifications = [
     message: "joined the Tribe",
     target: null,
     timestamp: "Yesterday",
+    category: "earlier" as const,
     isRead: true,
   },
 ];

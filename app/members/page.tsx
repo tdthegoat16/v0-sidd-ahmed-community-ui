@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, MapPin, Filter } from "lucide-react";
 import { communityMembers } from "@/lib/data";
@@ -70,10 +70,7 @@ export default function MembersPage() {
                 <Avatar className="absolute -top-8 left-4 h-16 w-16 ring-4 ring-white">
                   <AvatarImage src={member.avatar} alt={member.name} />
                   <AvatarFallback className={cn(member.color, "text-white text-lg")}>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(member.name)}
                   </AvatarFallback>
                 </Avatar>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Trophy, Medal, Award, TrendingUp } from "lucide-react";
 import { communityMembers } from "@/lib/data";
@@ -38,10 +38,7 @@ export default function LeaderboardPage() {
               <Avatar className="h-16 w-16 ring-4 ring-gray-300">
                 <AvatarImage src={topThree[1]?.avatar} alt={topThree[1]?.name} />
                 <AvatarFallback className={cn(topThree[1]?.color, "text-white text-lg")}>
-                  {topThree[1]?.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {topThree[1]?.name && getInitials(topThree[1].name)}
                 </AvatarFallback>
               </Avatar>
               <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 text-gray-700">
@@ -61,10 +58,7 @@ export default function LeaderboardPage() {
               <Avatar className="h-20 w-20 ring-4 ring-yellow-400">
                 <AvatarImage src={topThree[0]?.avatar} alt={topThree[0]?.name} />
                 <AvatarFallback className={cn(topThree[0]?.color, "text-white text-xl")}>
-                  {topThree[0]?.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {topThree[0]?.name && getInitials(topThree[0].name)}
                 </AvatarFallback>
               </Avatar>
               <div className="absolute -bottom-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-yellow-400 text-yellow-800">
@@ -84,10 +78,7 @@ export default function LeaderboardPage() {
               <Avatar className="h-14 w-14 ring-4 ring-orange-300">
                 <AvatarImage src={topThree[2]?.avatar} alt={topThree[2]?.name} />
                 <AvatarFallback className={cn(topThree[2]?.color, "text-white text-base")}>
-                  {topThree[2]?.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {topThree[2]?.name && getInitials(topThree[2].name)}
                 </AvatarFallback>
               </Avatar>
               <div className="absolute -bottom-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-orange-300 text-orange-700">
@@ -117,10 +108,7 @@ export default function LeaderboardPage() {
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={member.avatar} alt={member.name} />
                   <AvatarFallback className={cn(member.color, "text-white text-sm")}>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(member.name)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">

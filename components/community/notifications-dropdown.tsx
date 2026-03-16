@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { notifications } from "@/lib/data";
 import { useEffect, useRef } from "react";
@@ -23,12 +23,8 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const todayNotifications = notifications.filter(
-    (n) => n.timestamp.includes("m ago") || n.timestamp.includes("h ago")
-  );
-  const earlierNotifications = notifications.filter(
-    (n) => !n.timestamp.includes("m ago") && !n.timestamp.includes("h ago")
-  );
+  const todayNotifications = notifications.filter((n) => n.category === "today");
+  const earlierNotifications = notifications.filter((n) => n.category === "earlier");
 
   return (
     <div
@@ -111,10 +107,7 @@ function NotificationItem({ notification }: NotificationItemProps) {
             alt={notification.actor.name}
           />
           <AvatarFallback className={cn(notification.actor.color, "text-white text-xs")}>
-            {notification.actor.name
-              .split(" ")
-              .map((n) => n[0])
-              .join("")}
+            {getInitials(notification.actor.name)}
           </AvatarFallback>
         </Avatar>
       ) : (

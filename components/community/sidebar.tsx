@@ -8,20 +8,12 @@ import {
   Users,
   Trophy,
   MessageCircle,
-  MapPin,
-  Hand,
-  Megaphone,
-  MessageSquare,
-  Brain,
-  Briefcase,
-  Target,
-  BookOpen,
-  Video as VideoIcon,
   Camera,
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { spaces } from "@/lib/data";
 
 const mainNav = [
   { name: "Home", href: "/", icon: Home },
@@ -30,47 +22,6 @@ const mainNav = [
   { name: "Members", href: "/members", icon: Users },
   { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
   { name: "Chatrooms", href: "/chatrooms", icon: MessageCircle },
-];
-
-const iconMap: Record<string, typeof Home> = {
-  "map-pin": MapPin,
-  hand: Hand,
-  megaphone: Megaphone,
-  "message-circle": MessageSquare,
-  trophy: Trophy,
-  brain: Brain,
-  briefcase: Briefcase,
-  target: Target,
-  book: BookOpen,
-  video: VideoIcon,
-};
-
-const spaces = [
-  {
-    category: "Welcome",
-    items: [
-      { id: "start-here", name: "Start Here", icon: "map-pin", emoji: "📍", href: "/community/start-here" },
-      { id: "introduce-yourself", name: "Introduce Yourself", icon: "hand", emoji: "👋", href: "/community/introduce-yourself" },
-    ],
-  },
-  {
-    category: "Positive Tribe",
-    items: [
-      { id: "announcements", name: "Announcements", icon: "megaphone", emoji: "📢", href: "/community/announcements" },
-      { id: "open-discussions", name: "Open Discussions", icon: "message-circle", emoji: "💬", href: "/community/open-discussions" },
-      { id: "wins-milestones", name: "Wins & Milestones", icon: "trophy", emoji: "🏆", href: "/community/wins-milestones" },
-      { id: "mindset-growth", name: "Mindset & Growth", icon: "brain", emoji: "🧠", href: "/community/mindset-growth" },
-      { id: "business-entrepreneurship", name: "Business & Entrepreneurship", icon: "briefcase", emoji: "💼", href: "/community/business-entrepreneurship" },
-      { id: "career-mentorship", name: "Career & Mentorship", icon: "target", emoji: "🎯", href: "/community/career-mentorship" },
-      { id: "resources-playbooks", name: "Resources & Playbooks", icon: "book", emoji: "📚", href: "/community/resources-playbooks" },
-    ],
-  },
-  {
-    category: "Events",
-    items: [
-      { id: "replay-vault", name: "Replay Vault", icon: "video", emoji: "🎥", href: "/community/replay-vault" },
-    ],
-  },
 ];
 
 interface SidebarProps {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, use } from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { IconRail } from "@/components/community/icon-rail";
 import { TopNav } from "@/components/community/top-nav";
 import { MobileNav } from "@/components/community/mobile-nav";
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { courses } from "@/lib/data";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 const lessons = [
   {
@@ -50,7 +51,8 @@ interface CourseDetailPageProps {
 
 export default function CourseDetailPage({ params }: CourseDetailPageProps) {
   const { id } = use(params);
-  const course = courses.find((c) => c.id === id) || courses[0];
+  const course = courses.find((c) => c.id === id);
+  if (!course) notFound();
   const [activeLesson, setActiveLesson] = useState("3");
   const [expandedModules, setExpandedModules] = useState<string[]>(["Getting Started"]);
 
@@ -97,10 +99,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   <AvatarFallback
                     className={cn(course.instructor.color, "text-white text-[10px]")}
                   >
-                    {course.instructor.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(course.instructor.name)}
                   </AvatarFallback>
                 </Avatar>
                 <span className="text-xs text-gray-500">

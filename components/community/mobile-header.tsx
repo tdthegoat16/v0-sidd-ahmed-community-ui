@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getInitials } from "@/lib/utils";
 import { Search, Bell, Menu } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { NotificationsDropdown } from "./notifications-dropdown";
@@ -22,6 +23,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
         <button
           onClick={onMenuClick}
           className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 lg:hidden"
+          aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -35,7 +37,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
 
       {/* Right: Actions */}
       <div className="flex items-center gap-1">
-        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100">
+        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Search">
           <Search className="h-5 w-5" />
         </button>
         <div className="relative">
@@ -56,10 +58,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
           <Avatar className="h-8 w-8 cursor-pointer">
             <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
             <AvatarFallback className="bg-blue-600 text-white text-xs">
-              {currentUser.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
+              {getInitials(currentUser.name)}
             </AvatarFallback>
           </Avatar>
         </Link>

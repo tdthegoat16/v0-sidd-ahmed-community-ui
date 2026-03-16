@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Video, MapPin, Check, Globe } from "lucide-react";
 import { events } from "@/lib/data";
@@ -74,10 +74,7 @@ export default function EventsPage() {
                         <AvatarFallback
                           className={cn(event.host.color, "text-white text-[8px]")}
                         >
-                          {event.host.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
+                          {getInitials(event.host.name)}
                         </AvatarFallback>
                       </Avatar>
                       <span className="text-sm text-gray-500">

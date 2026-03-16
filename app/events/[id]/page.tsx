@@ -1,5 +1,5 @@
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Calendar,
@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { events, communityMembers } from "@/lib/data";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface EventDetailPageProps {
   params: Promise<{ id: string }>;
@@ -22,7 +23,8 @@ interface EventDetailPageProps {
 
 export default async function EventDetailPage({ params }: EventDetailPageProps) {
   const { id } = await params;
-  const event = events.find((e) => e.id === id) || events[0];
+  const event = events.find((e) => e.id === id);
+  if (!event) notFound();
   const attendees = communityMembers.slice(0, 6);
 
   return (
@@ -53,10 +55,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
               <Avatar className="h-10 w-10 ring-2 ring-white/20">
                 <AvatarImage src={event.host.avatar} alt={event.host.name} />
                 <AvatarFallback className={cn(event.host.color, "text-white text-sm")}>
-                  {event.host.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {getInitials(event.host.name)}
                 </AvatarFallback>
               </Avatar>
               <div>
@@ -148,10 +147,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
                     <Avatar className="h-10 w-10">
                       <AvatarImage src={attendee.avatar} alt={attendee.name} />
                       <AvatarFallback className={cn(attendee.color, "text-white text-xs")}>
-                        {attendee.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
+                        {getInitials(attendee.name)}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
@@ -235,10 +231,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={event.host.avatar} alt={event.host.name} />
                   <AvatarFallback className={cn(event.host.color, "text-white text-sm")}>
-                    {event.host.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(event.host.name)}
                   </AvatarFallback>
                 </Avatar>
                 <div>

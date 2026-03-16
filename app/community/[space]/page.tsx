@@ -2,18 +2,8 @@ import { CommunityLayout } from "@/components/community/community-layout";
 import { SpaceRightPanel } from "@/components/community/space-right-panel";
 import { PostCard } from "@/components/community/post-card";
 import { AvatarStack } from "@/components/community/avatar-stack";
-import { posts, communityMembers, currentUser } from "@/lib/data";
-import { Plus } from "lucide-react";
-
-const spaceNames: Record<string, string> = {
-  "start-here": "Start Here",
-  "say-hello": "Say Hello",
-  "announcements": "Announcements",
-  "resources": "Resources",
-  "discussions": "Discussions",
-  "wins": "Wins",
-  "recordings": "Recordings",
-};
+import { PostComposer } from "@/components/community/post-composer";
+import { posts, communityMembers, spaces, spaceNamesBySlug } from "@/lib/data";
 
 interface SpacePageProps {
   params: Promise<{ space: string }>;
@@ -21,9 +11,9 @@ interface SpacePageProps {
 
 export default async function SpacePage({ params }: SpacePageProps) {
   const { space } = await params;
-  const spaceName = spaceNames[space] || "Space";
+  const spaceName = spaceNamesBySlug[space] || "Space";
   const spacePosts = posts.filter(
-    (p) => p.space.toLowerCase() === spaceName.toLowerCase() || space === "discussions"
+    (p) => p.space.toLowerCase() === spaceName.toLowerCase()
   );
   const spaceMembers = communityMembers.slice(0, 8);
 
@@ -50,24 +40,7 @@ export default async function SpacePage({ params }: SpacePageProps) {
         </div>
 
         {/* Post Composer */}
-        <div className="mt-6 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-semibold">
-              {currentUser.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
-            </div>
-            <input
-              type="text"
-              placeholder="Start a post..."
-              className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-            />
-            <button className="flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-600">
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
+        <PostComposer placeholder="Start a post..." />
 
         {/* Posts Feed */}
         <div className="mt-6 space-y-4">
@@ -76,7 +49,7 @@ export default async function SpacePage({ params }: SpacePageProps) {
           ) : (
             <div className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
               <p className="text-gray-500">No posts yet in this space</p>
-              <button className="mt-4 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
+              <button className="mt-4 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors" aria-label="Create the first post in this space">
                 Be the first to post
               </button>
             </div>
@@ -88,13 +61,7 @@ export default async function SpacePage({ params }: SpacePageProps) {
 }
 
 export function generateStaticParams() {
-  return [
-    { space: "start-here" },
-    { space: "say-hello" },
-    { space: "announcements" },
-    { space: "resources" },
-    { space: "discussions" },
-    { space: "wins" },
-    { space: "recordings" },
-  ];
+  return spaces.flatMap((group) =>
+    group.items.map((item) => ({ space: item.id }))
+  );
 }

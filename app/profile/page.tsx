@@ -1,7 +1,7 @@
 "use client";
 
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PostCard } from "@/components/community/post-card";
@@ -41,10 +41,7 @@ export default function ProfilePage() {
                   <AvatarFallback
                     className="bg-blue-600 text-white text-3xl"
                   >
-                    {currentUser.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(currentUser.name)}
                   </AvatarFallback>
                 </Avatar>
 

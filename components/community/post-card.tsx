@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Heart, MessageCircle, MoreHorizontal, Pin, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import {
@@ -36,10 +36,7 @@ export function PostCard({ post }: PostCardProps) {
           <Avatar className="h-10 w-10">
             <AvatarImage src={post.author.avatar} alt={post.author.name} />
             <AvatarFallback className={cn(post.author.color, "text-white text-sm")}>
-              {post.author.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
+              {getInitials(post.author.name)}
             </AvatarFallback>
           </Avatar>
           <div>
@@ -119,11 +116,11 @@ export function PostCard({ post }: PostCardProps) {
       {/* Actions */}
       <div className="mt-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <button className="flex items-center gap-1.5 text-gray-500 hover:text-red-500 transition-colors">
+          <button className="flex items-center gap-1.5 text-gray-500 hover:text-red-500 transition-colors" aria-label={`Like post, ${post.likes} likes`}>
             <Heart className="h-4 w-4" />
             <span className="text-sm">{post.likes}</span>
           </button>
-          <button className="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 transition-colors">
+          <button className="flex items-center gap-1.5 text-gray-500 hover:text-blue-500 transition-colors" aria-label={`Comment on post, ${post.comments} comments`}>
             <MessageCircle className="h-4 w-4" />
             <span className="text-sm">{post.comments}</span>
           </button>
@@ -138,10 +135,7 @@ export function PostCard({ post }: PostCardProps) {
               >
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className={cn(user.color, "text-white text-[10px]")}>
-                  {user.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {getInitials(user.name)}
                 </AvatarFallback>
               </Avatar>
             ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -41,7 +41,7 @@ export default function ChatroomsPage() {
     <div className="flex flex-col h-full bg-white">
       <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
         <h2 className="text-sm font-semibold text-gray-900">Channels</h2>
-        <button className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600">
+        <button className="flex h-7 w-7 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600" aria-label="Add channel">
           <Plus className="h-4 w-4" />
         </button>
       </div>
@@ -145,13 +145,13 @@ export default function ChatroomsPage() {
               {/* Mobile channel selector */}
               <Sheet open={showChannels} onOpenChange={setShowChannels}>
                 <SheetTrigger asChild>
-                  <button className="md:hidden flex items-center gap-2 text-gray-900">
+                  <button className="md:hidden flex items-center gap-2 text-gray-900" aria-label="Open channel list">
                     {activeChannelData?.isAI ? (
                       <Sparkles className="h-5 w-5 text-blue-500" />
                     ) : (
                       <Hash className="h-5 w-5 text-gray-400" />
                     )}
-                    <span className="font-semibold">{activeChannel}</span>
+                    <span className="font-semibold">{activeChannelData?.name ?? activeChannel}</span>
                     <ChevronDown className="h-4 w-4 text-gray-400" />
                   </button>
                 </SheetTrigger>
@@ -167,7 +167,7 @@ export default function ChatroomsPage() {
                 ) : (
                   <Hash className="h-5 w-5 text-gray-400" />
                 )}
-                <span className="font-semibold text-gray-900">{activeChannel}</span>
+                <span className="font-semibold text-gray-900">{activeChannelData?.name ?? activeChannel}</span>
               </div>
               
               <span className="h-2 w-2 rounded-full bg-green-500" />
@@ -175,7 +175,7 @@ export default function ChatroomsPage() {
                 {onlineMembers.length} online
               </span>
             </div>
-            <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 xl:hidden">
+            <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 xl:hidden" aria-label="Show online members">
               <Users className="h-5 w-5" />
             </button>
           </div>
@@ -190,10 +190,7 @@ export default function ChatroomsPage() {
                     <AvatarFallback
                       className={cn(msg.author.color, "text-white text-xs")}
                     >
-                      {msg.author.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      {getInitials(msg.author.name)}
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
@@ -213,9 +210,9 @@ export default function ChatroomsPage() {
                     <p className="mt-0.5 text-sm text-gray-700 break-words">{msg.message}</p>
                     {msg.reactions.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1">
-                        {msg.reactions.map((reaction, idx) => (
+                        {msg.reactions.map((reaction) => (
                           <button
-                            key={idx}
+                            key={reaction.emoji}
                             className="flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs hover:bg-gray-100"
                           >
                             <span>{reaction.emoji}</span>
@@ -235,7 +232,7 @@ export default function ChatroomsPage() {
           {/* Message Composer */}
           <div className="border-t border-gray-100 p-3">
             <div className="flex items-center gap-2 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600">
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600" aria-label="Attach file">
                 <Paperclip className="h-4 w-4" />
               </button>
               <input
@@ -246,17 +243,17 @@ export default function ChatroomsPage() {
                 className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none min-w-0"
               />
               <div className="hidden sm:flex items-center gap-1">
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600">
+                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600" aria-label="Add emoji">
                   <Smile className="h-4 w-4" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600">
+                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600" aria-label="Mention someone">
                   <AtSign className="h-4 w-4" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600">
+                <button className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 hover:text-gray-600" aria-label="Voice message">
                   <Mic className="h-4 w-4" />
                 </button>
               </div>
-              <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+              <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700" aria-label="Send message">
                 <Send className="h-4 w-4" />
               </button>
             </div>
@@ -282,10 +279,7 @@ export default function ChatroomsPage() {
                     <AvatarFallback
                       className={cn(member.color, "text-white text-xs")}
                     >
-                      {member.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      {getInitials(member.name)}
                     </AvatarFallback>
                   </Avatar>
                   <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500" />

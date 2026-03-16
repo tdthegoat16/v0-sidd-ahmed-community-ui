@@ -2,7 +2,7 @@
 
 import { useState, use } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PostCard } from "@/components/community/post-card";
@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { communityMembers, posts } from "@/lib/data";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface MemberProfilePageProps {
   params: Promise<{ id: string }>;
@@ -23,7 +24,8 @@ interface MemberProfilePageProps {
 
 export default function MemberProfilePage({ params }: MemberProfilePageProps) {
   const { id } = use(params);
-  const member = communityMembers.find((m) => m.id === id) || communityMembers[0];
+  const member = communityMembers.find((m) => m.id === id);
+  if (!member) notFound();
   const memberPosts = posts.filter((p) => p.author.id === member.id);
 
   return (
@@ -48,10 +50,7 @@ export default function MemberProfilePage({ params }: MemberProfilePageProps) {
                   <AvatarFallback
                     className={cn(member.color, "text-white text-3xl")}
                   >
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
+                    {getInitials(member.name)}
                   </AvatarFallback>
                 </Avatar>
 

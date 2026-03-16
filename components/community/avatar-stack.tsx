@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { communityMembers } from "@/lib/data";
 
@@ -35,10 +35,7 @@ export function AvatarStack({
           >
             <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback className={cn(user.color, "text-white")}>
-              {user.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
+              {getInitials(user.name)}
             </AvatarFallback>
           </Avatar>
         ))}

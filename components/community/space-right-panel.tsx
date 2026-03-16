@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { communityMembers } from "@/lib/data";
 import Link from "next/link";
@@ -41,10 +41,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
               <Avatar className="h-9 w-9">
                 <AvatarImage src={admin.avatar} alt={admin.name} />
                 <AvatarFallback className={cn(admin.color, "text-white text-xs")}>
-                  {admin.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {getInitials(admin.name)}
                 </AvatarFallback>
               </Avatar>
               <div>
@@ -71,10 +68,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
               <Avatar className="h-10 w-10">
                 <AvatarImage src={member.avatar} alt={member.name} />
                 <AvatarFallback className={cn(member.color, "text-white text-xs")}>
-                  {member.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  {getInitials(member.name)}
                 </AvatarFallback>
               </Avatar>
               <span className="text-xs text-gray-600 text-center truncate w-full">

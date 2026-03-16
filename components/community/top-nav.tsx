@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 import {
   Search,
   Bell,
@@ -45,6 +45,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         <button
           onClick={onMenuClick}
           className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 lg:hidden"
+          aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -84,13 +85,14 @@ export function TopNav({ onMenuClick }: TopNavProps) {
 
       {/* Right: Actions */}
       <div className="flex items-center gap-2">
-        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100">
+        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Search">
           <Search className="h-5 w-5" />
         </button>
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
             className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+            aria-label="Notifications"
           >
             <Bell className="h-5 w-5" />
             <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-600" />
@@ -104,20 +106,18 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         <Link
           href="/chatrooms"
           className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+          aria-label="Chatrooms"
         >
           <MessageCircle className="h-5 w-5" />
         </Link>
-        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100">
+        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Bookmarks">
           <Bookmark className="h-5 w-5" />
         </button>
         <Link href="/profile">
           <Avatar className="h-8 w-8 cursor-pointer">
             <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
             <AvatarFallback className="bg-blue-600 text-white text-xs">
-              {currentUser.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
+              {getInitials(currentUser.name)}
             </AvatarFallback>
           </Avatar>
         </Link>
