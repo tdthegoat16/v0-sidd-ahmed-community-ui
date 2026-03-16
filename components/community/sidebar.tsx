@@ -8,12 +8,17 @@ import {
   Users,
   Trophy,
   MessageCircle,
-  Rocket,
+  MapPin,
   Hand,
   Megaphone,
-  Folder,
+  MessageSquare,
+  Brain,
+  Briefcase,
+  Target,
+  BookOpen,
   Video as VideoIcon,
   Camera,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,27 +32,43 @@ const mainNav = [
   { name: "Chatrooms", href: "/chatrooms", icon: MessageCircle },
 ];
 
+const iconMap: Record<string, typeof Home> = {
+  "map-pin": MapPin,
+  hand: Hand,
+  megaphone: Megaphone,
+  "message-circle": MessageSquare,
+  trophy: Trophy,
+  brain: Brain,
+  briefcase: Briefcase,
+  target: Target,
+  book: BookOpen,
+  video: VideoIcon,
+};
+
 const spaces = [
   {
     category: "Welcome",
     items: [
-      { id: "start-here", name: "Start Here", icon: Rocket, href: "/community/start-here" },
-      { id: "say-hello", name: "Say Hello", icon: Hand, href: "/community/say-hello" },
+      { id: "start-here", name: "Start Here", icon: "map-pin", emoji: "📍", href: "/community/start-here" },
+      { id: "introduce-yourself", name: "Introduce Yourself", icon: "hand", emoji: "👋", href: "/community/introduce-yourself" },
     ],
   },
   {
-    category: "Community",
+    category: "Positive Tribe",
     items: [
-      { id: "announcements", name: "Announcements", icon: Megaphone, href: "/community/announcements" },
-      { id: "resources", name: "Resources", icon: Folder, href: "/community/resources" },
-      { id: "discussions", name: "Discussions", icon: MessageCircle, href: "/community/discussions" },
-      { id: "wins", name: "Wins", icon: Trophy, href: "/community/wins" },
+      { id: "announcements", name: "Announcements", icon: "megaphone", emoji: "📢", href: "/community/announcements" },
+      { id: "open-discussions", name: "Open Discussions", icon: "message-circle", emoji: "💬", href: "/community/open-discussions" },
+      { id: "wins-milestones", name: "Wins & Milestones", icon: "trophy", emoji: "🏆", href: "/community/wins-milestones" },
+      { id: "mindset-growth", name: "Mindset & Growth", icon: "brain", emoji: "🧠", href: "/community/mindset-growth" },
+      { id: "business-entrepreneurship", name: "Business & Entrepreneurship", icon: "briefcase", emoji: "💼", href: "/community/business-entrepreneurship" },
+      { id: "career-mentorship", name: "Career & Mentorship", icon: "target", emoji: "🎯", href: "/community/career-mentorship" },
+      { id: "resources-playbooks", name: "Resources & Playbooks", icon: "book", emoji: "📚", href: "/community/resources-playbooks" },
     ],
   },
   {
     category: "Events",
     items: [
-      { id: "recordings", name: "Recordings", icon: VideoIcon, href: "/community/recordings" },
+      { id: "replay-vault", name: "Replay Vault", icon: "video", emoji: "🎥", href: "/community/replay-vault" },
     ],
   },
 ];
@@ -68,53 +89,42 @@ export function Sidebar({ className }: SidebarProps) {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 border-b border-gray-100 px-4 py-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white">
-          SA
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
+          <Sparkles className="h-5 w-5" />
         </div>
         <div className="flex flex-col">
           <span className="text-sm font-semibold text-gray-900">
-            Sidd Ahmed
+            Positive Tribe
           </span>
-          <span className="text-xs text-gray-500">Community</span>
         </div>
       </div>
 
       {/* Main Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
-        <div className="space-y-1">
-          {mainNav.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 hover:bg-gray-50"
-                )}
-              >
-                <item.icon
-                  className={cn(
-                    "h-5 w-5",
-                    isActive ? "text-blue-600" : "text-gray-400"
-                  )}
-                />
-                {item.name}
-              </Link>
-            );
-          })}
+        {/* Feed Link */}
+        <div className="mb-4">
+          <Link
+            href="/"
+            className={cn(
+              "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+              pathname === "/"
+                ? "bg-blue-50 text-blue-600"
+                : "text-gray-700 hover:bg-gray-50"
+            )}
+          >
+            <span className="text-base">📋</span>
+            Feed
+          </Link>
         </div>
 
         {/* Spaces */}
-        <div className="mt-6 space-y-4">
+        <div className="space-y-4">
           {spaces.map((group) => (
             <div key={group.category}>
               <h3 className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 {group.category}
               </h3>
-              <div className="space-y-1">
+              <div className="space-y-0.5">
                 {group.items.map((space) => {
                   const isActive = pathname === space.href;
                   return (
@@ -131,20 +141,45 @@ export function Sidebar({ className }: SidebarProps) {
                       {isActive && (
                         <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
                       )}
-                      <space.icon
-                        className={cn(
-                          "h-4 w-4",
-                          isActive ? "text-blue-600" : "text-gray-400",
-                          isActive && "-ml-4"
-                        )}
-                      />
-                      {space.name}
+                      <span className={cn("text-base", isActive && "-ml-4")}>
+                        {space.emoji}
+                      </span>
+                      <span className="truncate">{space.name}</span>
                     </Link>
                   );
                 })}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Main Nav Links */}
+        <div className="mt-6 pt-4 border-t border-gray-100">
+          <div className="space-y-1">
+            {mainNav.slice(1).map((item) => {
+              const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-gray-700 hover:bg-gray-50"
+                  )}
+                >
+                  <item.icon
+                    className={cn(
+                      "h-5 w-5",
+                      isActive ? "text-blue-600" : "text-gray-400"
+                    )}
+                  />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </nav>
 

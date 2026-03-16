@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { notifications } from "@/lib/data";
 import { useEffect, useRef } from "react";
+import { Bell, BookOpen, Heart, MessageCircle, UserPlus } from "lucide-react";
 
 interface NotificationsDropdownProps {
   onClose: () => void;
@@ -79,6 +80,23 @@ interface NotificationItemProps {
 }
 
 function NotificationItem({ notification }: NotificationItemProps) {
+  const getIcon = () => {
+    switch (notification.type) {
+      case "lesson":
+        return <BookOpen className="h-4 w-4 text-blue-600" />;
+      case "like":
+        return <Heart className="h-4 w-4 text-red-500" />;
+      case "comment":
+        return <MessageCircle className="h-4 w-4 text-green-500" />;
+      case "event":
+        return <Bell className="h-4 w-4 text-orange-500" />;
+      case "member":
+        return <UserPlus className="h-4 w-4 text-purple-500" />;
+      default:
+        return <Bell className="h-4 w-4 text-gray-400" />;
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -86,21 +104,29 @@ function NotificationItem({ notification }: NotificationItemProps) {
         !notification.isRead && "bg-blue-50/50"
       )}
     >
-      <Avatar className="h-9 w-9">
-        <AvatarImage
-          src={notification.actor.avatar}
-          alt={notification.actor.name}
-        />
-        <AvatarFallback className={cn(notification.actor.color, "text-white text-xs")}>
-          {notification.actor.name
-            .split(" ")
-            .map((n) => n[0])
-            .join("")}
-        </AvatarFallback>
-      </Avatar>
+      {notification.actor ? (
+        <Avatar className="h-9 w-9">
+          <AvatarImage
+            src={notification.actor.avatar}
+            alt={notification.actor.name}
+          />
+          <AvatarFallback className={cn(notification.actor.color, "text-white text-xs")}>
+            {notification.actor.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
+          </AvatarFallback>
+        </Avatar>
+      ) : (
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100">
+          {getIcon()}
+        </div>
+      )}
       <div className="flex-1 min-w-0">
         <p className="text-sm text-gray-900">
-          <span className="font-medium">{notification.actor.name}</span>{" "}
+          {notification.actor && (
+            <span className="font-medium">{notification.actor.name} </span>
+          )}
           {notification.message}
           {notification.target && (
             <span className="font-medium"> {notification.target}</span>

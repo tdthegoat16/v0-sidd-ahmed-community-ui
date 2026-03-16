@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Heart, MessageCircle, MoreHorizontal, Pin } from "lucide-react";
+import { Heart, MessageCircle, MoreHorizontal, Pin, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,8 +17,19 @@ interface PostCardProps {
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const [showAISummary, setShowAISummary] = useState(false);
+  const isLongPost = post.body.length > 150;
+
   return (
     <article className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+      {/* Pinned Badge */}
+      {post.isPinned && (
+        <div className="mb-3 flex items-center gap-1.5 text-xs text-gray-500">
+          <Pin className="h-3 w-3" />
+          <span>Pinned</span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
@@ -35,8 +47,10 @@ export function PostCard({ post }: PostCardProps) {
               <span className="text-sm font-semibold text-gray-900">
                 {post.author.name}
               </span>
-              {post.isPinned && (
-                <Pin className="h-3 w-3 text-gray-400" />
+              {post.author.isAdmin && (
+                <span className="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600">
+                  Founder
+                </span>
               )}
             </div>
             <div className="flex items-center gap-2">
@@ -64,10 +78,41 @@ export function PostCard({ post }: PostCardProps) {
         <p className="mt-1.5 text-sm text-gray-600 line-clamp-3">{post.body}</p>
       </div>
 
+      {/* AI Summary Badge - for long posts */}
+      {isLongPost && (
+        <button
+          onClick={() => setShowAISummary(!showAISummary)}
+          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-600 hover:bg-blue-100 transition-colors"
+        >
+          <Sparkles className="h-3 w-3" />
+          AI Summary
+          {showAISummary ? (
+            <ChevronUp className="h-3 w-3" />
+          ) : (
+            <ChevronDown className="h-3 w-3" />
+          )}
+        </button>
+      )}
+
+      {showAISummary && (
+        <div className="mt-2 rounded-lg bg-blue-50 p-3 text-sm text-blue-800">
+          <p>This post discusses key strategies and insights shared by the author about their journey and learnings in the community.</p>
+        </div>
+      )}
+
       {/* Image */}
       {post.image && (
         <div className="mt-4">
           <div className="aspect-video rounded-xl bg-gray-100" />
+        </div>
+      )}
+
+      {/* Space Tag */}
+      {post.space && (
+        <div className="mt-3">
+          <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+            {post.space}
+          </span>
         </div>
       )}
 

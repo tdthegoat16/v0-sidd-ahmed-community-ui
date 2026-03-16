@@ -4,11 +4,11 @@ import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Calendar, Video, MapPin, Check } from "lucide-react";
+import { Calendar, Video, MapPin, Check, Globe } from "lucide-react";
 import { events } from "@/lib/data";
 import Link from "next/link";
 
-const filterTabs = ["Upcoming", "Workshops", "Fitness", "More Topics"];
+const filterTabs = ["Upcoming", "Workshops", "Keynotes", "Q&A Sessions", "Replays"];
 
 export default function EventsPage() {
   const [activeTab, setActiveTab] = useState("Upcoming");
@@ -21,7 +21,7 @@ export default function EventsPage() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Events</h1>
             <p className="mt-1 text-gray-500">
-              Join live sessions, workshops, and community meetups
+              Join live sessions, workshops, and Q&A with Sidd Ahmed
             </p>
           </div>
           <button className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
@@ -56,7 +56,7 @@ export default function EventsPage() {
               className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
-              <div className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex-shrink-0" />
+              <div className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex-shrink-0" />
 
               {/* Content */}
               <div className="flex-1 min-w-0">
@@ -81,7 +81,7 @@ export default function EventsPage() {
                         </AvatarFallback>
                       </Avatar>
                       <span className="text-sm text-gray-500">
-                        {event.host.name}
+                        Hosted by {event.host.name}
                       </span>
                     </div>
                   </div>
@@ -104,10 +104,23 @@ export default function EventsPage() {
                   >
                     {event.type === "Live stream" ? (
                       <Video className="h-3 w-3" />
-                    ) : event.type === "In person" ? (
+                    ) : event.type === "Online" ? (
+                      <Globe className="h-3 w-3" />
+                    ) : event.type === "Workshop" ? (
                       <MapPin className="h-3 w-3" />
                     ) : null}
                     {event.type}
+                  </span>
+                  <span className="text-sm text-gray-500">
+                    {event.attendees} attending
+                  </span>
+                  <span className={cn(
+                    "text-sm font-medium",
+                    event.price === "Free" || event.price?.includes("Free") 
+                      ? "text-green-600" 
+                      : "text-gray-900"
+                  )}>
+                    {event.price}
                   </span>
                 </div>
               </div>

@@ -50,7 +50,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         </button>
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-semibold text-gray-900 hover:text-gray-700">
-            Sidd Ahmed Community
+            ✦ Positive Tribe
             <ChevronDown className="h-4 w-4 text-gray-400" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">

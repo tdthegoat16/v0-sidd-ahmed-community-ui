@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { IconRail } from "@/components/community/icon-rail";
 import { TopNav } from "@/components/community/top-nav";
 import { MobileNav } from "@/components/community/mobile-nav";
+import { Sidebar } from "@/components/community/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Hash,
@@ -15,18 +15,29 @@ import {
   Mic,
   AtSign,
   Sparkles,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
-import { chatChannels, chatMessages, communityMembers } from "@/lib/data";
+import { chatChannels, chatMessages, communityMembers, currentUser } from "@/lib/data";
 
 export default function ChatroomsPage() {
-  const [activeChannel, setActiveChannel] = useState("general");
+  const [activeChannel, setActiveChannel] = useState("daily-wins");
   const [message, setMessage] = useState("");
+  const [expandedCategories, setExpandedCategories] = useState<string[]>(["General", "Business", "Community"]);
 
   const onlineMembers = communityMembers.filter((m) => m.isOnline);
 
+  const toggleCategory = (category: string) => {
+    setExpandedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
   return (
     <div className="flex h-screen bg-gray-50">
-      <IconRail />
+      <Sidebar />
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopNav />
@@ -41,40 +52,84 @@ export default function ChatroomsPage() {
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto p-2">
-              {chatChannels.map((channel) => (
-                <button
-                  key={channel.id}
-                  onClick={() => setActiveChannel(channel.id)}
-                  className={cn(
-                    "flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
-                    activeChannel === channel.id
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-600 hover:bg-gray-50"
+              {chatChannels.map((group) => (
+                <div key={group.category} className="mb-2">
+                  <button
+                    onClick={() => toggleCategory(group.category)}
+                    className="flex w-full items-center gap-1 px-2 py-1 text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-gray-600"
+                  >
+                    {expandedCategories.includes(group.category) ? (
+                      <ChevronDown className="h-3 w-3" />
+                    ) : (
+                      <ChevronRight className="h-3 w-3" />
+                    )}
+                    {group.category}
+                  </button>
+                  {expandedCategories.includes(group.category) && (
+                    <div className="mt-1 space-y-0.5">
+                      {group.channels.map((channel) => (
+                        <button
+                          key={channel.id}
+                          onClick={() => setActiveChannel(channel.id)}
+                          className={cn(
+                            "flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
+                            activeChannel === channel.id
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-600 hover:bg-gray-50"
+                          )}
+                        >
+                          <div className="flex items-center gap-2">
+                            {channel.isAI ? (
+                              <Sparkles className="h-4 w-4 text-blue-500" />
+                            ) : (
+                              <Hash className="h-4 w-4" />
+                            )}
+                            <span className={channel.isAI ? "text-blue-600" : ""}>
+                              {channel.isAI ? "✦ " : ""}
+                              {channel.name}
+                            </span>
+                          </div>
+                          {channel.unread > 0 && (
+                            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1.5 text-xs font-medium text-white">
+                              {channel.unread}
+                            </span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   )}
-                >
-                  <div className="flex items-center gap-2">
-                    <Hash className="h-4 w-4" />
-                    {channel.name}
-                  </div>
-                  {channel.unread > 0 && (
-                    <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1.5 text-xs font-medium text-white">
-                      {channel.unread}
-                    </span>
-                  )}
-                </button>
+                </div>
               ))}
             </nav>
 
-            {/* AI Agent */}
+            {/* Tribe Coach AI Agent */}
             <div className="border-t border-gray-100 p-2">
-              <button className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-50">
-                <div className="flex h-5 w-5 items-center justify-center rounded bg-blue-100">
-                  <Sparkles className="h-3 w-3 text-blue-600" />
+              <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-gray-700 hover:bg-blue-50 transition-colors">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
+                  <Sparkles className="h-4 w-4 text-blue-600" />
                 </div>
-                <span>AI Agent</span>
-                <span className="ml-auto rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600">
-                  NEW
-                </span>
+                <div className="flex-1 text-left">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">✦ Tribe Coach</span>
+                  </div>
+                  <span className="text-xs text-gray-500">AI Agent</span>
+                </div>
+              </button>
+            </div>
+
+            {/* Message Sidd */}
+            <div className="border-t border-gray-100 p-2">
+              <button className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                  <AvatarFallback className="bg-blue-600 text-white text-xs">
+                    SA
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 text-left">
+                  <span className="font-medium">Message Sidd Ahmed</span>
+                  <p className="text-xs text-gray-500">Founder</p>
+                </div>
               </button>
             </div>
           </aside>
@@ -116,6 +171,11 @@ export default function ChatroomsPage() {
                         <span className="text-sm font-semibold text-gray-900">
                           {msg.author.name}
                         </span>
+                        {msg.author.isAdmin && (
+                          <span className="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600">
+                            Founder
+                          </span>
+                        )}
                         <span className="text-xs text-gray-400">
                           {msg.timestamp}
                         </span>

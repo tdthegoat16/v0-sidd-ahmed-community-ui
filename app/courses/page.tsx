@@ -4,14 +4,16 @@ import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { cn } from "@/lib/utils";
 import { courses } from "@/lib/data";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 
 const categories = [
   "All",
-  "Business Growth",
+  "Entrepreneurship",
+  "Career Growth",
   "Mindset",
-  "Marketing",
-  "More Topics",
+  "Leadership",
+  "More",
 ];
 
 export default function CoursesPage() {
@@ -30,7 +32,7 @@ export default function CoursesPage() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Courses</h1>
             <p className="mt-1 text-gray-500">
-              Learn from expert instructors in our community
+              Learn from Sidd Ahmed and level up your career, business, and mindset
             </p>
           </div>
         </div>
@@ -62,7 +64,8 @@ export default function CoursesPage() {
               className="group rounded-2xl border border-gray-100 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
-              <div className="relative aspect-video bg-gradient-to-br from-blue-500 to-blue-600">
+              <div className="relative aspect-video bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                <Sparkles className="h-12 w-12 text-white/30" />
                 {course.isNew && (
                   <span className="absolute left-3 top-3 rounded bg-red-500 px-2 py-0.5 text-xs font-semibold text-white">
                     NEW
@@ -81,7 +84,7 @@ export default function CoursesPage() {
                     {course.lessons} lessons
                   </span>
                 </div>
-                <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 <p className="mt-1 text-xs text-gray-500">{course.startDate}</p>
