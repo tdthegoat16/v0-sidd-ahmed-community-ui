@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Onboarding } from "./onboarding";
 import { ProfileProvider } from "./profile-context";
 import { AppStateProvider } from "@/lib/app-state";
+import { AcademyProvider } from "@/lib/academy-state";
 import { BookmarksPanel } from "./bookmarks-panel";
 
 interface AppShellProps {
@@ -29,10 +30,12 @@ export function AppShell({ children }: AppShellProps) {
 
   return (
     <AppStateProvider>
-      <ProfileProvider>
-        {children}
-        <BookmarksPanel />
-      </ProfileProvider>
+      <AcademyProvider>
+        <ProfileProvider>
+          {children}
+          <BookmarksPanel />
+        </ProfileProvider>
+      </AcademyProvider>
     </AppStateProvider>
   );
 }

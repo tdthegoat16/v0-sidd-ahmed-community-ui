@@ -6,6 +6,7 @@ import {
   MessageSquare,
   GraduationCap,
   CalendarDays,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,6 +15,7 @@ const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Chat", href: "/chat", icon: MessageSquare },
   { name: "Courses", href: "/courses", icon: GraduationCap },
+  { name: "Academy", href: "/academy", icon: BookOpen },
   { name: "Events", href: "/events", icon: CalendarDays },
 ];
 

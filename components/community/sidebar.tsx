@@ -9,6 +9,7 @@ import {
   Sparkles,
   Moon,
   Sun,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -19,6 +20,7 @@ const mainNav = [
   { name: "Home", href: "/", icon: Home },
   { name: "Chat", href: "/chat", icon: MessageCircle },
   { name: "Courses", href: "/courses", icon: GraduationCap },
+  { name: "Academy", href: "/academy", icon: BookOpen },
   { name: "Events", href: "/events", icon: Calendar },
 ];
 
