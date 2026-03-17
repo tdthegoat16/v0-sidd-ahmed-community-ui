@@ -1,14 +1,12 @@
 "use client";
 
-import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Instagram, Linkedin, Youtube, Twitter, Sparkles } from "lucide-react";
-import { events, communityMembers, courses, currentUser } from "@/lib/data";
+import { events, courses, currentUser } from "@/lib/data";
 import Link from "next/link";
 
 export function HomeRightPanel() {
   const upcomingEvents = events.slice(0, 3);
-  const activeMembers = communityMembers.filter((m) => m.isOnline).slice(0, 6);
   const featuredCourse = courses[0];
 
   return (
@@ -30,7 +28,7 @@ export function HomeRightPanel() {
           </div>
         </div>
         <Link
-          href="/profile"
+          href="/events"
           className="mt-4 block w-full rounded-lg bg-blue-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
         >
           Book a Session
@@ -82,43 +80,6 @@ export function HomeRightPanel() {
                   {event.date} · {event.time}
                 </p>
               </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      {/* Active Members */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-gray-900">
-            Active Members
-          </h3>
-          <Link
-            href="/members"
-            className="text-xs text-blue-600 hover:text-blue-700"
-          >
-            View all
-          </Link>
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          {activeMembers.map((member) => (
-            <Link
-              key={member.id}
-              href={`/members/${member.id}`}
-              className="flex flex-col items-center gap-1 rounded-lg p-2 hover:bg-gray-50 transition-colors"
-            >
-              <div className="relative">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src={member.avatar} alt={member.name} />
-                  <AvatarFallback className={cn(member.color, "text-white text-xs")}>
-                    {getInitials(member.name)}
-                  </AvatarFallback>
-                </Avatar>
-                <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-green-500" />
-              </div>
-              <span className="text-xs text-gray-600 text-center truncate w-full">
-                {member.name.split(" ")[0]}
-              </span>
             </Link>
           ))}
         </div>

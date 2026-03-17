@@ -13,8 +13,7 @@ import {
   Check,
   Users,
 } from "lucide-react";
-import { events, communityMembers } from "@/lib/data";
-import Link from "next/link";
+import { events } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 interface EventDetailPageProps {
@@ -25,7 +24,6 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
   const { id } = await params;
   const event = events.find((e) => e.id === id);
   if (!event) notFound();
-  const attendees = communityMembers.slice(0, 6);
 
   return (
     <CommunityLayout>
@@ -124,44 +122,6 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
               </button>
             </div>
 
-            {/* Attendees */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Attendees ({event.attendees})
-                </h2>
-                <Link
-                  href="/members"
-                  className="text-sm text-blue-600 hover:text-blue-700"
-                >
-                  View all
-                </Link>
-              </div>
-              <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {attendees.map((attendee) => (
-                  <Link
-                    key={attendee.id}
-                    href={`/members/${attendee.id}`}
-                    className="flex items-center gap-3 rounded-lg p-2 hover:bg-gray-50 transition-colors"
-                  >
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage src={attendee.avatar} alt={attendee.name} />
-                      <AvatarFallback className={cn(attendee.color, "text-white text-xs")}>
-                        {getInitials(attendee.name)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
-                        {attendee.name}
-                      </p>
-                      <p className="text-xs text-gray-500 truncate">
-                        {attendee.role}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Sidebar */}
@@ -224,10 +184,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
             {/* Host Card */}
             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
               <h3 className="text-sm font-semibold text-gray-900">Host</h3>
-              <Link
-                href={`/members/${event.host.id}`}
-                className="mt-4 flex items-center gap-3"
-              >
+              <div className="mt-4 flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={event.host.avatar} alt={event.host.name} />
                   <AvatarFallback className={cn(event.host.color, "text-white text-sm")}>
@@ -240,7 +197,7 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
                   </p>
                   <p className="text-xs text-gray-500">{event.host.role}</p>
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>

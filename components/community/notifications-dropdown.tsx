@@ -4,7 +4,7 @@ import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { notifications } from "@/lib/data";
 import { useEffect, useRef } from "react";
-import { Bell, BookOpen, Heart, MessageCircle, UserPlus } from "lucide-react";
+import { Bell, BookOpen } from "lucide-react";
 
 interface NotificationsDropdownProps {
   onClose: () => void;
@@ -80,14 +80,8 @@ function NotificationItem({ notification }: NotificationItemProps) {
     switch (notification.type) {
       case "lesson":
         return <BookOpen className="h-4 w-4 text-blue-600" />;
-      case "like":
-        return <Heart className="h-4 w-4 text-red-500" />;
-      case "comment":
-        return <MessageCircle className="h-4 w-4 text-green-500" />;
       case "event":
         return <Bell className="h-4 w-4 text-orange-500" />;
-      case "member":
-        return <UserPlus className="h-4 w-4 text-purple-500" />;
       default:
         return <Bell className="h-4 w-4 text-gray-400" />;
     }

@@ -1,16 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { cn, getInitials } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import {
   Search,
   Bell,
-  MessageCircle,
   Bookmark,
   ChevronDown,
   Menu,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +16,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NotificationsDropdown } from "./notifications-dropdown";
-import { currentUser } from "@/lib/data";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -26,8 +23,6 @@ const navTabs = [
   { name: "Home", href: "/" },
   { name: "Courses", href: "/courses" },
   { name: "Events", href: "/events" },
-  { name: "Members", href: "/members" },
-  { name: "Leaderboard", href: "/leaderboard" },
 ];
 
 interface TopNavProps {
@@ -103,24 +98,9 @@ export function TopNav({ onMenuClick }: TopNavProps) {
             />
           )}
         </div>
-        <Link
-          href="/chatrooms"
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
-          aria-label="Chatrooms"
-        >
-          <MessageCircle className="h-5 w-5" />
-        </Link>
         <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Bookmarks">
           <Bookmark className="h-5 w-5" />
         </button>
-        <Link href="/profile">
-          <Avatar className="h-8 w-8 cursor-pointer">
-            <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-            <AvatarFallback className="bg-blue-600 text-white text-xs">
-              {getInitials(currentUser.name)}
-            </AvatarFallback>
-          </Avatar>
-        </Link>
       </div>
     </header>
   );

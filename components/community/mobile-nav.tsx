@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import {
   Home,
   MessageSquare,
-  MessageCircle,
   GraduationCap,
   CalendarDays,
 } from "lucide-react";
@@ -14,7 +13,6 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Community", href: "/community/announcements", icon: MessageSquare },
-  { name: "Chat", href: "/chatrooms", icon: MessageCircle },
   { name: "Courses", href: "/courses", icon: GraduationCap },
   { name: "Events", href: "/events", icon: CalendarDays },
 ];

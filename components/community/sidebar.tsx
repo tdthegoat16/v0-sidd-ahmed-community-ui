@@ -5,10 +5,6 @@ import {
   Home,
   GraduationCap,
   Calendar,
-  Users,
-  Trophy,
-  MessageCircle,
-  Camera,
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
@@ -19,9 +15,6 @@ const mainNav = [
   { name: "Home", href: "/", icon: Home },
   { name: "Courses", href: "/courses", icon: GraduationCap },
   { name: "Events", href: "/events", icon: Calendar },
-  { name: "Members", href: "/members", icon: Users },
-  { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
-  { name: "Chatrooms", href: "/chatrooms", icon: MessageCircle },
 ];
 
 interface SidebarProps {
@@ -134,12 +127,9 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
       </nav>
 
-      {/* Go Live Button */}
+      {/* Footer */}
       <div className="border-t border-gray-100 p-4">
-        <button className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
-          <Camera className="h-4 w-4" />
-          Go Live
-        </button>
+        <p className="text-xs text-gray-400 text-center">Positive Tribe</p>
       </div>
     </aside>
   );
