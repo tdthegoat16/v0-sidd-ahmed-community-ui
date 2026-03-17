@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { DM_Sans } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { CapacitorProvider } from '@/components/capacitor-provider'
 import { AppShell } from '@/components/community/app-shell'
 import './globals.css'
 
@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: 'Positive Tribe',
   description: 'Aspire more than what life has planned for you — A private membership community by Sidd Ahmed',
   generator: 'v0.app',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Positive Tribe',
+  },
   icons: {
     icon: [
       {
@@ -30,6 +35,14 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,11 +52,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <AppShell>
-            {children}
-          </AppShell>
+          <CapacitorProvider>
+            <AppShell>
+              {children}
+            </AppShell>
+          </CapacitorProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   )

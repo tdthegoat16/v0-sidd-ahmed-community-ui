@@ -17,7 +17,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 lg:hidden">
+    <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 lg:hidden safe-area-top">
       {/* Left: Menu + Title */}
       <div className="flex items-center gap-3">
         {!searchOpen && (

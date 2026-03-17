@@ -133,3 +133,46 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Capacitor native app safe areas */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Keyboard open state (iOS) */
+body.keyboard-open .mobile-bottom-nav {
+  display: none;
+}
+
+/* Disable text selection in native app context */
+.native-app {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Allow text selection in inputs/textareas */
+.native-app input,
+.native-app textarea,
+.native-app [contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Smooth scroll for native feel */
+.native-app * {
+  -webkit-overflow-scrolling: touch;
+}
