@@ -65,7 +65,7 @@ export default function ChatPage() {
                         "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium transition-colors",
                         activeChannel === channel.id
                           ? "bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                       )}
                     >
                       {channel.isAI ? (
@@ -99,7 +99,7 @@ export default function ChatPage() {
                   <button
                     key={member.id}
                     onClick={() => openProfile(member)}
-                    className="flex items-center gap-2 w-full text-left hover:bg-gray-50 dark:bg-gray-800 rounded-md px-1 py-0.5 transition-colors"
+                    className="flex items-center gap-2 w-full text-left hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md px-1 py-0.5 transition-colors"
                   >
                     <div className="relative">
                       <Avatar className="h-6 w-6">
@@ -115,7 +115,7 @@ export default function ChatPage() {
                       </Avatar>
                       <span className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-white dark:ring-gray-900" />
                     </div>
-                    <span className="text-xs text-gray-700 truncate">
+                    <span className="text-xs text-gray-700 dark:text-gray-300 truncate">
                       {member.name}
                     </span>
                   </button>
@@ -143,7 +143,7 @@ export default function ChatPage() {
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <Hash className="h-12 w-12 text-gray-200 mb-3" />
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Welcome to #{activeChannelName}</h3>
-                <p className="text-sm text-gray-500 mt-1">This is the start of the channel. Say hello!</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">This is the start of the channel. Say hello!</p>
               </div>
             )}
             {messages.map((msg) => (
@@ -193,7 +193,7 @@ export default function ChatPage() {
                         className="flex items-center gap-1 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 text-xs hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                       >
                         <span>{reaction.emoji}</span>
-                        <span className="text-gray-600 font-medium">
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">
                           {reaction.count}
                         </span>
                       </button>
@@ -201,12 +201,12 @@ export default function ChatPage() {
                     <div className="relative">
                       <button
                         onClick={() => setShowEmojiPicker(showEmojiPicker === msg.id ? null : msg.id)}
-                        className="flex items-center justify-center h-6 w-6 rounded-full border border-dashed border-gray-300 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-600 transition-colors opacity-0 group-hover:opacity-100"
+                        className="flex items-center justify-center h-6 w-6 rounded-full border border-dashed border-gray-300 dark:border-gray-600 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 transition-colors opacity-0 group-hover:opacity-100"
                       >
                         <SmilePlus className="h-3 w-3" />
                       </button>
                       {showEmojiPicker === msg.id && (
-                        <div className="absolute bottom-full left-0 mb-1 flex gap-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white p-2 shadow-lg z-10">
+                        <div className="absolute bottom-full left-0 mb-1 flex gap-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-2 shadow-lg z-10">
                           {quickEmojis.map((emoji) => (
                             <button
                               key={emoji}
@@ -232,7 +232,7 @@ export default function ChatPage() {
           {/* Message Input */}
           <div className="border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-3">
             <div className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2">
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
+              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <Plus className="h-5 w-5" />
               </button>
               <input
@@ -243,7 +243,7 @@ export default function ChatPage() {
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 className="flex-1 bg-transparent dark:bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none"
               />
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
+              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <SmilePlus className="h-5 w-5" />
               </button>
               <button

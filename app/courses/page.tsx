@@ -187,7 +187,7 @@ export default function CoursesPage() {
                     </>
                   )}
                 </div>
-                <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-tribe-800 transition-colors line-clamp-2">
+                <h3 className="mt-2 text-base font-semibold text-gray-900 dark:text-white group-hover:text-tribe-800 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{course.startDate}</p>

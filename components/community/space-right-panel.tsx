@@ -14,7 +14,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
     <div className="p-4 space-y-6">
       {/* About Space */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 mb-3">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
           About this space
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -25,7 +25,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
 
       {/* Hosted By */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 mb-3">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
           Hosted by
         </h3>
         <div className="flex items-center gap-3 rounded-lg p-2">
@@ -44,7 +44,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
 
       {/* Guidelines */}
       <div className="rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 p-4">
-        <h3 className="text-sm font-semibold text-gray-900 mb-2">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
           Community Guidelines
         </h3>
         <ul className="space-y-1 text-xs text-gray-600 dark:text-gray-400">

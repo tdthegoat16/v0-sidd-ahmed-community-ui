@@ -86,7 +86,7 @@ export function PostCard({ post }: PostCardProps) {
           </div>
         </div>
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-600 dark:text-gray-400">
+          <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-600 dark:hover:text-gray-300 dark:text-gray-400">
             <MoreHorizontal className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -204,7 +204,7 @@ export function PostCard({ post }: PostCardProps) {
 
       {/* Comments Section */}
       {showComments && (
-        <div className="mt-4 border-t border-gray-100 pt-4">
+        <div className="mt-4 border-t border-gray-100 dark:border-gray-800 pt-4">
           {/* Existing comments */}
           {post.commentsList && post.commentsList.length > 0 && (
             <div className="space-y-3 mb-4">
@@ -221,7 +221,7 @@ export function PostCard({ post }: PostCardProps) {
                       <span className="text-xs font-semibold text-gray-900 dark:text-white">{comment.author.name}</span>
                       <span className="text-xs text-gray-400 dark:text-gray-500">{comment.timestamp}</span>
                     </div>
-                    <p className="text-sm text-gray-700 mt-0.5">{comment.text}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300 mt-0.5">{comment.text}</p>
                   </div>
                 </div>
               ))}

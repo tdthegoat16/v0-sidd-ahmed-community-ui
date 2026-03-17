@@ -101,10 +101,10 @@ export default function EventsPage() {
                     className={cn(
                       "flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium",
                       event.type === "Live stream"
-                        ? "bg-red-100 text-red-700"
+                        ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400"
                         : event.type === "Workshop"
-                        ? "bg-purple-100 text-purple-700"
-                        : "bg-green-100 text-green-700"
+                        ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400"
+                        : "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400"
                     )}
                   >
                     {event.type === "Live stream" ? (
@@ -135,7 +135,7 @@ export default function EventsPage() {
                 {event.isGoing ? (
                   <button
                     onClick={() => toggleRsvp(event.id)}
-                    className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100 transition-colors"
+                    className="flex items-center gap-1.5 rounded-full border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/30 px-4 py-2 text-sm font-medium text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                   >
                     <Check className="h-4 w-4" />
                     Going

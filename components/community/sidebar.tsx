@@ -39,7 +39,7 @@ export function Sidebar({ className }: SidebarProps) {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 border-b border-gray-100 dark:border-gray-800 px-4 py-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900 text-tribe-500">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gray-900 dark:bg-tribe-500 text-tribe-500 dark:text-gray-900">
           <Sparkles className="h-5 w-5" />
         </div>
         <div className="flex flex-col">

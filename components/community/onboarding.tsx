@@ -96,7 +96,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 0: Welcome */}
         {step === 0 && (
           <div className="text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-900 text-tribe-500">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-900 dark:bg-tribe-500 text-tribe-500 dark:text-gray-900">
               <Sparkles className="h-8 w-8" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -129,7 +129,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedInterests.includes(interest.id)
                       ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
-                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
+                      : "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-gray-200 dark:hover:border-gray-600"
                   )}
                 >
                   <span className="text-xl">{interest.emoji}</span>
@@ -163,7 +163,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedGoal === goal.id
                       ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
-                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
+                      : "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-gray-200 dark:hover:border-gray-600"
                   )}
                 >
                   <span className="flex-1 text-sm font-medium text-gray-900 dark:text-white">
@@ -196,7 +196,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     "flex w-full flex-col rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedStage === stage.id
                       ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
-                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
+                      : "border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-gray-200 dark:hover:border-gray-600"
                   )}
                 >
                   <div className="flex items-center justify-between">
@@ -235,7 +235,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {step > 0 && (
           <button
             onClick={onComplete}
-            className="mt-3 w-full text-center text-sm text-gray-400 hover:text-gray-600 dark:text-gray-400"
+            className="mt-3 w-full text-center text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 dark:text-gray-400"
           >
             Skip for now
           </button>

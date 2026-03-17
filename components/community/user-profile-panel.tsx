@@ -67,30 +67,30 @@ export function UserProfilePanel({
             <span
               className={cn(
                 "ml-auto h-2.5 w-2.5 rounded-full",
-                user.isOnline ? "bg-green-500" : "bg-gray-300"
+                user.isOnline ? "bg-green-500" : "bg-gray-300 dark:bg-gray-600"
               )}
             />
           </div>
-          <p className="text-sm text-gray-500 mt-0.5">{user.role}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{user.role}</p>
         </div>
 
         {/* Bio */}
         <div className="px-5 mt-4">
-          <p className="text-sm text-gray-600 leading-relaxed">{user.bio}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{user.bio}</p>
         </div>
 
         {/* Info List */}
         <div className="px-5 mt-5 space-y-3">
           <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <MapPin className="h-4 w-4 text-gray-400 shrink-0" />
+            <MapPin className="h-4 w-4 text-gray-400 dark:text-gray-500 shrink-0" />
             {user.location}
           </div>
           <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <Mail className="h-4 w-4 text-gray-400 shrink-0" />
+            <Mail className="h-4 w-4 text-gray-400 dark:text-gray-500 shrink-0" />
             {user.email}
           </div>
           <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-            <Calendar className="h-4 w-4 text-gray-400 shrink-0" />
+            <Calendar className="h-4 w-4 text-gray-400 dark:text-gray-500 shrink-0" />
             Member since {user.memberSince}
           </div>
         </div>
@@ -99,7 +99,7 @@ export function UserProfilePanel({
         <div className="px-5 mt-5">
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
-              <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+              <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <FileText className="h-3.5 w-3.5" />
               </div>
               <p className="text-lg font-bold text-gray-900 dark:text-white">
@@ -108,7 +108,7 @@ export function UserProfilePanel({
               <p className="text-xs text-gray-500 dark:text-gray-400">Posts</p>
             </div>
             <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
-              <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+              <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <MessageSquare className="h-3.5 w-3.5" />
               </div>
               <p className="text-lg font-bold text-gray-900 dark:text-white">
@@ -117,7 +117,7 @@ export function UserProfilePanel({
               <p className="text-xs text-gray-500 dark:text-gray-400">Comments</p>
             </div>
             <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
-              <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
+              <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <Hash className="h-3.5 w-3.5" />
               </div>
               <p className="text-lg font-bold text-gray-900 dark:text-white">
@@ -130,7 +130,7 @@ export function UserProfilePanel({
 
         {/* Tags */}
         <div className="px-5 mt-5 pb-6">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">
             Tags
           </h4>
           <div className="flex flex-wrap gap-1.5">

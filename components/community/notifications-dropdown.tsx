@@ -112,7 +112,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
     <div
       onClick={onRead}
       className={cn(
-        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:bg-gray-800 cursor-pointer transition-colors",
+        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors",
         !notification.isRead && "bg-tribe-50/50"
       )}
     >

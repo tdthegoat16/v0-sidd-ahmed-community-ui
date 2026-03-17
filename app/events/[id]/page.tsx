@@ -171,7 +171,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-gray-100 pt-6">
+              <div className="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">{event.price}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Event ticket</p>
               </div>
@@ -179,7 +179,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
               {event.isGoing ? (
                 <button
                   onClick={() => toggleRsvp(event.id)}
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-green-50 border border-green-200 py-3 text-sm font-semibold text-green-700 hover:bg-green-100 transition-colors"
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 py-3 text-sm font-semibold text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors"
                 >
                   <Check className="h-4 w-4" />
                   You are going!

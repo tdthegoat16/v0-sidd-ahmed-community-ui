@@ -24,7 +24,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
           <>
             <button
               onClick={onMenuClick}
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
@@ -53,7 +53,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
           />
           <button
             onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
-            className="text-gray-400 hover:text-gray-600 dark:text-gray-400"
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 dark:text-gray-400"
           >
             <X className="h-4 w-4" />
           </button>
@@ -63,7 +63,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
         <div className="flex items-center gap-1">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label="Toggle theme"
           >
             <Sun className="h-5 w-5 hidden dark:block" />
@@ -71,7 +71,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
           </button>
           <button
             onClick={() => setSearchOpen(true)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
             aria-label="Search"
           >
             <Search className="h-5 w-5" />
@@ -79,7 +79,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
           <div className="relative">
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
+              className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
               <Bell className="h-5 w-5" />
               {unreadNotificationCount > 0 && (

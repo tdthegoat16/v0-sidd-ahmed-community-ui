@@ -95,15 +95,15 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
 
   const getLessonIconStyle = (lesson: typeof allLessons[0]) => {
     if (lesson.completed) return "bg-green-500 text-white";
-    if (lesson.locked) return "bg-gray-100 text-gray-400 dark:text-gray-500";
+    if (lesson.locked) return "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500";
     if (activeLesson === lesson.id) return "bg-tribe-600 text-gray-900";
-    if (lesson.type === "quiz") return "border-2 border-purple-400 text-purple-500";
-    if (lesson.type === "exercise") return "border-2 border-orange-400 text-orange-500";
-    return "border border-gray-300 text-gray-400 dark:text-gray-500";
+    if (lesson.type === "quiz") return "border-2 border-purple-400 dark:border-purple-500 text-purple-500 dark:text-purple-400";
+    if (lesson.type === "exercise") return "border-2 border-orange-400 dark:border-orange-500 text-orange-500 dark:text-orange-400";
+    return "border border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500";
   };
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-800">
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopNav />
 
@@ -261,14 +261,14 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
 
             {/* Streak Footer */}
             <div className="border-t border-gray-100 dark:border-gray-800 p-4">
-              <div className="flex items-center justify-between rounded-lg bg-orange-50 p-3">
+              <div className="flex items-center justify-between rounded-lg bg-orange-50 dark:bg-orange-900/20 p-3">
                 <div className="flex items-center gap-2">
                   <Flame className="h-5 w-5 text-orange-500" />
                   <div>
-                    <p className="text-sm font-semibold text-orange-700">
+                    <p className="text-sm font-semibold text-orange-700 dark:text-orange-400">
                       {learningStats.currentStreak} day streak!
                     </p>
-                    <p className="text-xs text-orange-500">Keep it going!</p>
+                    <p className="text-xs text-orange-500 dark:text-orange-400">Keep it going!</p>
                   </div>
                 </div>
                 <div className="flex gap-0.5">
@@ -279,7 +279,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                         "h-2.5 w-2.5 rounded-full",
                         i < learningStats.currentStreak
                           ? "bg-orange-400"
-                          : "bg-orange-200"
+                          : "bg-orange-200 dark:bg-orange-800"
                       )}
                     />
                   ))}
@@ -294,7 +294,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               {/* Celebration Overlay */}
               {showCelebration && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                  <div className="animate-bounce rounded-2xl bg-white p-8 text-center shadow-2xl">
+                  <div className="animate-bounce rounded-2xl bg-white dark:bg-gray-900 p-8 text-center shadow-2xl">
                     <div className="text-5xl">🎉</div>
                     <h2 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
                       Lesson Complete!
@@ -335,7 +335,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                       <Zap className="h-3.5 w-3.5" />
                       {earnedXpInCourse} / {totalXpInCourse} XP
                     </span>
-                    <span className="flex items-center gap-1 text-orange-600">
+                    <span className="flex items-center gap-1 text-orange-600 dark:text-orange-400">
                       <Flame className="h-3.5 w-3.5" />
                       {learningStats.currentStreak} day streak
                     </span>
@@ -355,9 +355,9 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   <span className={cn(
                     "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium",
                     currentLesson.type === "quiz"
-                      ? "bg-purple-100 text-purple-700"
+                      ? "bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400"
                       : currentLesson.type === "exercise"
-                      ? "bg-orange-100 text-orange-700"
+                      ? "bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400"
                       : "bg-tribe-100 dark:bg-tribe-900/30 text-tribe-800"
                   )}>
                     {currentLesson.type === "quiz" && <FileQuestion className="h-3 w-3" />}
@@ -393,7 +393,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                       {currentLesson.title}
                     </h3>
                   </div>
-                  <p className="text-gray-700 font-medium mb-4">
+                  <p className="text-gray-700 dark:text-gray-300 font-medium mb-4">
                     What is the most important first step when validating a startup idea?
                   </p>
                   <div className="space-y-3">
@@ -410,12 +410,12 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                         className={cn(
                           "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-all",
                           quizSubmitted && i === 1
-                            ? "border-green-500 bg-green-50"
+                            ? "border-green-500 bg-green-50 dark:bg-green-900/20"
                             : quizSubmitted && quizAnswer === i && i !== 1
-                            ? "border-red-400 bg-red-50"
+                            ? "border-red-400 bg-red-50 dark:bg-red-900/20"
                             : quizAnswer === i
-                            ? "border-purple-500 bg-purple-50"
-                            : "border-gray-100 hover:border-gray-200 dark:border-gray-700"
+                            ? "border-purple-500 bg-purple-50 dark:bg-purple-900/20"
+                            : "border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600"
                         )}
                       >
                         <span className={cn(
@@ -424,7 +424,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                             ? "bg-green-500 text-white"
                             : quizAnswer === i
                             ? "bg-purple-500 text-white"
-                            : "bg-gray-100 text-gray-600 dark:text-gray-400"
+                            : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
                         )}>
                           {quizSubmitted && i === 1 ? <Check className="h-4 w-4" /> : String.fromCharCode(65 + i)}
                         </span>
@@ -440,7 +440,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                         "mt-6 w-full rounded-full py-3 text-sm font-semibold transition-all",
                         quizAnswer !== null
                           ? "bg-purple-600 text-white hover:bg-purple-700"
-                          : "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
                       )}
                     >
                       Submit Answer
@@ -448,11 +448,11 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   ) : (
                     <div className={cn(
                       "mt-4 rounded-lg p-4",
-                      quizAnswer === 1 ? "bg-green-50" : "bg-red-50"
+                      quizAnswer === 1 ? "bg-green-50 dark:bg-green-900/20" : "bg-red-50 dark:bg-red-900/20"
                     )}>
                       <p className={cn(
                         "text-sm font-medium",
-                        quizAnswer === 1 ? "text-green-700" : "text-red-700"
+                        quizAnswer === 1 ? "text-green-700 dark:text-green-400" : "text-red-700 dark:text-red-400"
                       )}>
                         {quizAnswer === 1
                           ? "Correct! Customer validation is the most critical first step."
@@ -526,14 +526,14 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               )}
 
               {currentLesson?.completed && (
-                <div className="mt-6 flex items-center justify-center gap-2 rounded-full bg-green-50 border border-green-200 py-3.5 text-sm font-semibold text-green-700">
+                <div className="mt-6 flex items-center justify-center gap-2 rounded-full bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 py-3.5 text-sm font-semibold text-green-700 dark:text-green-400">
                   <CircleCheck className="h-5 w-5" />
                   Lesson Completed — {currentLesson.xp} XP earned
                 </div>
               )}
 
               {/* Navigation */}
-              <div className="mt-8 flex items-center justify-between border-t border-gray-100 pt-6">
+              <div className="mt-8 flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-6">
                 <button
                   onClick={() => {
                     if (currentIndex > 0) {
@@ -545,7 +545,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   className={cn(
                     "flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === 0
-                      ? "text-gray-300 cursor-not-allowed"
+                      ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
                       : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
                   )}
                 >
@@ -563,7 +563,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === allLessons.length - 1 || allLessons[currentIndex + 1]?.locked
-                      ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                      ? "bg-gray-100 dark:bg-gray-800 text-gray-300 dark:text-gray-600 cursor-not-allowed"
                       : "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
                   )}
                 >
