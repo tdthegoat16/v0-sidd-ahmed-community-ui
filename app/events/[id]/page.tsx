@@ -1,3 +1,6 @@
+"use client";
+
+import { use } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,15 +16,16 @@ import {
   Check,
   Users,
 } from "lucide-react";
-import { events } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 import { notFound } from "next/navigation";
 
 interface EventDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function EventDetailPage({ params }: EventDetailPageProps) {
-  const { id } = await params;
+export default function EventDetailPage({ params }: EventDetailPageProps) {
+  const { id } = use(params);
+  const { events, toggleRsvp } = useAppState();
   const event = events.find((e) => e.id === id);
   if (!event) notFound();
 
@@ -116,7 +120,10 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
                 <Bookmark className="h-5 w-5" />
                 <span className="text-sm">Save</span>
               </button>
-              <button className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors">
+              <button
+                onClick={() => navigator.clipboard?.writeText(window.location.href)}
+                className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors"
+              >
                 <Share2 className="h-5 w-5" />
                 <span className="text-sm">Share</span>
               </button>
@@ -165,17 +172,23 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
               </div>
 
               <div className="mt-6 border-t border-gray-100 pt-6">
-                <p className="text-2xl font-bold text-gray-900">Free</p>
+                <p className="text-2xl font-bold text-gray-900">{event.price}</p>
                 <p className="text-sm text-gray-500">Event ticket</p>
               </div>
 
               {event.isGoing ? (
-                <button className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-green-50 border border-green-200 py-3 text-sm font-semibold text-green-700">
+                <button
+                  onClick={() => toggleRsvp(event.id)}
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-green-50 border border-green-200 py-3 text-sm font-semibold text-green-700 hover:bg-green-100 transition-colors"
+                >
                   <Check className="h-4 w-4" />
                   You are going!
                 </button>
               ) : (
-                <button className="mt-4 w-full rounded-full bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={() => toggleRsvp(event.id)}
+                  className="mt-4 w-full rounded-full bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+                >
                   RSVP Now
                 </button>
               )}

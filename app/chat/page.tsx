@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { useProfile } from "@/components/community/profile-context";
+import { useAppState } from "@/lib/app-state";
 import {
   Hash,
   Sparkles,
@@ -12,17 +13,34 @@ import {
   SmilePlus,
   Plus,
 } from "lucide-react";
-import { chatChannels, chatMessages, communityMembers } from "@/lib/data";
+import { chatChannels, communityMembers } from "@/lib/data";
+
+const quickEmojis = ["👍", "❤️", "😂", "🎉", "🚀", "🙌", "🔥", "✅"];
 
 export default function ChatPage() {
   const [activeChannel, setActiveChannel] = useState("daily-wins");
   const [messageInput, setMessageInput] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState<string | null>(null);
   const { openProfile } = useProfile();
+  const { chatMessages, sendMessage, toggleReaction } = useAppState();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const activeChannelName =
     chatChannels
       .flatMap((g) => g.channels)
       .find((c) => c.id === activeChannel)?.name ?? activeChannel;
+
+  const messages = chatMessages[activeChannel] || [];
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages.length]);
+
+  const handleSend = () => {
+    if (!messageInput.trim()) return;
+    sendMessage(activeChannel, messageInput.trim());
+    setMessageInput("");
+  };
 
   return (
     <CommunityLayout title="Chat">
@@ -121,9 +139,15 @@ export default function ChatPage() {
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-5">
-            {chatMessages.map((msg) => (
+            {messages.length === 0 && (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <Hash className="h-12 w-12 text-gray-200 mb-3" />
+                <h3 className="text-lg font-semibold text-gray-900">Welcome to #{activeChannelName}</h3>
+                <p className="text-sm text-gray-500 mt-1">This is the start of the channel. Say hello!</p>
+              </div>
+            )}
+            {messages.map((msg) => (
               <div key={msg.id} className="flex items-start gap-3 group">
-                {/* Clickable Avatar */}
                 <button
                   onClick={() => openProfile(msg.author)}
                   className="shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-full"
@@ -143,7 +167,6 @@ export default function ChatPage() {
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline gap-2">
-                    {/* Clickable Name */}
                     <button
                       onClick={() => openProfile(msg.author)}
                       className="text-sm font-semibold text-gray-900 hover:text-blue-600 hover:underline transition-colors"
@@ -162,27 +185,48 @@ export default function ChatPage() {
                   <p className="mt-0.5 text-sm text-gray-700">{msg.message}</p>
 
                   {/* Reactions */}
-                  {msg.reactions.length > 0 && (
-                    <div className="mt-1.5 flex flex-wrap gap-1.5">
-                      {msg.reactions.map((reaction, i) => (
-                        <button
-                          key={i}
-                          className="flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs hover:bg-gray-100 transition-colors"
-                        >
-                          <span>{reaction.emoji}</span>
-                          <span className="text-gray-600 font-medium">
-                            {reaction.count}
-                          </span>
-                        </button>
-                      ))}
-                      <button className="flex items-center justify-center h-6 w-6 rounded-full border border-dashed border-gray-300 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors opacity-0 group-hover:opacity-100">
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {msg.reactions.map((reaction, i) => (
+                      <button
+                        key={i}
+                        onClick={() => toggleReaction(activeChannel, msg.id, reaction.emoji)}
+                        className="flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs hover:bg-gray-100 transition-colors"
+                      >
+                        <span>{reaction.emoji}</span>
+                        <span className="text-gray-600 font-medium">
+                          {reaction.count}
+                        </span>
+                      </button>
+                    ))}
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowEmojiPicker(showEmojiPicker === msg.id ? null : msg.id)}
+                        className="flex items-center justify-center h-6 w-6 rounded-full border border-dashed border-gray-300 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors opacity-0 group-hover:opacity-100"
+                      >
                         <SmilePlus className="h-3 w-3" />
                       </button>
+                      {showEmojiPicker === msg.id && (
+                        <div className="absolute bottom-full left-0 mb-1 flex gap-1 rounded-lg border border-gray-200 bg-white p-2 shadow-lg z-10">
+                          {quickEmojis.map((emoji) => (
+                            <button
+                              key={emoji}
+                              onClick={() => {
+                                toggleReaction(activeChannel, msg.id, emoji);
+                                setShowEmojiPicker(null);
+                              }}
+                              className="hover:bg-gray-100 rounded p-1 text-sm"
+                            >
+                              {emoji}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Message Input */}
@@ -196,12 +240,14 @@ export default function ChatPage() {
                 placeholder={`Message #${activeChannelName}`}
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
                 className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 outline-none"
               />
               <button className="text-gray-400 hover:text-gray-600 transition-colors">
                 <SmilePlus className="h-5 w-5" />
               </button>
               <button
+                onClick={handleSend}
                 className={cn(
                   "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
                   messageInput.trim()

@@ -1,6 +1,38 @@
 // Mock data for the Positive Tribe community platform
 
-export const communityMembers = [
+export type CommunityMember = {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  location: string;
+  email: string;
+  bio: string;
+  memberSince: string;
+  tags: string[];
+  postsCount: number;
+  commentsCount: number;
+  spacesJoined: number;
+  isOnline: boolean;
+  color: string;
+  isAdmin?: boolean;
+};
+
+export type Post = {
+  id: string;
+  author: CommunityMember;
+  title: string;
+  body: string;
+  image: string | null;
+  likes: number;
+  comments: number;
+  likedBy: CommunityMember[];
+  timestamp: string;
+  isPinned: boolean;
+  space: string;
+};
+
+export const communityMembers: CommunityMember[] = [
   {
     id: "1",
     name: "Sidd Ahmed",

@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { cn } from "@/lib/utils";
-import { courses, learningStats } from "@/lib/data";
+import { courses } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 import { Sparkles, Zap, Flame, Trophy, Star } from "lucide-react";
 import Link from "next/link";
 
@@ -17,6 +18,7 @@ const categories = [
 ];
 
 export default function CoursesPage() {
+  const { learningStats } = useAppState();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredCourses =

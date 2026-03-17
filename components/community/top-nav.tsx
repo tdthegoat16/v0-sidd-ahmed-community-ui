@@ -8,6 +8,7 @@ import {
   Bookmark,
   ChevronDown,
   Menu,
+  X,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -16,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NotificationsDropdown } from "./notifications-dropdown";
+import { useAppState } from "@/lib/app-state";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -33,6 +35,7 @@ interface TopNavProps {
 export function TopNav({ onMenuClick }: TopNavProps) {
   const pathname = usePathname();
   const [showNotifications, setShowNotifications] = useState(false);
+  const { searchQuery, setSearchQuery, searchOpen, setSearchOpen, unreadNotificationCount, setBookmarksOpen } = useAppState();
 
   return (
     <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-gray-100 bg-white px-4">
@@ -45,45 +48,73 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         >
           <Menu className="h-5 w-5" />
         </button>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-semibold text-gray-900 hover:text-gray-700">
-            ✦ Positive Tribe
-            <ChevronDown className="h-4 w-4 text-gray-400" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem>Community Settings</DropdownMenuItem>
-            <DropdownMenuItem>Invite Members</DropdownMenuItem>
-            <DropdownMenuItem>Leave Community</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {!searchOpen && (
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-semibold text-gray-900 hover:text-gray-700">
+              Positive Tribe
+              <ChevronDown className="h-4 w-4 text-gray-400" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem>Community Settings</DropdownMenuItem>
+              <DropdownMenuItem>Invite Members</DropdownMenuItem>
+              <DropdownMenuItem>Leave Community</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
 
-      {/* Center: Navigation tabs (hidden on mobile) */}
-      <nav className="hidden md:flex items-center gap-1">
-        {navTabs.map((tab) => {
-          const isActive = pathname === tab.href;
-          return (
-            <Link
-              key={tab.name}
-              href={tab.href}
-              className={cn(
-                "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
-                isActive
-                  ? "text-blue-600 bg-blue-50"
-                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              )}
-            >
-              {tab.name}
-            </Link>
-          );
-        })}
-      </nav>
+      {/* Center: Navigation tabs or Search bar */}
+      {searchOpen ? (
+        <div className="flex flex-1 items-center gap-2 mx-4">
+          <Search className="h-4 w-4 text-gray-400 flex-shrink-0" />
+          <input
+            type="text"
+            placeholder="Search posts, courses, events..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            autoFocus
+            className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 outline-none"
+          />
+          <button
+            onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      ) : (
+        <nav className="hidden md:flex items-center gap-1">
+          {navTabs.map((tab) => {
+            const isActive = pathname === tab.href;
+            return (
+              <Link
+                key={tab.name}
+                href={tab.href}
+                className={cn(
+                  "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
+                  isActive
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                )}
+              >
+                {tab.name}
+              </Link>
+            );
+          })}
+        </nav>
+      )}
 
       {/* Right: Actions */}
       <div className="flex items-center gap-2">
-        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Search">
-          <Search className="h-5 w-5" />
-        </button>
+        {!searchOpen && (
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+        )}
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
@@ -91,7 +122,11 @@ export function TopNav({ onMenuClick }: TopNavProps) {
             aria-label="Notifications"
           >
             <Bell className="h-5 w-5" />
-            <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-blue-600" />
+            {unreadNotificationCount > 0 && (
+              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
+                {unreadNotificationCount}
+              </span>
+            )}
           </button>
           {showNotifications && (
             <NotificationsDropdown
@@ -99,7 +134,11 @@ export function TopNav({ onMenuClick }: TopNavProps) {
             />
           )}
         </div>
-        <button className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100" aria-label="Bookmarks">
+        <button
+          onClick={() => setBookmarksOpen(true)}
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+          aria-label="Bookmarks"
+        >
           <Bookmark className="h-5 w-5" />
         </button>
       </div>

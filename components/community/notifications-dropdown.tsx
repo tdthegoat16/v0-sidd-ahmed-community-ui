@@ -2,9 +2,9 @@
 
 import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { notifications } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 import { useEffect, useRef } from "react";
-import { Bell, BookOpen } from "lucide-react";
+import { Bell, BookOpen, CheckCheck } from "lucide-react";
 
 interface NotificationsDropdownProps {
   onClose: () => void;
@@ -12,6 +12,7 @@ interface NotificationsDropdownProps {
 
 export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const { notifications, markNotificationRead, markAllNotificationsRead, unreadNotificationCount } = useAppState();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -29,10 +30,19 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 bg-white shadow-lg"
+      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 bg-white shadow-lg z-50"
     >
-      <div className="border-b border-gray-100 px-4 py-3">
+      <div className="border-b border-gray-100 px-4 py-3 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-gray-900">Notifications</h3>
+        {unreadNotificationCount > 0 && (
+          <button
+            onClick={markAllNotificationsRead}
+            className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-medium"
+          >
+            <CheckCheck className="h-3.5 w-3.5" />
+            Mark all read
+          </button>
+        )}
       </div>
       <div className="max-h-96 overflow-y-auto">
         {todayNotifications.length > 0 && (
@@ -44,6 +54,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
               <NotificationItem
                 key={notification.id}
                 notification={notification}
+                onRead={() => markNotificationRead(notification.id)}
               />
             ))}
           </div>
@@ -57,6 +68,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
               <NotificationItem
                 key={notification.id}
                 notification={notification}
+                onRead={() => markNotificationRead(notification.id)}
               />
             ))}
           </div>
@@ -72,10 +84,19 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
 }
 
 interface NotificationItemProps {
-  notification: (typeof notifications)[0];
+  notification: {
+    id: string;
+    type: string;
+    actor: { name: string; avatar: string; color: string } | null;
+    message: string;
+    target: string | null;
+    timestamp: string;
+    isRead: boolean;
+  };
+  onRead: () => void;
 }
 
-function NotificationItem({ notification }: NotificationItemProps) {
+function NotificationItem({ notification, onRead }: NotificationItemProps) {
   const getIcon = () => {
     switch (notification.type) {
       case "lesson":
@@ -89,8 +110,9 @@ function NotificationItem({ notification }: NotificationItemProps) {
 
   return (
     <div
+      onClick={onRead}
       className={cn(
-        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer",
+        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors",
         !notification.isRead && "bg-blue-50/50"
       )}
     >
@@ -122,7 +144,7 @@ function NotificationItem({ notification }: NotificationItemProps) {
         <span className="text-xs text-gray-500">{notification.timestamp}</span>
       </div>
       {!notification.isRead && (
-        <span className="mt-2 h-2 w-2 rounded-full bg-blue-600" />
+        <span className="mt-2 h-2 w-2 rounded-full bg-blue-600 flex-shrink-0" />
       )}
     </div>
   );

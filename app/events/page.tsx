@@ -5,13 +5,22 @@ import { CommunityLayout } from "@/components/community/community-layout";
 import { cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Calendar, Video, MapPin, Check, Globe } from "lucide-react";
-import { events } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 import Link from "next/link";
 
 const filterTabs = ["Upcoming", "Workshops", "Keynotes", "Q&A Sessions", "Replays"];
 
 export default function EventsPage() {
   const [activeTab, setActiveTab] = useState("Upcoming");
+  const { events, toggleRsvp } = useAppState();
+
+  const filteredEvents = activeTab === "Upcoming"
+    ? events
+    : activeTab === "Workshops"
+    ? events.filter((e) => e.type === "Workshop")
+    : activeTab === "Q&A Sessions"
+    ? events.filter((e) => e.title.toLowerCase().includes("q&a"))
+    : events;
 
   return (
     <CommunityLayout title="Events">
@@ -49,17 +58,16 @@ export default function EventsPage() {
 
         {/* Events List */}
         <div className="mt-8 space-y-4">
-          {events.map((event) => (
-            <Link
+          {filteredEvents.map((event) => (
+            <div
               key={event.id}
-              href={`/events/${event.id}`}
               className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
-              <div className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex-shrink-0" />
+              <Link href={`/events/${event.id}`} className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 flex-shrink-0" />
 
               {/* Content */}
-              <div className="flex-1 min-w-0">
+              <Link href={`/events/${event.id}`} className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-base font-semibold text-gray-900">
@@ -113,29 +121,35 @@ export default function EventsPage() {
                   </span>
                   <span className={cn(
                     "text-sm font-medium",
-                    event.price === "Free" || event.price?.includes("Free") 
-                      ? "text-green-600" 
+                    event.price === "Free" || event.price?.includes("Free")
+                      ? "text-green-600"
                       : "text-gray-900"
                   )}>
                     {event.price}
                   </span>
                 </div>
-              </div>
+              </Link>
 
               {/* RSVP Button */}
               <div className="flex items-center">
                 {event.isGoing ? (
-                  <button className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700">
+                  <button
+                    onClick={() => toggleRsvp(event.id)}
+                    className="flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100 transition-colors"
+                  >
                     <Check className="h-4 w-4" />
                     Going
                   </button>
                 ) : (
-                  <button className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors">
+                  <button
+                    onClick={() => toggleRsvp(event.id)}
+                    className="rounded-full border border-blue-200 bg-white px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 transition-colors"
+                  >
                     RSVP
                   </button>
                 )}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

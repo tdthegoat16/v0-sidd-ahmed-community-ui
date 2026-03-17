@@ -1,16 +1,22 @@
+"use client";
+
+import { use } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { SpaceRightPanel } from "@/components/community/space-right-panel";
 import { PostCard } from "@/components/community/post-card";
 import { PostComposer } from "@/components/community/post-composer";
-import { posts, spaces, spaceNamesBySlug } from "@/lib/data";
+import { spaceNamesBySlug } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 
 interface SpacePageProps {
   params: Promise<{ space: string }>;
 }
 
-export default async function SpacePage({ params }: SpacePageProps) {
-  const { space } = await params;
+export default function SpacePage({ params }: SpacePageProps) {
+  const { space } = use(params);
   const spaceName = spaceNamesBySlug[space] || "Space";
+  const { posts } = useAppState();
+
   const spacePosts = posts.filter(
     (p) => p.space.toLowerCase() === spaceName.toLowerCase()
   );
@@ -25,7 +31,7 @@ export default async function SpacePage({ params }: SpacePageProps) {
         </div>
 
         {/* Post Composer */}
-        <PostComposer placeholder="Share your thoughts..." />
+        <PostComposer placeholder="Share your thoughts..." space={spaceName} />
 
         {/* Posts Feed */}
         <div className="mt-6 space-y-4">
@@ -33,17 +39,11 @@ export default async function SpacePage({ params }: SpacePageProps) {
             spacePosts.map((post) => <PostCard key={post.id} post={post} />)
           ) : (
             <div className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
-              <p className="text-gray-500">No posts yet in this space</p>
+              <p className="text-gray-500">No posts yet in this space. Be the first to share!</p>
             </div>
           )}
         </div>
       </div>
     </CommunityLayout>
-  );
-}
-
-export function generateStaticParams() {
-  return spaces.flatMap((group) =>
-    group.items.map((item) => ({ space: item.id }))
   );
 }

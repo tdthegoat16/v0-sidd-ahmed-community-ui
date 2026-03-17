@@ -20,7 +20,8 @@ import {
   FileQuestion,
   PenTool,
 } from "lucide-react";
-import { courses, courseLessons, learningStats } from "@/lib/data";
+import { courses } from "@/lib/data";
+import { useAppState } from "@/lib/app-state";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -33,6 +34,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
   const course = courses.find((c) => c.id === id);
   if (!course) notFound();
 
+  const { courseLessons, learningStats, completeLesson } = useAppState();
   const lessons = courseLessons[id] || courseLessons["default"];
   const allLessons = lessons.flatMap((m) => m.items);
   const firstIncomplete = allLessons.find((l) => !l.completed && !l.locked);
@@ -66,13 +68,16 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
     .reduce((sum, l) => sum + l.xp, 0);
 
   const handleComplete = () => {
+    if (!currentLesson || currentLesson.completed) return;
+    completeLesson(id, currentLesson.id);
     setShowCelebration(true);
     setTimeout(() => setShowCelebration(false), 3000);
   };
 
   const handleQuizSubmit = () => {
     setQuizSubmitted(true);
-    if (quizAnswer === 1) {
+    if (quizAnswer === 1 && currentLesson) {
+      completeLesson(id, currentLesson.id);
       setTimeout(() => {
         setShowCelebration(true);
         setTimeout(() => setShowCelebration(false), 3000);
@@ -507,7 +512,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               </div>
 
               {/* Complete Lesson Button */}
-              {currentLesson && !currentLesson.completed && !currentLesson.locked && (
+              {currentLesson && !currentLesson.completed && !currentLesson.locked && currentLesson.type !== "quiz" && (
                 <button
                   onClick={handleComplete}
                   className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 py-3.5 text-sm font-semibold text-white shadow-lg hover:from-green-600 hover:to-emerald-700 transition-all"
