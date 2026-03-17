@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 const communities = [
-  { id: "1", name: "SA", color: "bg-tribe-600" },
+  { id: "1", name: "SA", color: "bg-gray-900" },
   { id: "2", name: "BC", color: "bg-green-500" },
   { id: "3", name: "MC", color: "bg-purple-500" },
 ];
@@ -17,7 +17,7 @@ export function IconRail() {
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-xl text-sm font-semibold text-white transition-all hover:rounded-2xl",
             community.color,
-            index === 0 && "ring-2 ring-tribe-600 ring-offset-2"
+            index === 0 && "ring-2 ring-gray-900 ring-offset-2"
           )}
         >
           {community.name}

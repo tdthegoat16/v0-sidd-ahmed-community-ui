@@ -96,7 +96,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
   const getLessonIconStyle = (lesson: typeof allLessons[0]) => {
     if (lesson.completed) return "bg-green-500 text-white";
     if (lesson.locked) return "bg-gray-100 text-gray-400";
-    if (activeLesson === lesson.id) return "bg-tribe-600 text-white";
+    if (activeLesson === lesson.id) return "bg-tribe-600 text-gray-900";
     if (lesson.type === "quiz") return "border-2 border-purple-400 text-purple-500";
     if (lesson.type === "exercise") return "border-2 border-orange-400 text-orange-500";
     return "border border-gray-300 text-gray-400";
@@ -140,9 +140,9 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               </div>
 
               {/* XP Progress */}
-              <div className="mt-3 rounded-lg bg-gradient-to-r from-tribe-50 to-purple-50 p-3">
+              <div className="mt-3 rounded-lg bg-gradient-to-r from-tribe-50 to-yellow-50 p-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="flex items-center gap-1 font-medium text-tribe-700">
+                  <span className="flex items-center gap-1 font-medium text-tribe-800">
                     <Zap className="h-3.5 w-3.5" />
                     {earnedXpInCourse} / {totalXpInCourse} XP
                   </span>
@@ -152,7 +152,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                 </div>
                 <div className="mt-2 h-2 rounded-full bg-white">
                   <div
-                    className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-purple-500 transition-all"
+                    className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-tribe-600 transition-all"
                     style={{ width: `${(completedCount / allLessons.length) * 100}%` }}
                   />
                 </div>
@@ -231,7 +231,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                                   lesson.completed
                                     ? "text-gray-500"
                                     : activeLesson === lesson.id
-                                    ? "font-medium text-tribe-600"
+                                    ? "font-medium text-tribe-800"
                                     : "text-gray-700"
                                 )}
                               >
@@ -308,7 +308,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                     </p>
                     <button
                       onClick={() => setShowCelebration(false)}
-                      className="mt-4 rounded-full bg-tribe-600 px-6 py-2 text-sm font-semibold text-white hover:bg-tribe-700"
+                      className="mt-4 rounded-full bg-tribe-600 px-6 py-2 text-sm font-semibold text-gray-900 hover:bg-tribe-700"
                     >
                       Continue
                     </button>
@@ -329,9 +329,9 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   {course.title}
                 </h2>
                 {/* Mobile XP Bar */}
-                <div className="mt-3 rounded-lg bg-gradient-to-r from-tribe-50 to-purple-50 p-3">
+                <div className="mt-3 rounded-lg bg-gradient-to-r from-tribe-50 to-yellow-50 p-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="flex items-center gap-1 font-medium text-tribe-700">
+                    <span className="flex items-center gap-1 font-medium text-tribe-800">
                       <Zap className="h-3.5 w-3.5" />
                       {earnedXpInCourse} / {totalXpInCourse} XP
                     </span>
@@ -342,7 +342,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   </div>
                   <div className="mt-2 h-2 rounded-full bg-white">
                     <div
-                      className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-purple-500 transition-all"
+                      className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-tribe-600 transition-all"
                       style={{ width: `${(completedCount / allLessons.length) * 100}%` }}
                     />
                   </div>
@@ -358,7 +358,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                       ? "bg-purple-100 text-purple-700"
                       : currentLesson.type === "exercise"
                       ? "bg-orange-100 text-orange-700"
-                      : "bg-tribe-100 text-tribe-700"
+                      : "bg-tribe-100 text-tribe-800"
                   )}>
                     {currentLesson.type === "quiz" && <FileQuestion className="h-3 w-3" />}
                     {currentLesson.type === "exercise" && <PenTool className="h-3 w-3" />}
@@ -564,7 +564,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === allLessons.length - 1 || allLessons[currentIndex + 1]?.locked
                       ? "bg-gray-100 text-gray-300 cursor-not-allowed"
-                      : "bg-tribe-600 text-white hover:bg-tribe-700"
+                      : "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
                   )}
                 >
                   Next

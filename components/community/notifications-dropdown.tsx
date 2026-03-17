@@ -37,7 +37,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         {unreadNotificationCount > 0 && (
           <button
             onClick={markAllNotificationsRead}
-            className="flex items-center gap-1 text-xs text-tribe-600 hover:text-tribe-700 font-medium"
+            className="flex items-center gap-1 text-xs text-tribe-800 hover:text-tribe-900 font-medium"
           >
             <CheckCheck className="h-3.5 w-3.5" />
             Mark all read
@@ -75,7 +75,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         )}
       </div>
       <div className="border-t border-gray-100 p-2">
-        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-600 hover:bg-tribe-50">
+        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-800 hover:bg-tribe-50">
           View all notifications
         </button>
       </div>
@@ -100,7 +100,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
   const getIcon = () => {
     switch (notification.type) {
       case "lesson":
-        return <BookOpen className="h-4 w-4 text-tribe-600" />;
+        return <BookOpen className="h-4 w-4 text-tribe-800" />;
       case "event":
         return <Bell className="h-4 w-4 text-orange-500" />;
       default:

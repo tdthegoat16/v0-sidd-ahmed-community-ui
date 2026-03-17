@@ -59,7 +59,7 @@ export function PostCard({ post }: PostCardProps) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <button onClick={() => openProfile(post.author as any)} className="shrink-0 focus:outline-none focus:ring-2 focus:ring-tribe-300 rounded-full">
+          <button onClick={() => openProfile(post.author as any)} className="shrink-0 focus:outline-none focus:ring-2 focus:ring-tribe-400 rounded-full">
             <Avatar className="h-10 w-10 cursor-pointer hover:ring-2 hover:ring-tribe-200 transition-shadow">
               <AvatarImage src={post.author.avatar} alt={post.author.name} />
               <AvatarFallback className={cn(post.author.color, "text-white text-sm")}>
@@ -69,11 +69,11 @@ export function PostCard({ post }: PostCardProps) {
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <button onClick={() => openProfile(post.author as any)} className="text-sm font-semibold text-gray-900 hover:text-tribe-600 hover:underline transition-colors">
+              <button onClick={() => openProfile(post.author as any)} className="text-sm font-semibold text-gray-900 hover:text-tribe-800 hover:underline transition-colors">
                 {post.author.name}
               </button>
               {post.author.isAdmin && (
-                <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-xs font-medium text-tribe-600">
+                <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-xs font-medium text-tribe-800">
                   Founder
                 </span>
               )}
@@ -111,7 +111,7 @@ export function PostCard({ post }: PostCardProps) {
       {isLongPost && (
         <button
           onClick={() => setShowAISummary(!showAISummary)}
-          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-tribe-50 px-3 py-1.5 text-xs font-medium text-tribe-600 hover:bg-tribe-100 transition-colors"
+          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-tribe-50 px-3 py-1.5 text-xs font-medium text-tribe-800 hover:bg-tribe-100 transition-colors"
         >
           <Sparkles className="h-3 w-3" />
           AI Summary
@@ -163,7 +163,7 @@ export function PostCard({ post }: PostCardProps) {
             onClick={() => setShowComments(!showComments)}
             className={cn(
               "flex items-center gap-1.5 transition-colors",
-              showComments ? "text-tribe-500" : "text-gray-500 hover:text-tribe-500"
+              showComments ? "text-tribe-800" : "text-gray-500 hover:text-tribe-800"
             )}
             aria-label={`Comment on post, ${post.comments} comments`}
           >
@@ -174,7 +174,7 @@ export function PostCard({ post }: PostCardProps) {
             onClick={() => toggleBookmark(post.id)}
             className={cn(
               "flex items-center gap-1.5 transition-colors",
-              post.isBookmarked ? "text-tribe-500" : "text-gray-500 hover:text-tribe-500"
+              post.isBookmarked ? "text-tribe-800" : "text-gray-500 hover:text-tribe-800"
             )}
             aria-label="Bookmark post"
           >
@@ -244,7 +244,7 @@ export function PostCard({ post }: PostCardProps) {
               className={cn(
                 "flex h-8 w-8 items-center justify-center rounded-full transition-colors",
                 commentText.trim()
-                  ? "bg-tribe-600 text-white hover:bg-tribe-700"
+                  ? "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
                   : "bg-gray-100 text-gray-400"
               )}
             >

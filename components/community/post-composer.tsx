@@ -45,7 +45,7 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
           </button>
           <button
             onClick={() => setExpanded(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-tribe-600 text-white hover:bg-tribe-700 transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-tribe-600 text-gray-900 hover:bg-tribe-700 transition-colors"
             aria-label="Create new post"
           >
             <Plus className="h-5 w-5" />
@@ -90,7 +90,7 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
           className={cn(
             "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
             body.trim()
-              ? "bg-tribe-600 text-white hover:bg-tribe-700"
+              ? "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
               : "bg-gray-100 text-gray-400 cursor-not-allowed"
           )}
         >

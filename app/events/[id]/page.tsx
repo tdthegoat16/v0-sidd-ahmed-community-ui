@@ -33,7 +33,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
     <CommunityLayout>
       <div className="mx-auto max-w-4xl px-4 py-6">
         {/* Hero Banner */}
-        <div className="relative rounded-2xl bg-gradient-to-r from-tribe-600 to-tribe-500 p-8 text-white overflow-hidden">
+        <div className="relative rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 p-8 text-white overflow-hidden">
           <div className="relative z-10">
             <span
               className={cn(
@@ -62,7 +62,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
               </Avatar>
               <div>
                 <p className="text-sm font-medium">Hosted by</p>
-                <p className="text-sm text-tribe-100">{event.host.name}</p>
+                <p className="text-sm text-gray-300">{event.host.name}</p>
               </div>
             </div>
           </div>
@@ -112,17 +112,17 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                 <Heart className="h-5 w-5" />
                 <span className="text-sm">Like</span>
               </button>
-              <button className="flex items-center gap-2 text-gray-500 hover:text-tribe-500 transition-colors">
+              <button className="flex items-center gap-2 text-gray-500 hover:text-tribe-800 transition-colors">
                 <MessageCircle className="h-5 w-5" />
                 <span className="text-sm">Comment</span>
               </button>
-              <button className="flex items-center gap-2 text-gray-500 hover:text-tribe-500 transition-colors">
+              <button className="flex items-center gap-2 text-gray-500 hover:text-tribe-800 transition-colors">
                 <Bookmark className="h-5 w-5" />
                 <span className="text-sm">Save</span>
               </button>
               <button
                 onClick={() => navigator.clipboard?.writeText(window.location.href)}
-                className="flex items-center gap-2 text-gray-500 hover:text-tribe-500 transition-colors"
+                className="flex items-center gap-2 text-gray-500 hover:text-tribe-800 transition-colors"
               >
                 <Share2 className="h-5 w-5" />
                 <span className="text-sm">Share</span>
@@ -137,7 +137,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
             <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
                     <Calendar className="h-5 w-5" />
                   </div>
                   <div>
@@ -148,7 +148,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
@@ -159,7 +159,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-600">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
                     <Users className="h-5 w-5" />
                   </div>
                   <div>
@@ -187,7 +187,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
               ) : (
                 <button
                   onClick={() => toggleRsvp(event.id)}
-                  className="mt-4 w-full rounded-full bg-tribe-600 py-3 text-sm font-semibold text-white hover:bg-tribe-700 transition-colors"
+                  className="mt-4 w-full rounded-full bg-tribe-600 py-3 text-sm font-semibold text-gray-900 hover:bg-tribe-700 transition-colors"
                 >
                   RSVP Now
                 </button>

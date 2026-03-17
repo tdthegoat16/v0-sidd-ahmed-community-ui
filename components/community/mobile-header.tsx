@@ -28,7 +28,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
               <Menu className="h-5 w-5" />
             </button>
             <div className="flex items-center gap-2">
-              <span className="text-tribe-600">✦</span>
+              <span className="text-tribe-800">✦</span>
               <span className="text-sm font-semibold text-gray-900">
                 {title || "Positive Tribe"}
               </span>
@@ -73,7 +73,7 @@ export function MobileHeader({ title, onMenuClick }: MobileHeaderProps) {
             >
               <Bell className="h-5 w-5" />
               {unreadNotificationCount > 0 && (
-                <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-tribe-600 px-1 text-[10px] font-bold text-white">
+                <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-bold text-white">
                   {unreadNotificationCount}
                 </span>
               )}

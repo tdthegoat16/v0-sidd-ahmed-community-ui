@@ -22,11 +22,11 @@ export default function HomePage() {
     <CommunityLayout rightPanel={<HomeRightPanel />}>
       <div className="mx-auto max-w-3xl px-4 py-6">
         {/* Hero Banner */}
-        <div className="rounded-2xl bg-gradient-to-r from-tribe-600 to-tribe-500 p-6 text-white shadow-lg">
+        <div className="rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 p-6 text-white shadow-lg">
           <h1 className="text-2xl font-bold">
             Welcome to the Positive Tribe
           </h1>
-          <p className="mt-1 text-tribe-100">
+          <p className="mt-1 text-gray-300">
             A community of dreamers building purpose-driven lives alongside Sidd Ahmed.
           </p>
         </div>

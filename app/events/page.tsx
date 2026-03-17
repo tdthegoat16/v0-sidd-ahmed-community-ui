@@ -33,7 +33,7 @@ export default function EventsPage() {
               Join live sessions, workshops, and Q&A with Sidd Ahmed
             </p>
           </div>
-          <button className="rounded-full bg-tribe-600 px-4 py-2 text-sm font-semibold text-white hover:bg-tribe-700 transition-colors">
+          <button className="rounded-full bg-tribe-600 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-tribe-700 transition-colors">
             Create Event
           </button>
         </div>
@@ -47,7 +47,7 @@ export default function EventsPage() {
               className={cn(
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeTab === tab
-                  ? "bg-tribe-600 text-white"
+                  ? "bg-tribe-600 text-gray-900"
                   : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
               )}
             >
@@ -64,7 +64,7 @@ export default function EventsPage() {
               className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
-              <Link href={`/events/${event.id}`} className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-tribe-600 to-tribe-800 flex-shrink-0" />
+              <Link href={`/events/${event.id}`} className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex-shrink-0" />
 
               {/* Content */}
               <Link href={`/events/${event.id}`} className="flex-1 min-w-0">
@@ -143,7 +143,7 @@ export default function EventsPage() {
                 ) : (
                   <button
                     onClick={() => toggleRsvp(event.id)}
-                    className="rounded-full border border-tribe-200 bg-white px-4 py-2 text-sm font-medium text-tribe-600 hover:bg-tribe-50 transition-colors"
+                    className="rounded-full border border-tribe-200 bg-white px-4 py-2 text-sm font-medium text-tribe-800 hover:bg-tribe-50 transition-colors"
                   >
                     RSVP
                   </button>

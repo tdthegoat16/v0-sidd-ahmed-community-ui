@@ -93,7 +93,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
                   isActive
-                    ? "text-tribe-600 bg-tribe-50"
+                    ? "text-tribe-800 bg-tribe-50"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 )}
               >
@@ -123,7 +123,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
           >
             <Bell className="h-5 w-5" />
             {unreadNotificationCount > 0 && (
-              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-tribe-600 px-1 text-[10px] font-bold text-white">
+              <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-gray-900 px-1 text-[10px] font-bold text-white">
                 {unreadNotificationCount}
               </span>
             )}

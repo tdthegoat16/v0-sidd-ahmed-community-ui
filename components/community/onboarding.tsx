@@ -96,7 +96,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 0: Welcome */}
         {step === 0 && (
           <div className="text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-tribe-600 text-white">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-900 text-tribe-500">
               <Sparkles className="h-8 w-8" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900">
@@ -137,7 +137,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     {interest.label}
                   </span>
                   {selectedInterests.includes(interest.id) && (
-                    <Check className="h-5 w-5 text-tribe-600" />
+                    <Check className="h-5 w-5 text-tribe-800" />
                   )}
                 </button>
               ))}
@@ -170,7 +170,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     {goal.label}
                   </span>
                   {selectedGoal === goal.id && (
-                    <Check className="h-5 w-5 text-tribe-600" />
+                    <Check className="h-5 w-5 text-tribe-800" />
                   )}
                 </button>
               ))}
@@ -204,7 +204,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                       {stage.label}
                     </span>
                     {selectedStage === stage.id && (
-                      <Check className="h-5 w-5 text-tribe-600" />
+                      <Check className="h-5 w-5 text-tribe-800" />
                     )}
                   </div>
                   <span className="mt-0.5 text-xs text-gray-500">
@@ -223,7 +223,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
           className={cn(
             "mt-8 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-all",
             canProceed()
-              ? "bg-tribe-600 text-white hover:bg-tribe-700"
+              ? "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
               : "bg-gray-100 text-gray-400 cursor-not-allowed"
           )}
         >
