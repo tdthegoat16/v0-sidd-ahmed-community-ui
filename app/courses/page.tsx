@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { CommunityLayout } from "@/components/community/community-layout";
 import { cn } from "@/lib/utils";
-import { courses } from "@/lib/data";
-import { Sparkles } from "lucide-react";
+import { courses, learningStats } from "@/lib/data";
+import { Sparkles, Zap, Flame, Trophy, Star } from "lucide-react";
 import Link from "next/link";
 
 const categories = [
@@ -24,6 +24,9 @@ export default function CoursesPage() {
       ? courses
       : courses.filter((c) => c.category === activeCategory);
 
+  const totalXp = courses.reduce((sum, c) => sum + c.xpEarned, 0);
+  const levelProgress = ((learningStats.totalXp - learningStats.xpForCurrentLevel) / (learningStats.xpForNextLevel - learningStats.xpForCurrentLevel)) * 100;
+
   return (
     <CommunityLayout title="Courses">
       <div className="mx-auto max-w-5xl px-4 py-6">
@@ -34,6 +37,74 @@ export default function CoursesPage() {
             <p className="mt-1 text-gray-500">
               Learn from Sidd Ahmed and level up your career, business, and mindset
             </p>
+          </div>
+        </div>
+
+        {/* Learning Stats Banner */}
+        <div className="mt-6 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 p-5 text-white shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-center gap-4">
+              {/* Level Badge */}
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
+                <span className="text-2xl font-bold">{learningStats.level}</span>
+              </div>
+              <div>
+                <p className="text-sm text-blue-200">Level {learningStats.level}</p>
+                <p className="text-lg font-bold">{learningStats.levelName}</p>
+                <div className="mt-1 flex items-center gap-2">
+                  <div className="h-1.5 w-24 rounded-full bg-white/20">
+                    <div
+                      className="h-1.5 rounded-full bg-white transition-all"
+                      style={{ width: `${levelProgress}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-blue-200">
+                    {learningStats.xpToNextLevel} XP to next level
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-6">
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1">
+                  <Zap className="h-4 w-4 text-amber-300" />
+                  <span className="text-xl font-bold">{learningStats.totalXp.toLocaleString()}</span>
+                </div>
+                <p className="text-xs text-blue-200">Total XP</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1">
+                  <Flame className="h-4 w-4 text-orange-300" />
+                  <span className="text-xl font-bold">{learningStats.currentStreak}</span>
+                </div>
+                <p className="text-xs text-blue-200">Day Streak</p>
+              </div>
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-1">
+                  <Trophy className="h-4 w-4 text-yellow-300" />
+                  <span className="text-xl font-bold">
+                    {learningStats.badges.filter((b) => b.earned).length}
+                  </span>
+                </div>
+                <p className="text-xs text-blue-200">Badges</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Earned Badges */}
+          <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4">
+            <span className="text-xs text-blue-200 mr-1">Badges:</span>
+            {learningStats.badges
+              .filter((b) => b.earned)
+              .map((badge) => (
+                <span
+                  key={badge.name}
+                  className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 text-xs font-medium backdrop-blur-sm"
+                  title={badge.description}
+                >
+                  {badge.emoji} {badge.name}
+                </span>
+              ))}
           </div>
         </div>
 
@@ -71,6 +142,28 @@ export default function CoursesPage() {
                     NEW
                   </span>
                 )}
+                {/* Badge Preview */}
+                {course.badge && (
+                  <span className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-black/30 px-2 py-1 text-xs text-white backdrop-blur-sm">
+                    {course.badge.emoji} {course.badge.name}
+                  </span>
+                )}
+                {/* XP Reward */}
+                <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-amber-500/90 px-2 py-1 text-xs font-medium text-white">
+                  <Zap className="h-3 w-3" />
+                  {course.xpReward} XP
+                </span>
+                {/* Difficulty */}
+                <span className={cn(
+                  "absolute bottom-3 left-3 rounded-full px-2 py-1 text-xs font-medium",
+                  course.difficulty === "Beginner"
+                    ? "bg-green-500/90 text-white"
+                    : course.difficulty === "Intermediate"
+                    ? "bg-blue-500/90 text-white"
+                    : "bg-purple-500/90 text-white"
+                )}>
+                  {course.difficulty}
+                </span>
               </div>
 
               {/* Content */}
@@ -83,6 +176,14 @@ export default function CoursesPage() {
                   <span className="text-xs text-gray-500">
                     {course.lessons} lessons
                   </span>
+                  {course.estimatedHours && (
+                    <>
+                      <span className="text-xs text-gray-400">·</span>
+                      <span className="text-xs text-gray-500">
+                        ~{course.estimatedHours}h
+                      </span>
+                    </>
+                  )}
                 </div>
                 <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
                   {course.title}
@@ -92,20 +193,30 @@ export default function CoursesPage() {
                 {/* Progress Bar */}
                 {course.progress > 0 && (
                   <div className="mt-3">
-                    <div className="h-1.5 rounded-full bg-gray-100">
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-500">{course.progress}% complete</span>
+                      <span className="flex items-center gap-0.5 text-amber-500 font-medium">
+                        <Zap className="h-3 w-3" />
+                        {course.xpEarned}/{course.xpReward}
+                      </span>
+                    </div>
+                    <div className="h-2 rounded-full bg-gray-100">
                       <div
                         className={cn(
-                          "h-1.5 rounded-full",
+                          "h-2 rounded-full transition-all",
                           course.progress === 100
-                            ? "bg-green-500"
-                            : "bg-blue-600"
+                            ? "bg-gradient-to-r from-green-400 to-emerald-500"
+                            : "bg-gradient-to-r from-blue-500 to-purple-500"
                         )}
                         style={{ width: `${course.progress}%` }}
                       />
                     </div>
-                    <p className="mt-1 text-xs text-gray-500">
-                      {course.progress}% complete
-                    </p>
+                    {course.progress === 100 && (
+                      <div className="mt-2 flex items-center gap-1 text-xs font-medium text-green-600">
+                        <Star className="h-3 w-3 fill-green-500" />
+                        Course Completed — Badge Earned!
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

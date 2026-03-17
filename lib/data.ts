@@ -294,6 +294,11 @@ export const courses = [
     isNew: false,
     instructor: communityMembers[0],
     description: "Learn the essential frameworks for launching your startup without waiting for perfect conditions.",
+    xpReward: 1200,
+    xpEarned: 780,
+    badge: { name: "Startup Builder", emoji: "🚀" },
+    difficulty: "Intermediate" as const,
+    estimatedHours: 6,
   },
   {
     id: "2",
@@ -306,6 +311,11 @@ export const courses = [
     isNew: true,
     instructor: communityMembers[0],
     description: "Develop the strategic mindset needed to lead at scale in enterprise organizations.",
+    xpReward: 1600,
+    xpEarned: 0,
+    badge: { name: "Enterprise Leader", emoji: "🏢" },
+    difficulty: "Advanced" as const,
+    estimatedHours: 8,
   },
   {
     id: "3",
@@ -318,6 +328,11 @@ export const courses = [
     isNew: false,
     instructor: communityMembers[0],
     description: "Sidd's proven resume, interview, and career advancement framework.",
+    xpReward: 1000,
+    xpEarned: 1000,
+    badge: { name: "Career Pro", emoji: "🎯" },
+    difficulty: "Beginner" as const,
+    estimatedHours: 5,
   },
   {
     id: "4",
@@ -330,6 +345,11 @@ export const courses = [
     isNew: false,
     instructor: communityMembers[0],
     description: "Transform your thinking patterns to unlock consistent growth and resilience.",
+    xpReward: 800,
+    xpEarned: 360,
+    badge: { name: "Mindset Master", emoji: "🧠" },
+    difficulty: "Beginner" as const,
+    estimatedHours: 4,
   },
   {
     id: "5",
@@ -342,6 +362,11 @@ export const courses = [
     isNew: true,
     instructor: communityMembers[0],
     description: "Advanced strategies for scaling your business while maintaining your values.",
+    xpReward: 2000,
+    xpEarned: 0,
+    badge: { name: "Growth Hacker", emoji: "📈" },
+    difficulty: "Advanced" as const,
+    estimatedHours: 10,
   },
   {
     id: "6",
@@ -354,8 +379,95 @@ export const courses = [
     isNew: true,
     instructor: communityMembers[0],
     description: "Master the art of inspiring others through powerful storytelling techniques.",
+    xpReward: 600,
+    xpEarned: 0,
+    badge: { name: "Storyteller", emoji: "📖" },
+    difficulty: "Beginner" as const,
+    estimatedHours: 3,
   },
 ];
+
+export const courseLessons: Record<string, { module: string; items: { id: string; title: string; duration: string; completed: boolean; xp: number; locked: boolean; type: "video" | "quiz" | "exercise"; }[]; }[]> = {
+  "1": [
+    {
+      module: "Getting Started",
+      items: [
+        { id: "1-1", title: "Welcome & Course Overview", duration: "5:30", completed: true, xp: 50, locked: false, type: "video" },
+        { id: "1-2", title: "The Startup Mindset", duration: "12:45", completed: true, xp: 100, locked: false, type: "video" },
+        { id: "1-3", title: "Quiz: Are You Ready?", duration: "5 min", completed: true, xp: 150, locked: false, type: "quiz" },
+        { id: "1-4", title: "Finding Your Idea", duration: "18:20", completed: true, xp: 100, locked: false, type: "video" },
+      ],
+    },
+    {
+      module: "Validation & MVP",
+      items: [
+        { id: "1-5", title: "Validating Your Idea", duration: "24:15", completed: true, xp: 100, locked: false, type: "video" },
+        { id: "1-6", title: "Building Your MVP", duration: "32:00", completed: true, xp: 100, locked: false, type: "video" },
+        { id: "1-7", title: "Exercise: MVP Blueprint", duration: "15 min", completed: true, xp: 180, locked: false, type: "exercise" },
+        { id: "1-8", title: "Quiz: Validation Mastery", duration: "5 min", completed: false, xp: 150, locked: false, type: "quiz" },
+      ],
+    },
+    {
+      module: "Launch & Growth",
+      items: [
+        { id: "1-9", title: "Pre-Launch Checklist", duration: "20:45", completed: false, xp: 100, locked: true, type: "video" },
+        { id: "1-10", title: "Launch Day Strategy", duration: "28:30", completed: false, xp: 100, locked: true, type: "video" },
+        { id: "1-11", title: "Growth Hacking Basics", duration: "15:30", completed: false, xp: 100, locked: true, type: "video" },
+        { id: "1-12", title: "Final Project: Launch Plan", duration: "30 min", completed: false, xp: 250, locked: true, type: "exercise" },
+      ],
+    },
+  ],
+  default: [
+    {
+      module: "Getting Started",
+      items: [
+        { id: "d-1", title: "Welcome & Course Overview", duration: "5:30", completed: true, xp: 50, locked: false, type: "video" },
+        { id: "d-2", title: "Setting Up Your Environment", duration: "12:45", completed: true, xp: 100, locked: false, type: "video" },
+        { id: "d-3", title: "Understanding the Fundamentals", duration: "18:20", completed: false, xp: 100, locked: false, type: "video" },
+      ],
+    },
+    {
+      module: "Core Concepts",
+      items: [
+        { id: "d-4", title: "Building Your First Strategy", duration: "24:15", completed: false, xp: 100, locked: false, type: "video" },
+        { id: "d-5", title: "Quiz: Core Concepts Check", duration: "5 min", completed: false, xp: 150, locked: false, type: "quiz" },
+        { id: "d-6", title: "Case Studies & Examples", duration: "28:30", completed: false, xp: 100, locked: true, type: "video" },
+      ],
+    },
+    {
+      module: "Implementation",
+      items: [
+        { id: "d-7", title: "Creating Your Action Plan", duration: "20:45", completed: false, xp: 100, locked: true, type: "video" },
+        { id: "d-8", title: "Exercise: Build Your Plan", duration: "20 min", completed: false, xp: 200, locked: true, type: "exercise" },
+        { id: "d-9", title: "Final Project & Next Steps", duration: "10:00", completed: false, xp: 250, locked: true, type: "exercise" },
+      ],
+    },
+  ],
+};
+
+export const learningStats = {
+  totalXp: 2140,
+  currentStreak: 5,
+  longestStreak: 12,
+  coursesCompleted: 1,
+  lessonsCompleted: 14,
+  quizzesPassed: 2,
+  level: 4,
+  levelName: "Rising Star",
+  xpToNextLevel: 360,
+  xpForCurrentLevel: 2000,
+  xpForNextLevel: 2500,
+  badges: [
+    { name: "Career Pro", emoji: "🎯", earned: true, description: "Completed Career Acceleration Blueprint" },
+    { name: "First Steps", emoji: "👣", earned: true, description: "Completed your first lesson" },
+    { name: "Quiz Whiz", emoji: "🧩", earned: true, description: "Passed 2 quizzes" },
+    { name: "On Fire", emoji: "🔥", earned: true, description: "5-day learning streak" },
+    { name: "Startup Builder", emoji: "🚀", earned: false, description: "Complete Startup Foundations" },
+    { name: "Mindset Master", emoji: "🧠", earned: false, description: "Complete Positive Mindset OS" },
+    { name: "Enterprise Leader", emoji: "🏢", earned: false, description: "Complete Enterprise Thinking" },
+    { name: "Dedicated Learner", emoji: "📚", earned: false, description: "Complete 3 courses" },
+  ],
+};
 
 export const events = [
   {
