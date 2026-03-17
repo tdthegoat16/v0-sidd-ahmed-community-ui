@@ -95,7 +95,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
 
   const getLessonIconStyle = (lesson: typeof allLessons[0]) => {
     if (lesson.completed) return "bg-green-500 text-white";
-    if (lesson.locked) return "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500";
+    if (lesson.locked) return "bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500";
     if (activeLesson === lesson.id) return "bg-tribe-600 text-gray-900";
     if (lesson.type === "quiz") return "border-2 border-purple-400 dark:border-purple-500 text-purple-500 dark:text-purple-400";
     if (lesson.type === "exercise") return "border-2 border-orange-400 dark:border-orange-500 text-orange-500 dark:text-orange-400";
@@ -173,7 +173,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   <div key={module.module} className="border-b border-gray-100 dark:border-gray-800">
                     <button
                       onClick={() => toggleModule(module.module)}
-                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
                     >
                       <div className="flex items-center gap-2">
                         {moduleCompleted ? (
@@ -213,7 +213,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                                 ? "opacity-50 cursor-not-allowed"
                                 : activeLesson === lesson.id
                                 ? "bg-tribe-50 dark:bg-tribe-900/20"
-                                : "hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                                : "hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
                             )}
                           >
                             <div
@@ -294,7 +294,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               {/* Celebration Overlay */}
               {showCelebration && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                  <div className="animate-bounce rounded-2xl bg-white dark:bg-gray-900 p-8 text-center shadow-2xl">
+                  <div className="animate-bounce rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-2xl">
                     <div className="text-5xl">🎉</div>
                     <h2 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
                       Lesson Complete!
@@ -386,7 +386,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   </button>
                 </div>
               ) : currentLesson?.type === "quiz" && showQuiz ? (
-                <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+                <div className="rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-6 shadow-sm">
                   <div className="flex items-center gap-2 mb-4">
                     <FileQuestion className="h-5 w-5 text-purple-600" />
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -424,7 +424,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                             ? "bg-green-500 text-white"
                             : quizAnswer === i
                             ? "bg-purple-500 text-white"
-                            : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+                            : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
                         )}>
                           {quizSubmitted && i === 1 ? <Check className="h-4 w-4" /> : String.fromCharCode(65 + i)}
                         </span>
@@ -440,7 +440,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                         "mt-6 w-full rounded-full py-3 text-sm font-semibold transition-all",
                         quizAnswer !== null
                           ? "bg-purple-600 text-white hover:bg-purple-700"
-                          : "bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
+                          : "bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed"
                       )}
                     >
                       Submit Answer
@@ -543,10 +543,10 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   }}
                   disabled={currentIndex === 0}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white px-4 py-2 text-sm font-medium transition-colors",
+                    "flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === 0
                       ? "text-gray-300 dark:text-gray-600 cursor-not-allowed"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
                   )}
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -563,7 +563,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === allLessons.length - 1 || allLessons[currentIndex + 1]?.locked
-                      ? "bg-gray-100 dark:bg-gray-800 text-gray-300 dark:text-gray-600 cursor-not-allowed"
+                      ? "bg-gray-100 dark:bg-gray-700 text-gray-300 dark:text-gray-600 cursor-not-allowed"
                       : "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
                   )}
                 >

@@ -45,7 +45,7 @@ export function CommunityLayout({ children, rightPanel, title }: CommunityLayout
 
           {/* Right Panel - Desktop only */}
           {rightPanel && (
-            <aside className="hidden xl:block w-72 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-y-auto">
+            <aside className="hidden xl:block w-72 border-l border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900/50 overflow-y-auto">
               {rightPanel}
             </aside>
           )}

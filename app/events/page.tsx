@@ -48,7 +48,7 @@ export default function EventsPage() {
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeTab === tab
                   ? "bg-tribe-600 text-gray-900"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
               )}
             >
               {tab}
@@ -61,7 +61,7 @@ export default function EventsPage() {
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
               <Link href={`/events/${event.id}`} className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex-shrink-0" />

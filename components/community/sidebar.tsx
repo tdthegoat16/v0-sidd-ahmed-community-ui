@@ -59,7 +59,7 @@ export function Sidebar({ className }: SidebarProps) {
               "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
               pathname === "/"
                 ? "bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400"
-                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
             )}
           >
             <span className="text-base">📋</span>
@@ -85,7 +85,7 @@ export function Sidebar({ className }: SidebarProps) {
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                         isActive
                           ? "bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400"
-                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                          : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                       )}
                     >
                       {isActive && (
@@ -116,7 +116,7 @@ export function Sidebar({ className }: SidebarProps) {
                     "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                     isActive
                       ? "bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                   )}
                 >
                   <item.icon
@@ -137,7 +137,7 @@ export function Sidebar({ className }: SidebarProps) {
       <div className="border-t border-gray-100 dark:border-gray-800 p-4 space-y-3">
         <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+          className="flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
         >
           <Sun className="h-4 w-4 hidden dark:block" />
           <Moon className="h-4 w-4 block dark:hidden" />

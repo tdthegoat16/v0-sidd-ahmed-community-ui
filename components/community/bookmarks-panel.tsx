@@ -17,7 +17,7 @@ export function BookmarksPanel() {
   return (
     <Sheet open={bookmarksOpen} onOpenChange={setBookmarksOpen}>
       <SheetContent side="right" className="w-full sm:max-w-md p-0 overflow-y-auto">
-        <SheetHeader className="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-800">
+        <SheetHeader className="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700/50">
           <SheetTitle className="flex items-center gap-2 text-base">
             <Bookmark className="h-5 w-5 text-tribe-800" />
             Saved Posts

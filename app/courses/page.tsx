@@ -120,7 +120,7 @@ export default function CoursesPage() {
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeCategory === category
                   ? "bg-tribe-600 text-gray-900"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
               )}
             >
               {category}
@@ -134,7 +134,7 @@ export default function CoursesPage() {
             <Link
               key={course.id}
               href={`/courses/${course.id}`}
-              className="group rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className="group rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
               <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
@@ -202,7 +202,7 @@ export default function CoursesPage() {
                         {course.xpEarned}/{course.xpReward}
                       </span>
                     </div>
-                    <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-800">
+                    <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-700">
                       <div
                         className={cn(
                           "h-2 rounded-full transition-all",

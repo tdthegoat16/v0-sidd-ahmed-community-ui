@@ -12,10 +12,10 @@ export function HomeRightPanel() {
   return (
     <div className="p-4 space-y-6">
       {/* Sidd Ahmed Founder Card */}
-      <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 shadow-sm">
+      <div className="rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-4 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Avatar className="h-14 w-14 ring-2 ring-gray-900 dark:ring-tribe-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900">
+            <Avatar className="h-14 w-14 ring-2 ring-gray-900 dark:ring-tribe-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-800">
               <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
               <AvatarFallback className="bg-gray-900 text-white font-semibold">
                 SA
@@ -92,7 +92,7 @@ export function HomeRightPanel() {
         </h3>
         <Link
           href={`/courses/${featuredCourse.id}`}
-          className="block rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-shadow"
+          className="block rounded-xl border border-gray-100 dark:border-gray-700/50 overflow-hidden hover:shadow-md transition-shadow"
         >
           <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
             <Sparkles className="h-10 w-10 text-white/30" />
@@ -106,7 +106,7 @@ export function HomeRightPanel() {
             </p>
             {featuredCourse.progress > 0 && (
               <div className="mt-2">
-                <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+                <div className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
                   <div
                     className="h-1.5 rounded-full bg-tribe-600"
                     style={{ width: `${featuredCourse.progress}%` }}

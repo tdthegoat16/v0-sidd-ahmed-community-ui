@@ -72,7 +72,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* About */}
-            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 About this event
               </h2>
@@ -134,7 +134,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Date & Time Card */}
-            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400">
@@ -171,7 +171,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                 </div>
               </div>
 
-              <div className="mt-6 border-t border-gray-100 dark:border-gray-800 pt-6">
+              <div className="mt-6 border-t border-gray-100 dark:border-gray-700/50 pt-6">
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">{event.price}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Event ticket</p>
               </div>
@@ -195,7 +195,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
             </div>
 
             {/* Host Card */}
-            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 p-6 shadow-sm">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Host</h3>
               <div className="mt-4 flex items-center gap-3">
                 <Avatar className="h-12 w-12">

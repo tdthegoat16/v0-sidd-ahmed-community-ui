@@ -43,7 +43,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
       </div>
 
       {/* Guidelines */}
-      <div className="rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 p-4">
+      <div className="rounded-xl border border-gray-100 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/50 p-4">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
           Community Guidelines
         </h3>

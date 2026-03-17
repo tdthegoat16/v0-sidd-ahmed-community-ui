@@ -98,7 +98,7 @@ export function UserProfilePanel({
         {/* Stats */}
         <div className="px-5 mt-5">
           <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-700/50 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <FileText className="h-3.5 w-3.5" />
               </div>
@@ -107,7 +107,7 @@ export function UserProfilePanel({
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">Posts</p>
             </div>
-            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-700/50 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <MessageSquare className="h-3.5 w-3.5" />
               </div>
@@ -116,7 +116,7 @@ export function UserProfilePanel({
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">Comments</p>
             </div>
-            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-700/50 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 dark:text-gray-500 mb-1">
                 <Hash className="h-3.5 w-3.5" />
               </div>

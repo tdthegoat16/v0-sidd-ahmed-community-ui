@@ -30,9 +30,9 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg z-50"
+      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-lg z-50"
     >
-      <div className="border-b border-gray-100 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
+      <div className="border-b border-gray-100 dark:border-gray-700/50 px-4 py-3 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Notifications</h3>
         {unreadNotificationCount > 0 && (
           <button
@@ -74,7 +74,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
           </div>
         )}
       </div>
-      <div className="border-t border-gray-100 dark:border-gray-800 p-2">
+      <div className="border-t border-gray-100 dark:border-gray-700/50 p-2">
         <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-800 hover:bg-tribe-50 dark:bg-tribe-900/20">
           View all notifications
         </button>

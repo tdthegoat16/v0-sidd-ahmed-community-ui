@@ -190,7 +190,7 @@ export default function ChatPage() {
                       <button
                         key={i}
                         onClick={() => toggleReaction(activeChannel, msg.id, reaction.emoji)}
-                        className="flex items-center gap-1 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-2 py-0.5 text-xs hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        className="flex items-center gap-1 rounded-full border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 px-2 py-0.5 text-xs hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                       >
                         <span>{reaction.emoji}</span>
                         <span className="text-gray-600 dark:text-gray-400 font-medium">
@@ -206,7 +206,7 @@ export default function ChatPage() {
                         <SmilePlus className="h-3 w-3" />
                       </button>
                       {showEmojiPicker === msg.id && (
-                        <div className="absolute bottom-full left-0 mb-1 flex gap-1 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-2 shadow-lg z-10">
+                        <div className="absolute bottom-full left-0 mb-1 flex gap-1 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 shadow-lg z-10">
                           {quickEmojis.map((emoji) => (
                             <button
                               key={emoji}
@@ -231,7 +231,7 @@ export default function ChatPage() {
 
           {/* Message Input */}
           <div className="border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4 py-3">
-            <div className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2">
+            <div className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 px-3 py-2">
               <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                 <Plus className="h-5 w-5" />
               </button>

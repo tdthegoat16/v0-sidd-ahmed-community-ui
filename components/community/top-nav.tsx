@@ -94,7 +94,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
                   "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
                   isActive
                     ? "text-tribe-800 bg-tribe-50 dark:bg-tribe-900/20"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:bg-gray-50 dark:bg-gray-700/50 dark:hover:bg-gray-800"
                 )}
               >
                 {tab.name}
