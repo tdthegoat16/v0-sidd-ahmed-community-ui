@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { DM_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/theme-provider'
 import { AppShell } from '@/components/community/app-shell'
 import './globals.css'
 
@@ -35,11 +36,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased">
-        <AppShell>
-          {children}
-        </AppShell>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <AppShell>
+            {children}
+          </AppShell>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

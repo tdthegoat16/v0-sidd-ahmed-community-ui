@@ -17,7 +17,7 @@ export function BookmarksPanel() {
   return (
     <Sheet open={bookmarksOpen} onOpenChange={setBookmarksOpen}>
       <SheetContent side="right" className="w-full sm:max-w-md p-0 overflow-y-auto">
-        <SheetHeader className="px-5 pt-5 pb-3 border-b border-gray-100">
+        <SheetHeader className="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-800">
           <SheetTitle className="flex items-center gap-2 text-base">
             <Bookmark className="h-5 w-5 text-tribe-800" />
             Saved Posts
@@ -31,7 +31,7 @@ export function BookmarksPanel() {
           ) : (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Bookmark className="h-10 w-10 text-gray-200 mb-3" />
-              <p className="text-sm font-medium text-gray-900">No saved posts yet</p>
+              <p className="text-sm font-medium text-gray-900 dark:text-white">No saved posts yet</p>
               <p className="text-xs text-gray-500 mt-1">Posts you bookmark will appear here</p>
             </div>
           )}

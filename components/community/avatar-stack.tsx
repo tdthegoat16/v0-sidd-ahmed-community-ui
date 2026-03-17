@@ -31,7 +31,7 @@ export function AvatarStack({
         {displayUsers.map((user) => (
           <Avatar
             key={user.id}
-            className={cn(sizeClasses[size], "ring-2 ring-white")}
+            className={cn(sizeClasses[size], "ring-2 ring-white dark:ring-gray-900")}
           >
             <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback className={cn(user.color, "text-white")}>
@@ -41,7 +41,7 @@ export function AvatarStack({
         ))}
       </div>
       {showCount && remaining > 0 && (
-        <span className="ml-2 text-xs text-gray-500">+{remaining}</span>
+        <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">+{remaining}</span>
       )}
     </div>
   );

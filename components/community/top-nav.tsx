@@ -38,21 +38,21 @@ export function TopNav({ onMenuClick }: TopNavProps) {
   const { searchQuery, setSearchQuery, searchOpen, setSearchOpen, unreadNotificationCount, setBookmarksOpen } = useAppState();
 
   return (
-    <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-gray-100 bg-white px-4">
+    <header className="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 px-4">
       {/* Left: Community name + mobile menu */}
       <div className="flex items-center gap-3">
         <button
           onClick={onMenuClick}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 lg:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 lg:hidden"
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </button>
         {!searchOpen && (
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-semibold text-gray-900 hover:text-gray-700">
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-semibold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
               Positive Tribe
-              <ChevronDown className="h-4 w-4 text-gray-400" />
+              <ChevronDown className="h-4 w-4 text-gray-400 dark:text-gray-500" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuItem>Community Settings</DropdownMenuItem>
@@ -73,11 +73,11 @@ export function TopNav({ onMenuClick }: TopNavProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             autoFocus
-            className="flex-1 bg-transparent text-sm text-gray-900 placeholder:text-gray-400 outline-none"
+            className="flex-1 bg-transparent dark:bg-transparent text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none"
           />
           <button
             onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
-            className="text-gray-400 hover:text-gray-600"
+            className="text-gray-400 hover:text-gray-600 dark:text-gray-400"
           >
             <X className="h-4 w-4" />
           </button>
@@ -93,8 +93,8 @@ export function TopNav({ onMenuClick }: TopNavProps) {
                 className={cn(
                   "px-3 py-2 text-sm font-medium rounded-lg transition-colors",
                   isActive
-                    ? "text-tribe-800 bg-tribe-50"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    ? "text-tribe-800 bg-tribe-50 dark:bg-tribe-900/20"
+                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
                 )}
               >
                 {tab.name}
@@ -109,7 +109,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         {!searchOpen && (
           <button
             onClick={() => setSearchOpen(true)}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
             aria-label="Search"
           >
             <Search className="h-5 w-5" />
@@ -118,7 +118,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         <div className="relative">
           <button
             onClick={() => setShowNotifications(!showNotifications)}
-            className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+            className="relative flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
             aria-label="Notifications"
           >
             <Bell className="h-5 w-5" />
@@ -136,7 +136,7 @@ export function TopNav({ onMenuClick }: TopNavProps) {
         </div>
         <button
           onClick={() => setBookmarksOpen(true)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:bg-gray-800"
           aria-label="Bookmarks"
         >
           <Bookmark className="h-5 w-5" />

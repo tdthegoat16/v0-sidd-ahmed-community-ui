@@ -10,7 +10,7 @@ const communities = [
 
 export function IconRail() {
   return (
-    <div className="hidden md:flex w-14 flex-col items-center gap-3 border-r border-gray-100 bg-white py-4">
+    <div className="hidden md:flex w-14 flex-col items-center gap-3 border-r border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 py-4">
       {communities.map((community, index) => (
         <button
           key={community.id}
@@ -23,8 +23,8 @@ export function IconRail() {
           {community.name}
         </button>
       ))}
-      <div className="mt-2 h-px w-8 bg-gray-200" />
-      <button className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-dashed border-gray-300 text-gray-400 transition-colors hover:border-gray-400 hover:text-gray-500">
+      <div className="mt-2 h-px w-8 bg-gray-200 dark:bg-gray-700" />
+      <button className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-dashed border-gray-300 text-gray-400 transition-colors hover:border-gray-400 hover:text-gray-500 dark:text-gray-400">
         <svg
           className="h-5 w-5"
           fill="none"

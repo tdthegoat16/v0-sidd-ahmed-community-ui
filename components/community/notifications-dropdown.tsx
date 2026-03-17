@@ -30,10 +30,10 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 bg-white shadow-lg z-50"
+      className="absolute right-0 top-full mt-2 w-80 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-lg z-50"
     >
-      <div className="border-b border-gray-100 px-4 py-3 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-900">Notifications</h3>
+      <div className="border-b border-gray-100 dark:border-gray-800 px-4 py-3 flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Notifications</h3>
         {unreadNotificationCount > 0 && (
           <button
             onClick={markAllNotificationsRead}
@@ -48,7 +48,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         {todayNotifications.length > 0 && (
           <div>
             <div className="px-4 py-2">
-              <span className="text-xs font-medium text-gray-500">Today</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Today</span>
             </div>
             {todayNotifications.map((notification) => (
               <NotificationItem
@@ -62,7 +62,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         {earlierNotifications.length > 0 && (
           <div>
             <div className="px-4 py-2">
-              <span className="text-xs font-medium text-gray-500">Earlier</span>
+              <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Earlier</span>
             </div>
             {earlierNotifications.map((notification) => (
               <NotificationItem
@@ -74,8 +74,8 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
           </div>
         )}
       </div>
-      <div className="border-t border-gray-100 p-2">
-        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-800 hover:bg-tribe-50">
+      <div className="border-t border-gray-100 dark:border-gray-800 p-2">
+        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-800 hover:bg-tribe-50 dark:bg-tribe-900/20">
           View all notifications
         </button>
       </div>
@@ -104,7 +104,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
       case "event":
         return <Bell className="h-4 w-4 text-orange-500" />;
       default:
-        return <Bell className="h-4 w-4 text-gray-400" />;
+        return <Bell className="h-4 w-4 text-gray-400 dark:text-gray-500" />;
     }
   };
 
@@ -112,7 +112,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
     <div
       onClick={onRead}
       className={cn(
-        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors",
+        "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 dark:bg-gray-800 cursor-pointer transition-colors",
         !notification.isRead && "bg-tribe-50/50"
       )}
     >
@@ -132,7 +132,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
         </div>
       )}
       <div className="flex-1 min-w-0">
-        <p className="text-sm text-gray-900">
+        <p className="text-sm text-gray-900 dark:text-white">
           {notification.actor && (
             <span className="font-medium">{notification.actor.name} </span>
           )}
@@ -141,7 +141,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
             <span className="font-medium"> {notification.target}</span>
           )}
         </p>
-        <span className="text-xs text-gray-500">{notification.timestamp}</span>
+        <span className="text-xs text-gray-500 dark:text-gray-400">{notification.timestamp}</span>
       </div>
       {!notification.isRead && (
         <span className="mt-2 h-2 w-2 rounded-full bg-tribe-600 flex-shrink-0" />

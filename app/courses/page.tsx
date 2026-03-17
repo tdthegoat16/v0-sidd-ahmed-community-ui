@@ -35,8 +35,8 @@ export default function CoursesPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Courses</h1>
-            <p className="mt-1 text-gray-500">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Courses</h1>
+            <p className="mt-1 text-gray-500 dark:text-gray-400">
               Learn from Sidd Ahmed and level up your career, business, and mindset
             </p>
           </div>
@@ -120,7 +120,7 @@ export default function CoursesPage() {
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeCategory === category
                   ? "bg-tribe-600 text-gray-900"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
               )}
             >
               {category}
@@ -134,7 +134,7 @@ export default function CoursesPage() {
             <Link
               key={course.id}
               href={`/courses/${course.id}`}
-              className="group rounded-2xl border border-gray-100 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className="group rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
               <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
@@ -174,14 +174,14 @@ export default function CoursesPage() {
                   <span className="text-xs font-medium text-tribe-800">
                     {course.category}
                   </span>
-                  <span className="text-xs text-gray-400">·</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-gray-400 dark:text-gray-500">·</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
                     {course.lessons} lessons
                   </span>
                   {course.estimatedHours && (
                     <>
-                      <span className="text-xs text-gray-400">·</span>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-400 dark:text-gray-500">·</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
                         ~{course.estimatedHours}h
                       </span>
                     </>
@@ -190,19 +190,19 @@ export default function CoursesPage() {
                 <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-tribe-800 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
-                <p className="mt-1 text-xs text-gray-500">{course.startDate}</p>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{course.startDate}</p>
 
                 {/* Progress Bar */}
                 {course.progress > 0 && (
                   <div className="mt-3">
                     <div className="flex items-center justify-between text-xs mb-1">
-                      <span className="text-gray-500">{course.progress}% complete</span>
+                      <span className="text-gray-500 dark:text-gray-400">{course.progress}% complete</span>
                       <span className="flex items-center gap-0.5 text-amber-500 font-medium">
                         <Zap className="h-3 w-3" />
                         {course.xpEarned}/{course.xpReward}
                       </span>
                     </div>
-                    <div className="h-2 rounded-full bg-gray-100">
+                    <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-800">
                       <div
                         className={cn(
                           "h-2 rounded-full transition-all",

@@ -27,7 +27,7 @@ export default function SpacePage({ params }: SpacePageProps) {
         {/* Space Header */}
         <div className="flex items-center gap-3">
           <span className="h-2 w-2 rounded-full bg-tribe-600" />
-          <h1 className="text-xl font-bold text-gray-900">{spaceName}</h1>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white">{spaceName}</h1>
         </div>
 
         {/* Post Composer */}
@@ -38,8 +38,8 @@ export default function SpacePage({ params }: SpacePageProps) {
           {spacePosts.length > 0 ? (
             spacePosts.map((post) => <PostCard key={post.id} post={post} />)
           ) : (
-            <div className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
-              <p className="text-gray-500">No posts yet in this space. Be the first to share!</p>
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 text-center shadow-sm">
+              <p className="text-gray-500 dark:text-gray-400">No posts yet in this space. Be the first to share!</p>
             </div>
           )}
         </div>

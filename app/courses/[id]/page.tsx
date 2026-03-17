@@ -95,31 +95,31 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
 
   const getLessonIconStyle = (lesson: typeof allLessons[0]) => {
     if (lesson.completed) return "bg-green-500 text-white";
-    if (lesson.locked) return "bg-gray-100 text-gray-400";
+    if (lesson.locked) return "bg-gray-100 text-gray-400 dark:text-gray-500";
     if (activeLesson === lesson.id) return "bg-tribe-600 text-gray-900";
     if (lesson.type === "quiz") return "border-2 border-purple-400 text-purple-500";
     if (lesson.type === "exercise") return "border-2 border-orange-400 text-orange-500";
-    return "border border-gray-300 text-gray-400";
+    return "border border-gray-300 text-gray-400 dark:text-gray-500";
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-800">
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopNav />
 
         <div className="flex flex-1 overflow-hidden">
           {/* Lesson Sidebar */}
-          <aside className="hidden lg:flex w-80 flex-col border-r border-gray-100 bg-white">
+          <aside className="hidden lg:flex w-80 flex-col border-r border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900">
             {/* Course Header */}
-            <div className="border-b border-gray-100 p-4">
+            <div className="border-b border-gray-100 dark:border-gray-800 p-4">
               <Link
                 href="/courses"
-                className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
+                className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-300"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Back to Courses
               </Link>
-              <h2 className="mt-3 text-base font-semibold text-gray-900">
+              <h2 className="mt-3 text-base font-semibold text-gray-900 dark:text-white">
                 {course.title}
               </h2>
               <div className="mt-2 flex items-center gap-2">
@@ -134,7 +134,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                     {getInitials(course.instructor.name)}
                   </AvatarFallback>
                 </Avatar>
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
                   {course.instructor.name}
                 </span>
               </div>
@@ -146,18 +146,18 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                     <Zap className="h-3.5 w-3.5" />
                     {earnedXpInCourse} / {totalXpInCourse} XP
                   </span>
-                  <span className="text-gray-500">
+                  <span className="text-gray-500 dark:text-gray-400">
                     {completedCount}/{allLessons.length} lessons
                   </span>
                 </div>
-                <div className="mt-2 h-2 rounded-full bg-white">
+                <div className="mt-2 h-2 rounded-full bg-white dark:bg-gray-900">
                   <div
                     className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-tribe-600 transition-all"
                     style={{ width: `${(completedCount / allLessons.length) * 100}%` }}
                   />
                 </div>
                 {course.badge && (
-                  <p className="mt-2 text-xs text-gray-500">
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                     Complete to earn: <span className="font-medium">{course.badge.emoji} {course.badge.name}</span>
                   </p>
                 )}
@@ -170,25 +170,25 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                 const moduleCompleted = module.items.every((l) => l.completed);
                 const moduleXp = module.items.reduce((sum, l) => sum + l.xp, 0);
                 return (
-                  <div key={module.module} className="border-b border-gray-100">
+                  <div key={module.module} className="border-b border-gray-100 dark:border-gray-800">
                     <button
                       onClick={() => toggleModule(module.module)}
-                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
                     >
                       <div className="flex items-center gap-2">
                         {moduleCompleted ? (
                           <CircleCheck className="h-4 w-4 text-green-500" />
                         ) : (
-                          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-[10px] font-medium text-gray-600">
+                          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-gray-200 text-[10px] font-medium text-gray-600 dark:text-gray-400">
                             {moduleIndex + 1}
                           </span>
                         )}
-                        <span className="text-sm font-medium text-gray-900">
+                        <span className="text-sm font-medium text-gray-900 dark:text-white">
                           {module.module}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="flex items-center gap-0.5 text-xs text-gray-400">
+                        <span className="flex items-center gap-0.5 text-xs text-gray-400 dark:text-gray-500">
                           <Zap className="h-3 w-3" />
                           {moduleXp}
                         </span>
@@ -212,8 +212,8 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                               lesson.locked
                                 ? "opacity-50 cursor-not-allowed"
                                 : activeLesson === lesson.id
-                                ? "bg-tribe-50"
-                                : "hover:bg-gray-50"
+                                ? "bg-tribe-50 dark:bg-tribe-900/20"
+                                : "hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
                             )}
                           >
                             <div
@@ -229,16 +229,16 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                                 className={cn(
                                   "text-sm truncate",
                                   lesson.completed
-                                    ? "text-gray-500"
+                                    ? "text-gray-500 dark:text-gray-400"
                                     : activeLesson === lesson.id
                                     ? "font-medium text-tribe-800"
-                                    : "text-gray-700"
+                                    : "text-gray-700 dark:text-gray-300"
                                 )}
                               >
                                 {lesson.title}
                               </p>
                               <div className="flex items-center gap-2">
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-gray-400 dark:text-gray-500">
                                   {lesson.duration}
                                 </p>
                                 <span className="flex items-center gap-0.5 text-xs text-amber-500">
@@ -260,7 +260,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
             </nav>
 
             {/* Streak Footer */}
-            <div className="border-t border-gray-100 p-4">
+            <div className="border-t border-gray-100 dark:border-gray-800 p-4">
               <div className="flex items-center justify-between rounded-lg bg-orange-50 p-3">
                 <div className="flex items-center gap-2">
                   <Flame className="h-5 w-5 text-orange-500" />
@@ -296,14 +296,14 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                   <div className="animate-bounce rounded-2xl bg-white p-8 text-center shadow-2xl">
                     <div className="text-5xl">🎉</div>
-                    <h2 className="mt-4 text-2xl font-bold text-gray-900">
+                    <h2 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
                       Lesson Complete!
                     </h2>
                     <div className="mt-2 flex items-center justify-center gap-1 text-lg font-semibold text-amber-500">
                       <Zap className="h-5 w-5" />
                       +{currentLesson?.xp} XP earned
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                       Keep going to maintain your streak!
                     </p>
                     <button
@@ -320,12 +320,12 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
               <div className="mb-4 lg:hidden">
                 <Link
                   href="/courses"
-                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700"
+                  className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-300"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   Back to Courses
                 </Link>
-                <h2 className="mt-2 text-lg font-semibold text-gray-900">
+                <h2 className="mt-2 text-lg font-semibold text-gray-900 dark:text-white">
                   {course.title}
                 </h2>
                 {/* Mobile XP Bar */}
@@ -340,7 +340,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                       {learningStats.currentStreak} day streak
                     </span>
                   </div>
-                  <div className="mt-2 h-2 rounded-full bg-white">
+                  <div className="mt-2 h-2 rounded-full bg-white dark:bg-gray-900">
                     <div
                       className="h-2 rounded-full bg-gradient-to-r from-tribe-500 to-tribe-600 transition-all"
                       style={{ width: `${(completedCount / allLessons.length) * 100}%` }}
@@ -358,7 +358,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                       ? "bg-purple-100 text-purple-700"
                       : currentLesson.type === "exercise"
                       ? "bg-orange-100 text-orange-700"
-                      : "bg-tribe-100 text-tribe-800"
+                      : "bg-tribe-100 dark:bg-tribe-900/30 text-tribe-800"
                   )}>
                     {currentLesson.type === "quiz" && <FileQuestion className="h-3 w-3" />}
                     {currentLesson.type === "exercise" && <PenTool className="h-3 w-3" />}
@@ -386,10 +386,10 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   </button>
                 </div>
               ) : currentLesson?.type === "quiz" && showQuiz ? (
-                <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+                <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
                   <div className="flex items-center gap-2 mb-4">
                     <FileQuestion className="h-5 w-5 text-purple-600" />
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                       {currentLesson.title}
                     </h3>
                   </div>
@@ -415,7 +415,7 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                             ? "border-red-400 bg-red-50"
                             : quizAnswer === i
                             ? "border-purple-500 bg-purple-50"
-                            : "border-gray-100 hover:border-gray-200"
+                            : "border-gray-100 hover:border-gray-200 dark:border-gray-700"
                         )}
                       >
                         <span className={cn(
@@ -424,11 +424,11 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                             ? "bg-green-500 text-white"
                             : quizAnswer === i
                             ? "bg-purple-500 text-white"
-                            : "bg-gray-100 text-gray-600"
+                            : "bg-gray-100 text-gray-600 dark:text-gray-400"
                         )}>
                           {quizSubmitted && i === 1 ? <Check className="h-4 w-4" /> : String.fromCharCode(65 + i)}
                         </span>
-                        <span className="text-sm text-gray-700">{option}</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300">{option}</span>
                       </button>
                     ))}
                   </div>
@@ -481,12 +481,12 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
 
               {/* Lesson Info */}
               <div className="mt-6">
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                   <span>Module: {currentModule?.module}</span>
                   <span>·</span>
                   <span>{currentLesson?.duration}</span>
                 </div>
-                <h1 className="mt-2 text-2xl font-bold text-gray-900">
+                <h1 className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
                   {currentLesson?.title}
                 </h1>
               </div>
@@ -543,10 +543,10 @@ export default function CourseDetailPage({ params }: CourseDetailPageProps) {
                   }}
                   disabled={currentIndex === 0}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium transition-colors",
+                    "flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white px-4 py-2 text-sm font-medium transition-colors",
                     currentIndex === 0
                       ? "text-gray-300 cursor-not-allowed"
-                      : "text-gray-700 hover:bg-gray-50"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
                   )}
                 >
                   <ChevronLeft className="h-4 w-4" />

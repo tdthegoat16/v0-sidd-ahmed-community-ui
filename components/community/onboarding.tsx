@@ -86,7 +86,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                 key={s}
                 className={cn(
                   "h-2 rounded-full transition-all",
-                  s <= step ? "w-8 bg-tribe-600" : "w-2 bg-gray-200"
+                  s <= step ? "w-8 bg-tribe-600" : "w-2 bg-gray-200 dark:bg-gray-700"
                 )}
               />
             ))}
@@ -99,13 +99,13 @@ export function Onboarding({ onComplete }: OnboardingProps) {
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gray-900 text-tribe-500">
               <Sparkles className="h-8 w-8" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               Welcome to the Positive Tribe
             </h1>
-            <p className="mt-3 text-gray-600">
+            <p className="mt-3 text-gray-600 dark:text-gray-400">
               A community of dreamers building purpose-driven lives alongside Sidd Ahmed.
             </p>
-            <p className="mt-6 text-sm text-gray-500">
+            <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
               Answer a few quick questions so we can tailor your experience.
             </p>
           </div>
@@ -114,10 +114,10 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 1: Interests */}
         {step === 1 && (
           <div>
-            <h2 className="text-center text-xl font-bold text-gray-900">
+            <h2 className="text-center text-xl font-bold text-gray-900 dark:text-white">
               What are you most interested in?
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
               Select all that apply
             </p>
             <div className="mt-6 space-y-3">
@@ -128,12 +128,12 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedInterests.includes(interest.id)
-                      ? "border-tribe-600 bg-tribe-50"
-                      : "border-gray-100 bg-white hover:border-gray-200"
+                      ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
+                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
                   )}
                 >
                   <span className="text-xl">{interest.emoji}</span>
-                  <span className="flex-1 text-sm font-medium text-gray-900">
+                  <span className="flex-1 text-sm font-medium text-gray-900 dark:text-white">
                     {interest.label}
                   </span>
                   {selectedInterests.includes(interest.id) && (
@@ -148,10 +148,10 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 2: Primary Goal */}
         {step === 2 && (
           <div>
-            <h2 className="text-center text-xl font-bold text-gray-900">
+            <h2 className="text-center text-xl font-bold text-gray-900 dark:text-white">
               What&apos;s your primary goal?
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
               Choose one that resonates most
             </p>
             <div className="mt-6 space-y-3">
@@ -162,11 +162,11 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedGoal === goal.id
-                      ? "border-tribe-600 bg-tribe-50"
-                      : "border-gray-100 bg-white hover:border-gray-200"
+                      ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
+                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
                   )}
                 >
-                  <span className="flex-1 text-sm font-medium text-gray-900">
+                  <span className="flex-1 text-sm font-medium text-gray-900 dark:text-white">
                     {goal.label}
                   </span>
                   {selectedGoal === goal.id && (
@@ -181,10 +181,10 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 3: Journey Stage */}
         {step === 3 && (
           <div>
-            <h2 className="text-center text-xl font-bold text-gray-900">
+            <h2 className="text-center text-xl font-bold text-gray-900 dark:text-white">
               Where are you in your journey?
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-500">
+            <p className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
               This helps us show you the right content
             </p>
             <div className="mt-6 space-y-3">
@@ -195,19 +195,19 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full flex-col rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedStage === stage.id
-                      ? "border-tribe-600 bg-tribe-50"
-                      : "border-gray-100 bg-white hover:border-gray-200"
+                      ? "border-tribe-600 dark:border-tribe-700 bg-tribe-50 dark:bg-tribe-900/20"
+                      : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-gray-200 dark:border-gray-700"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-900">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">
                       {stage.label}
                     </span>
                     {selectedStage === stage.id && (
                       <Check className="h-5 w-5 text-tribe-800" />
                     )}
                   </div>
-                  <span className="mt-0.5 text-xs text-gray-500">
+                  <span className="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
                     {stage.description}
                   </span>
                 </button>
@@ -235,7 +235,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {step > 0 && (
           <button
             onClick={onComplete}
-            className="mt-3 w-full text-center text-sm text-gray-400 hover:text-gray-600"
+            className="mt-3 w-full text-center text-sm text-gray-400 hover:text-gray-600 dark:text-gray-400"
           >
             Skip for now
           </button>

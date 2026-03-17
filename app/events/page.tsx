@@ -28,8 +28,8 @@ export default function EventsPage() {
         {/* Header */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Events</h1>
-            <p className="mt-1 text-gray-500">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Events</h1>
+            <p className="mt-1 text-gray-500 dark:text-gray-400">
               Join live sessions, workshops, and Q&A with Sidd Ahmed
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function EventsPage() {
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeTab === tab
                   ? "bg-tribe-600 text-gray-900"
-                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
+                  : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800"
               )}
             >
               {tab}
@@ -61,7 +61,7 @@ export default function EventsPage() {
           {filteredEvents.map((event) => (
             <div
               key={event.id}
-              className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col sm:flex-row gap-4 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
               <Link href={`/events/${event.id}`} className="w-full sm:w-32 h-24 rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 flex-shrink-0" />
@@ -70,7 +70,7 @@ export default function EventsPage() {
               <Link href={`/events/${event.id}`} className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-base font-semibold text-gray-900">
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">
                       {event.title}
                     </h3>
                     <div className="mt-1 flex items-center gap-2">
@@ -85,7 +85,7 @@ export default function EventsPage() {
                           {getInitials(event.host.name)}
                         </AvatarFallback>
                       </Avatar>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
                         Hosted by {event.host.name}
                       </span>
                     </div>
@@ -93,7 +93,7 @@ export default function EventsPage() {
                 </div>
 
                 <div className="mt-3 flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-sm text-gray-500">
+                  <div className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400">
                     <Calendar className="h-4 w-4" />
                     {event.date} · {event.time}
                   </div>
@@ -116,14 +116,14 @@ export default function EventsPage() {
                     ) : null}
                     {event.type}
                   </span>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
                     {event.attendees} attending
                   </span>
                   <span className={cn(
                     "text-sm font-medium",
                     event.price === "Free" || event.price?.includes("Free")
                       ? "text-green-600"
-                      : "text-gray-900"
+                      : "text-gray-900 dark:text-white"
                   )}>
                     {event.price}
                   </span>

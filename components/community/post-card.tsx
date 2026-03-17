@@ -47,10 +47,10 @@ export function PostCard({ post }: PostCardProps) {
   };
 
   return (
-    <article className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+    <article className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 shadow-sm">
       {/* Pinned Badge */}
       {post.isPinned && (
-        <div className="mb-3 flex items-center gap-1.5 text-xs text-gray-500">
+        <div className="mb-3 flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
           <Pin className="h-3 w-3" />
           <span>Pinned</span>
         </div>
@@ -69,24 +69,24 @@ export function PostCard({ post }: PostCardProps) {
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <button onClick={() => openProfile(post.author as any)} className="text-sm font-semibold text-gray-900 hover:text-tribe-800 hover:underline transition-colors">
+              <button onClick={() => openProfile(post.author as any)} className="text-sm font-semibold text-gray-900 dark:text-white hover:text-tribe-800 hover:underline transition-colors">
                 {post.author.name}
               </button>
               {post.author.isAdmin && (
-                <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-xs font-medium text-tribe-800">
+                <span className="rounded bg-tribe-100 dark:bg-tribe-900/30 px-1.5 py-0.5 text-xs font-medium text-tribe-800">
                   Founder
                 </span>
               )}
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs text-gray-500">{post.author.role}</span>
-              <span className="text-xs text-gray-400">·</span>
-              <span className="text-xs text-gray-400">{post.timestamp}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400">{post.author.role}</span>
+              <span className="text-xs text-gray-400 dark:text-gray-500">·</span>
+              <span className="text-xs text-gray-400 dark:text-gray-500">{post.timestamp}</span>
             </div>
           </div>
         </div>
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600">
+          <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-600 dark:text-gray-400">
             <MoreHorizontal className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -103,7 +103,7 @@ export function PostCard({ post }: PostCardProps) {
 
       {/* Content */}
       <div className="mt-3">
-        <h3 className="text-base font-semibold text-gray-900">{post.title}</h3>
+        <h3 className="text-base font-semibold text-gray-900 dark:text-white">{post.title}</h3>
         <p className="mt-1.5 text-sm text-gray-600 line-clamp-3">{post.body}</p>
       </div>
 
@@ -111,7 +111,7 @@ export function PostCard({ post }: PostCardProps) {
       {isLongPost && (
         <button
           onClick={() => setShowAISummary(!showAISummary)}
-          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-tribe-50 px-3 py-1.5 text-xs font-medium text-tribe-800 hover:bg-tribe-100 transition-colors"
+          className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-tribe-50 px-3 py-1.5 text-xs font-medium text-tribe-800 hover:bg-tribe-100 dark:bg-tribe-900/30 transition-colors"
         >
           <Sparkles className="h-3 w-3" />
           AI Summary
@@ -132,14 +132,14 @@ export function PostCard({ post }: PostCardProps) {
       {/* Image */}
       {post.image && (
         <div className="mt-4">
-          <div className="aspect-video rounded-xl bg-gray-100" />
+          <div className="aspect-video rounded-xl bg-gray-100 dark:bg-gray-800" />
         </div>
       )}
 
       {/* Space Tag */}
       {post.space && (
         <div className="mt-3">
-          <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600">
+          <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 dark:text-gray-400">
             {post.space}
           </span>
         </div>
@@ -187,7 +187,7 @@ export function PostCard({ post }: PostCardProps) {
             {post.likedBy.slice(0, 3).map((user) => (
               <Avatar
                 key={user.id}
-                className="h-6 w-6 ring-2 ring-white"
+                className="h-6 w-6 ring-2 ring-white dark:ring-gray-900"
               >
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className={cn(user.color, "text-white text-[10px]")}>
@@ -196,7 +196,7 @@ export function PostCard({ post }: PostCardProps) {
               </Avatar>
             ))}
           </div>
-          <span className="ml-2 text-xs text-gray-500">
+          <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">
             {post.likes} likes · {post.comments} comments
           </span>
         </div>
@@ -216,10 +216,10 @@ export function PostCard({ post }: PostCardProps) {
                       {getInitials(comment.author.name)}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="flex-1 rounded-lg bg-gray-50 px-3 py-2">
+                  <div className="flex-1 rounded-lg bg-gray-50 dark:bg-gray-800 px-3 py-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-gray-900">{comment.author.name}</span>
-                      <span className="text-xs text-gray-400">{comment.timestamp}</span>
+                      <span className="text-xs font-semibold text-gray-900 dark:text-white">{comment.author.name}</span>
+                      <span className="text-xs text-gray-400 dark:text-gray-500">{comment.timestamp}</span>
                     </div>
                     <p className="text-sm text-gray-700 mt-0.5">{comment.text}</p>
                   </div>
@@ -236,7 +236,7 @@ export function PostCard({ post }: PostCardProps) {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
-              className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-tribe-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-tribe-500"
+              className="flex-1 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-tribe-500 focus:bg-white dark:focus:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-tribe-500"
             />
             <button
               onClick={handleAddComment}
@@ -245,7 +245,7 @@ export function PostCard({ post }: PostCardProps) {
                 "flex h-8 w-8 items-center justify-center rounded-full transition-colors",
                 commentText.trim()
                   ? "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
-                  : "bg-gray-100 text-gray-400"
+                  : "bg-gray-100 text-gray-400 dark:text-gray-500"
               )}
             >
               <Send className="h-3.5 w-3.5" />

@@ -72,25 +72,25 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* About */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-semibold text-gray-900">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
                 About this event
               </h2>
-              <p className="mt-3 text-gray-600">
+              <p className="mt-3 text-gray-600 dark:text-gray-400">
                 Join us for an engaging session where we will dive deep into
                 strategies and tactics for growing your business. This is a
                 great opportunity to learn from experts and connect with other
                 community members.
               </p>
-              <p className="mt-3 text-gray-600">
+              <p className="mt-3 text-gray-600 dark:text-gray-400">
                 Whether you are just starting out or looking to scale, you will
                 find valuable insights and actionable tips that you can apply
                 immediately.
               </p>
-              <h3 className="mt-6 text-base font-semibold text-gray-900">
+              <h3 className="mt-6 text-base font-semibold text-gray-900 dark:text-white">
                 What you will learn
               </h3>
-              <ul className="mt-2 space-y-2 text-gray-600">
+              <ul className="mt-2 space-y-2 text-gray-600 dark:text-gray-400">
                 <li className="flex items-start gap-2">
                   <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
                   Proven strategies for business growth
@@ -134,46 +134,46 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Date & Time Card */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400">
                     <Calendar className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {event.date}
                     </p>
-                    <p className="text-xs text-gray-500">Date</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Date</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400">
                     <Clock className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {event.time}
                     </p>
-                    <p className="text-xs text-gray-500">Time</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Time</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-800">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 dark:bg-tribe-900/30 text-tribe-800 dark:text-tribe-400">
                     <Users className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {event.attendees} attending
                     </p>
-                    <p className="text-xs text-gray-500">Attendees</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">Attendees</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 border-t border-gray-100 pt-6">
-                <p className="text-2xl font-bold text-gray-900">{event.price}</p>
-                <p className="text-sm text-gray-500">Event ticket</p>
+                <p className="text-2xl font-bold text-gray-900 dark:text-white">{event.price}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Event ticket</p>
               </div>
 
               {event.isGoing ? (
@@ -195,8 +195,8 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
             </div>
 
             {/* Host Card */}
-            <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-900">Host</h3>
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-sm">
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Host</h3>
               <div className="mt-4 flex items-center gap-3">
                 <Avatar className="h-12 w-12">
                   <AvatarImage src={event.host.avatar} alt={event.host.name} />
@@ -205,10 +205,10 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">
                     {event.host.name}
                   </p>
-                  <p className="text-xs text-gray-500">{event.host.role}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{event.host.role}</p>
                 </div>
               </div>
             </div>

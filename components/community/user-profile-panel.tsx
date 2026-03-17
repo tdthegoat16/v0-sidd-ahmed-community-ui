@@ -45,7 +45,7 @@ export function UserProfilePanel({
 
         {/* Avatar overlapping the cover */}
         <div className="px-5 -mt-10">
-          <Avatar className="h-20 w-20 ring-4 ring-white">
+          <Avatar className="h-20 w-20 ring-4 ring-white dark:ring-gray-900">
             <AvatarImage src={user.avatar} alt={user.name} />
             <AvatarFallback
               className={cn(user.color, "text-white text-xl font-semibold")}
@@ -58,9 +58,9 @@ export function UserProfilePanel({
         {/* Name & Role */}
         <div className="px-5 mt-3">
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-bold text-gray-900">{user.name}</h2>
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white">{user.name}</h2>
             {user.isAdmin && (
-              <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-xs font-medium text-tribe-800">
+              <span className="rounded bg-tribe-100 dark:bg-tribe-900/30 px-1.5 py-0.5 text-xs font-medium text-tribe-800">
                 Founder
               </span>
             )}
@@ -81,15 +81,15 @@ export function UserProfilePanel({
 
         {/* Info List */}
         <div className="px-5 mt-5 space-y-3">
-          <div className="flex items-center gap-3 text-sm text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
             <MapPin className="h-4 w-4 text-gray-400 shrink-0" />
             {user.location}
           </div>
-          <div className="flex items-center gap-3 text-sm text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
             <Mail className="h-4 w-4 text-gray-400 shrink-0" />
             {user.email}
           </div>
-          <div className="flex items-center gap-3 text-sm text-gray-600">
+          <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
             <Calendar className="h-4 w-4 text-gray-400 shrink-0" />
             Member since {user.memberSince}
           </div>
@@ -98,32 +98,32 @@ export function UserProfilePanel({
         {/* Stats */}
         <div className="px-5 mt-5">
           <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-lg bg-gray-50 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
                 <FileText className="h-3.5 w-3.5" />
               </div>
-              <p className="text-lg font-bold text-gray-900">
+              <p className="text-lg font-bold text-gray-900 dark:text-white">
                 {user.postsCount}
               </p>
-              <p className="text-xs text-gray-500">Posts</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Posts</p>
             </div>
-            <div className="rounded-lg bg-gray-50 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
                 <MessageSquare className="h-3.5 w-3.5" />
               </div>
-              <p className="text-lg font-bold text-gray-900">
+              <p className="text-lg font-bold text-gray-900 dark:text-white">
                 {user.commentsCount}
               </p>
-              <p className="text-xs text-gray-500">Comments</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Comments</p>
             </div>
-            <div className="rounded-lg bg-gray-50 p-3 text-center">
+            <div className="rounded-lg bg-gray-50 dark:bg-gray-800 p-3 text-center">
               <div className="flex items-center justify-center gap-1 text-gray-400 mb-1">
                 <Hash className="h-3.5 w-3.5" />
               </div>
-              <p className="text-lg font-bold text-gray-900">
+              <p className="text-lg font-bold text-gray-900 dark:text-white">
                 {user.spacesJoined}
               </p>
-              <p className="text-xs text-gray-500">Spaces</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Spaces</p>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@ export function UserProfilePanel({
             {user.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600"
+                className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 dark:text-gray-400"
               >
                 {tag}
               </span>

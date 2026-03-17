@@ -32,14 +32,14 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
 
   if (!expanded) {
     return (
-      <div className="mt-6 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+      <div className="mt-6 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 flex-shrink-0">
+          <div className="h-10 w-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 flex-shrink-0">
             <User className="h-5 w-5" />
           </div>
           <button
             onClick={() => setExpanded(true)}
-            className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm text-gray-400 text-left hover:bg-white hover:border-gray-300 transition-colors"
+            className="flex-1 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-4 py-2.5 text-sm text-gray-400 text-left hover:bg-white dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
           >
             {placeholder}
           </button>
@@ -56,12 +56,12 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
   }
 
   return (
-    <div className="mt-6 rounded-2xl border border-tribe-200 bg-white p-4 shadow-sm">
+    <div className="mt-6 rounded-2xl border border-tribe-200 dark:border-tribe-800 bg-white dark:bg-gray-900 p-4 shadow-sm">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-sm font-semibold text-gray-900">Create Post</h3>
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Create Post</h3>
         <button
           onClick={() => { setExpanded(false); setTitle(""); setBody(""); }}
-          className="text-gray-400 hover:text-gray-600"
+          className="text-gray-400 hover:text-gray-600 dark:text-gray-400"
         >
           <X className="h-4 w-4" />
         </button>
@@ -71,7 +71,7 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
         placeholder="Post title (optional)"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-tribe-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-tribe-500"
+        className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-tribe-500 focus:bg-white dark:focus:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-tribe-500"
       />
       <textarea
         placeholder={placeholder}
@@ -79,11 +79,11 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
         onChange={(e) => setBody(e.target.value)}
         onKeyDown={handleKeyDown}
         rows={3}
-        className="mt-2 w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:border-tribe-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-tribe-500 resize-none"
+        className="mt-2 w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-tribe-500 focus:bg-white dark:focus:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-tribe-500 resize-none"
         autoFocus
       />
       <div className="mt-3 flex items-center justify-between">
-        <span className="text-xs text-gray-400">Press Cmd+Enter to post</span>
+        <span className="text-xs text-gray-400 dark:text-gray-500">Press Cmd+Enter to post</span>
         <button
           onClick={handleSubmit}
           disabled={!body.trim()}
@@ -91,7 +91,7 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
             "rounded-full px-5 py-2 text-sm font-semibold transition-colors",
             body.trim()
               ? "bg-tribe-600 text-gray-900 hover:bg-tribe-700"
-              : "bg-gray-100 text-gray-400 cursor-not-allowed"
+              : "bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed"
           )}
         >
           Post

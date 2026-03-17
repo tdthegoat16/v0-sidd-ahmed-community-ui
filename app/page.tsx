@@ -41,8 +41,8 @@ export default function HomePage() {
               <PostCard key={post.id} post={post} />
             ))
           ) : (
-            <div className="rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
-              <p className="text-gray-500">
+            <div className="rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 text-center shadow-sm">
+              <p className="text-gray-500 dark:text-gray-400">
                 {searchQuery ? "No posts match your search" : "No posts yet"}
               </p>
             </div>
