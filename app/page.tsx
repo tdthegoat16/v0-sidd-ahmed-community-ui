@@ -1,6 +1,7 @@
 import { CommunityLayout } from "@/components/community/community-layout";
 import { HomeRightPanel } from "@/components/community/home-right-panel";
 import { PostCard } from "@/components/community/post-card";
+import { PostComposer } from "@/components/community/post-composer";
 import { posts } from "@/lib/data";
 
 export default function HomePage() {
@@ -16,6 +17,9 @@ export default function HomePage() {
             A community of dreamers building purpose-driven lives alongside Sidd Ahmed.
           </p>
         </div>
+
+        {/* Post Composer */}
+        <PostComposer />
 
         {/* Feed */}
         <div className="mt-6 space-y-4">

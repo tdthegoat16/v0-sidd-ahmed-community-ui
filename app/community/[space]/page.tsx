@@ -1,6 +1,7 @@
 import { CommunityLayout } from "@/components/community/community-layout";
 import { SpaceRightPanel } from "@/components/community/space-right-panel";
 import { PostCard } from "@/components/community/post-card";
+import { PostComposer } from "@/components/community/post-composer";
 import { posts, spaces, spaceNamesBySlug } from "@/lib/data";
 
 interface SpacePageProps {
@@ -22,6 +23,9 @@ export default async function SpacePage({ params }: SpacePageProps) {
           <span className="h-2 w-2 rounded-full bg-blue-600" />
           <h1 className="text-xl font-bold text-gray-900">{spaceName}</h1>
         </div>
+
+        {/* Post Composer */}
+        <PostComposer placeholder="Share your thoughts..." />
 
         {/* Posts Feed */}
         <div className="mt-6 space-y-4">

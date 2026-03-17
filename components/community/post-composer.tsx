@@ -1,6 +1,4 @@
-import { getInitials } from "@/lib/utils";
-import { currentUser } from "@/lib/data";
-import { Plus } from "lucide-react";
+import { Plus, User } from "lucide-react";
 
 interface PostComposerProps {
   placeholder?: string;
@@ -10,8 +8,8 @@ export function PostComposer({ placeholder = "Share something with the Tribe..."
   return (
     <div className="mt-6 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-semibold">
-          {getInitials(currentUser.name)}
+        <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 flex-shrink-0">
+          <User className="h-5 w-5" />
         </div>
         <input
           type="text"
