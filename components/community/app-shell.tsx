@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Onboarding } from "./onboarding";
+import { ProfileProvider } from "./profile-context";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -24,5 +25,5 @@ export function AppShell({ children }: AppShellProps) {
     return <Onboarding onComplete={() => setShowOnboarding(false)} />;
   }
 
-  return <>{children}</>;
+  return <ProfileProvider>{children}</ProfileProvider>;
 }

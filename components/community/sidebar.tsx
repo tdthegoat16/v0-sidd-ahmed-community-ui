@@ -5,6 +5,7 @@ import {
   Home,
   GraduationCap,
   Calendar,
+  MessageCircle,
   Sparkles,
 } from "lucide-react";
 import Link from "next/link";
@@ -13,6 +14,7 @@ import { spaces } from "@/lib/data";
 
 const mainNav = [
   { name: "Home", href: "/", icon: Home },
+  { name: "Chat", href: "/chat", icon: MessageCircle },
   { name: "Courses", href: "/courses", icon: GraduationCap },
   { name: "Events", href: "/events", icon: Calendar },
 ];

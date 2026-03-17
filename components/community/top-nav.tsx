@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 
 const navTabs = [
   { name: "Home", href: "/" },
+  { name: "Chat", href: "/chat" },
   { name: "Courses", href: "/courses" },
   { name: "Events", href: "/events" },
 ];

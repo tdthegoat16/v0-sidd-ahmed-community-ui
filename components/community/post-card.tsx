@@ -11,12 +11,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { posts } from "@/lib/data";
+import { useProfile } from "./profile-context";
 
 interface PostCardProps {
   post: (typeof posts)[0];
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const { openProfile } = useProfile();
   const [showAISummary, setShowAISummary] = useState(false);
   const isLongPost = post.body.length > 150;
 
@@ -33,17 +35,19 @@ export function PostCard({ post }: PostCardProps) {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src={post.author.avatar} alt={post.author.name} />
-            <AvatarFallback className={cn(post.author.color, "text-white text-sm")}>
-              {getInitials(post.author.name)}
-            </AvatarFallback>
-          </Avatar>
+          <button onClick={() => openProfile(post.author)} className="shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-full">
+            <Avatar className="h-10 w-10 cursor-pointer hover:ring-2 hover:ring-blue-200 transition-shadow">
+              <AvatarImage src={post.author.avatar} alt={post.author.name} />
+              <AvatarFallback className={cn(post.author.color, "text-white text-sm")}>
+                {getInitials(post.author.name)}
+              </AvatarFallback>
+            </Avatar>
+          </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-900">
+              <button onClick={() => openProfile(post.author)} className="text-sm font-semibold text-gray-900 hover:text-blue-600 hover:underline transition-colors">
                 {post.author.name}
-              </span>
+              </button>
               {post.author.isAdmin && (
                 <span className="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600">
                   Founder

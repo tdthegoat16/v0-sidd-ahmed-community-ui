@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
-  { name: "Community", href: "/community/announcements", icon: MessageSquare },
+  { name: "Chat", href: "/chat", icon: MessageSquare },
   { name: "Courses", href: "/courses", icon: GraduationCap },
   { name: "Events", href: "/events", icon: CalendarDays },
 ];
