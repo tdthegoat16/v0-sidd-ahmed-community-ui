@@ -37,7 +37,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         {unreadNotificationCount > 0 && (
           <button
             onClick={markAllNotificationsRead}
-            className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-medium"
+            className="flex items-center gap-1 text-xs text-tribe-600 hover:text-tribe-700 font-medium"
           >
             <CheckCheck className="h-3.5 w-3.5" />
             Mark all read
@@ -75,7 +75,7 @@ export function NotificationsDropdown({ onClose }: NotificationsDropdownProps) {
         )}
       </div>
       <div className="border-t border-gray-100 p-2">
-        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50">
+        <button className="w-full rounded-lg px-4 py-2 text-sm font-medium text-tribe-600 hover:bg-tribe-50">
           View all notifications
         </button>
       </div>
@@ -100,7 +100,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
   const getIcon = () => {
     switch (notification.type) {
       case "lesson":
-        return <BookOpen className="h-4 w-4 text-blue-600" />;
+        return <BookOpen className="h-4 w-4 text-tribe-600" />;
       case "event":
         return <Bell className="h-4 w-4 text-orange-500" />;
       default:
@@ -113,7 +113,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
       onClick={onRead}
       className={cn(
         "flex items-start gap-3 px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors",
-        !notification.isRead && "bg-blue-50/50"
+        !notification.isRead && "bg-tribe-50/50"
       )}
     >
       {notification.actor ? (
@@ -144,7 +144,7 @@ function NotificationItem({ notification, onRead }: NotificationItemProps) {
         <span className="text-xs text-gray-500">{notification.timestamp}</span>
       </div>
       {!notification.isRead && (
-        <span className="mt-2 h-2 w-2 rounded-full bg-blue-600 flex-shrink-0" />
+        <span className="mt-2 h-2 w-2 rounded-full bg-tribe-600 flex-shrink-0" />
       )}
     </div>
   );

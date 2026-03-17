@@ -26,7 +26,7 @@ export default function SpacePage({ params }: SpacePageProps) {
       <div className="mx-auto max-w-3xl px-4 py-6">
         {/* Space Header */}
         <div className="flex items-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-blue-600" />
+          <span className="h-2 w-2 rounded-full bg-tribe-600" />
           <h1 className="text-xl font-bold text-gray-900">{spaceName}</h1>
         </div>
 

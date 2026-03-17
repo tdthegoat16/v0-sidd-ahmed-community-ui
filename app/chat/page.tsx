@@ -64,18 +64,18 @@ export default function ChatPage() {
                       className={cn(
                         "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium transition-colors",
                         activeChannel === channel.id
-                          ? "bg-blue-50 text-blue-600"
+                          ? "bg-tribe-50 text-tribe-600"
                           : "text-gray-600 hover:bg-gray-50"
                       )}
                     >
                       {channel.isAI ? (
-                        <Sparkles className="h-3.5 w-3.5 text-blue-500" />
+                        <Sparkles className="h-3.5 w-3.5 text-tribe-500" />
                       ) : (
                         <Hash className="h-3.5 w-3.5 text-gray-400" />
                       )}
                       <span className="truncate">{channel.name}</span>
                       {channel.unread > 0 && (
-                        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1.5 text-xs font-bold text-white">
+                        <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-tribe-600 px-1.5 text-xs font-bold text-white">
                           {channel.unread}
                         </span>
                       )}
@@ -150,9 +150,9 @@ export default function ChatPage() {
               <div key={msg.id} className="flex items-start gap-3 group">
                 <button
                   onClick={() => openProfile(msg.author)}
-                  className="shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-full"
+                  className="shrink-0 focus:outline-none focus:ring-2 focus:ring-tribe-300 rounded-full"
                 >
-                  <Avatar className="h-9 w-9 cursor-pointer hover:ring-2 hover:ring-blue-200 transition-shadow">
+                  <Avatar className="h-9 w-9 cursor-pointer hover:ring-2 hover:ring-tribe-200 transition-shadow">
                     <AvatarImage src={msg.author.avatar} alt={msg.author.name} />
                     <AvatarFallback
                       className={cn(
@@ -169,12 +169,12 @@ export default function ChatPage() {
                   <div className="flex items-baseline gap-2">
                     <button
                       onClick={() => openProfile(msg.author)}
-                      className="text-sm font-semibold text-gray-900 hover:text-blue-600 hover:underline transition-colors"
+                      className="text-sm font-semibold text-gray-900 hover:text-tribe-600 hover:underline transition-colors"
                     >
                       {msg.author.name}
                     </button>
                     {msg.author.isAdmin && (
-                      <span className="rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-medium text-blue-600">
+                      <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-[10px] font-medium text-tribe-600">
                         Founder
                       </span>
                     )}
@@ -251,7 +251,7 @@ export default function ChatPage() {
                 className={cn(
                   "flex h-8 w-8 items-center justify-center rounded-lg transition-colors",
                   messageInput.trim()
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    ? "bg-tribe-600 text-white hover:bg-tribe-700"
                     : "bg-gray-200 text-gray-400"
                 )}
               >

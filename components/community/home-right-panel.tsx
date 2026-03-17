@@ -15,9 +15,9 @@ export function HomeRightPanel() {
       <div className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Avatar className="h-14 w-14 ring-2 ring-blue-600 ring-offset-2">
+            <Avatar className="h-14 w-14 ring-2 ring-tribe-600 ring-offset-2">
               <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-              <AvatarFallback className="bg-blue-600 text-white font-semibold">
+              <AvatarFallback className="bg-tribe-600 text-white font-semibold">
                 SA
               </AvatarFallback>
             </Avatar>
@@ -29,7 +29,7 @@ export function HomeRightPanel() {
         </div>
         <Link
           href="/events"
-          className="mt-4 block w-full rounded-lg bg-blue-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+          className="mt-4 block w-full rounded-lg bg-tribe-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-tribe-700 transition-colors"
         >
           Book a Session
         </Link>
@@ -57,7 +57,7 @@ export function HomeRightPanel() {
           </h3>
           <Link
             href="/events"
-            className="text-xs text-blue-600 hover:text-blue-700"
+            className="text-xs text-tribe-600 hover:text-tribe-700"
           >
             View all
           </Link>
@@ -69,7 +69,7 @@ export function HomeRightPanel() {
               href={`/events/${event.id}`}
               className="flex items-start gap-3 rounded-lg p-2 hover:bg-gray-50 transition-colors"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tribe-50 text-tribe-600">
                 <Calendar className="h-4 w-4" />
               </div>
               <div className="flex-1 min-w-0">
@@ -94,7 +94,7 @@ export function HomeRightPanel() {
           href={`/courses/${featuredCourse.id}`}
           className="block rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
         >
-          <div className="aspect-video bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+          <div className="aspect-video bg-gradient-to-br from-tribe-600 to-tribe-800 flex items-center justify-center">
             <Sparkles className="h-10 w-10 text-white/30" />
           </div>
           <div className="p-3">
@@ -108,7 +108,7 @@ export function HomeRightPanel() {
               <div className="mt-2">
                 <div className="h-1.5 rounded-full bg-gray-100">
                   <div
-                    className="h-1.5 rounded-full bg-blue-600"
+                    className="h-1.5 rounded-full bg-tribe-600"
                     style={{ width: `${featuredCourse.progress}%` }}
                   />
                 </div>

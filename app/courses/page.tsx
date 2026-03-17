@@ -43,7 +43,7 @@ export default function CoursesPage() {
         </div>
 
         {/* Learning Stats Banner */}
-        <div className="mt-6 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 p-5 text-white shadow-lg">
+        <div className="mt-6 rounded-2xl bg-gradient-to-r from-tribe-600 via-purple-600 to-tribe-700 p-5 text-white shadow-lg">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-4">
               {/* Level Badge */}
@@ -51,7 +51,7 @@ export default function CoursesPage() {
                 <span className="text-2xl font-bold">{learningStats.level}</span>
               </div>
               <div>
-                <p className="text-sm text-blue-200">Level {learningStats.level}</p>
+                <p className="text-sm text-tribe-200">Level {learningStats.level}</p>
                 <p className="text-lg font-bold">{learningStats.levelName}</p>
                 <div className="mt-1 flex items-center gap-2">
                   <div className="h-1.5 w-24 rounded-full bg-white/20">
@@ -60,7 +60,7 @@ export default function CoursesPage() {
                       style={{ width: `${levelProgress}%` }}
                     />
                   </div>
-                  <span className="text-xs text-blue-200">
+                  <span className="text-xs text-tribe-200">
                     {learningStats.xpToNextLevel} XP to next level
                   </span>
                 </div>
@@ -72,14 +72,14 @@ export default function CoursesPage() {
                   <Zap className="h-4 w-4 text-amber-300" />
                   <span className="text-xl font-bold">{learningStats.totalXp.toLocaleString()}</span>
                 </div>
-                <p className="text-xs text-blue-200">Total XP</p>
+                <p className="text-xs text-tribe-200">Total XP</p>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1">
                   <Flame className="h-4 w-4 text-orange-300" />
                   <span className="text-xl font-bold">{learningStats.currentStreak}</span>
                 </div>
-                <p className="text-xs text-blue-200">Day Streak</p>
+                <p className="text-xs text-tribe-200">Day Streak</p>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1">
@@ -88,14 +88,14 @@ export default function CoursesPage() {
                     {learningStats.badges.filter((b) => b.earned).length}
                   </span>
                 </div>
-                <p className="text-xs text-blue-200">Badges</p>
+                <p className="text-xs text-tribe-200">Badges</p>
               </div>
             </div>
           </div>
 
           {/* Earned Badges */}
           <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4">
-            <span className="text-xs text-blue-200 mr-1">Badges:</span>
+            <span className="text-xs text-tribe-200 mr-1">Badges:</span>
             {learningStats.badges
               .filter((b) => b.earned)
               .map((badge) => (
@@ -119,7 +119,7 @@ export default function CoursesPage() {
               className={cn(
                 "rounded-full px-4 py-2 text-sm font-medium transition-colors",
                 activeCategory === category
-                  ? "bg-blue-600 text-white"
+                  ? "bg-tribe-600 text-white"
                   : "bg-white text-gray-600 border border-gray-200 hover:bg-gray-50"
               )}
             >
@@ -137,7 +137,7 @@ export default function CoursesPage() {
               className="group rounded-2xl border border-gray-100 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               {/* Thumbnail */}
-              <div className="relative aspect-video bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+              <div className="relative aspect-video bg-gradient-to-br from-tribe-600 to-tribe-800 flex items-center justify-center">
                 <Sparkles className="h-12 w-12 text-white/30" />
                 {course.isNew && (
                   <span className="absolute left-3 top-3 rounded bg-red-500 px-2 py-0.5 text-xs font-semibold text-white">
@@ -161,7 +161,7 @@ export default function CoursesPage() {
                   course.difficulty === "Beginner"
                     ? "bg-green-500/90 text-white"
                     : course.difficulty === "Intermediate"
-                    ? "bg-blue-500/90 text-white"
+                    ? "bg-tribe-500/90 text-white"
                     : "bg-purple-500/90 text-white"
                 )}>
                   {course.difficulty}
@@ -171,7 +171,7 @@ export default function CoursesPage() {
               {/* Content */}
               <div className="p-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium text-blue-600">
+                  <span className="text-xs font-medium text-tribe-600">
                     {course.category}
                   </span>
                   <span className="text-xs text-gray-400">·</span>
@@ -187,7 +187,7 @@ export default function CoursesPage() {
                     </>
                   )}
                 </div>
-                <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+                <h3 className="mt-2 text-base font-semibold text-gray-900 group-hover:text-tribe-600 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 <p className="mt-1 text-xs text-gray-500">{course.startDate}</p>
@@ -208,7 +208,7 @@ export default function CoursesPage() {
                           "h-2 rounded-full transition-all",
                           course.progress === 100
                             ? "bg-gradient-to-r from-green-400 to-emerald-500"
-                            : "bg-gradient-to-r from-blue-500 to-purple-500"
+                            : "bg-gradient-to-r from-tribe-500 to-purple-500"
                         )}
                         style={{ width: `${course.progress}%` }}
                       />

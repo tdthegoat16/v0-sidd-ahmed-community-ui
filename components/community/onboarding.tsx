@@ -76,7 +76,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
   };
 
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white px-4">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-gradient-to-b from-tribe-50 to-white px-4">
       <div className="w-full max-w-md">
         {/* Progress Dots */}
         {step > 0 && (
@@ -86,7 +86,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                 key={s}
                 className={cn(
                   "h-2 rounded-full transition-all",
-                  s <= step ? "w-8 bg-blue-600" : "w-2 bg-gray-200"
+                  s <= step ? "w-8 bg-tribe-600" : "w-2 bg-gray-200"
                 )}
               />
             ))}
@@ -96,7 +96,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
         {/* Step 0: Welcome */}
         {step === 0 && (
           <div className="text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-tribe-600 text-white">
               <Sparkles className="h-8 w-8" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900">
@@ -128,7 +128,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedInterests.includes(interest.id)
-                      ? "border-blue-600 bg-blue-50"
+                      ? "border-tribe-600 bg-tribe-50"
                       : "border-gray-100 bg-white hover:border-gray-200"
                   )}
                 >
@@ -137,7 +137,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     {interest.label}
                   </span>
                   {selectedInterests.includes(interest.id) && (
-                    <Check className="h-5 w-5 text-blue-600" />
+                    <Check className="h-5 w-5 text-tribe-600" />
                   )}
                 </button>
               ))}
@@ -162,7 +162,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full items-center gap-3 rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedGoal === goal.id
-                      ? "border-blue-600 bg-blue-50"
+                      ? "border-tribe-600 bg-tribe-50"
                       : "border-gray-100 bg-white hover:border-gray-200"
                   )}
                 >
@@ -170,7 +170,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                     {goal.label}
                   </span>
                   {selectedGoal === goal.id && (
-                    <Check className="h-5 w-5 text-blue-600" />
+                    <Check className="h-5 w-5 text-tribe-600" />
                   )}
                 </button>
               ))}
@@ -195,7 +195,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                   className={cn(
                     "flex w-full flex-col rounded-xl border-2 px-4 py-3.5 text-left transition-all",
                     selectedStage === stage.id
-                      ? "border-blue-600 bg-blue-50"
+                      ? "border-tribe-600 bg-tribe-50"
                       : "border-gray-100 bg-white hover:border-gray-200"
                   )}
                 >
@@ -204,7 +204,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
                       {stage.label}
                     </span>
                     {selectedStage === stage.id && (
-                      <Check className="h-5 w-5 text-blue-600" />
+                      <Check className="h-5 w-5 text-tribe-600" />
                     )}
                   </div>
                   <span className="mt-0.5 text-xs text-gray-500">
@@ -223,7 +223,7 @@ export function Onboarding({ onComplete }: OnboardingProps) {
           className={cn(
             "mt-8 flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-all",
             canProceed()
-              ? "bg-blue-600 text-white hover:bg-blue-700"
+              ? "bg-tribe-600 text-white hover:bg-tribe-700"
               : "bg-gray-100 text-gray-400 cursor-not-allowed"
           )}
         >

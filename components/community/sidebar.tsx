@@ -35,7 +35,7 @@ export function Sidebar({ className }: SidebarProps) {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 border-b border-gray-100 px-4 py-4">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-tribe-600 text-white">
           <Sparkles className="h-5 w-5" />
         </div>
         <div className="flex flex-col">
@@ -54,7 +54,7 @@ export function Sidebar({ className }: SidebarProps) {
             className={cn(
               "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
               pathname === "/"
-                ? "bg-blue-50 text-blue-600"
+                ? "bg-tribe-50 text-tribe-600"
                 : "text-gray-700 hover:bg-gray-50"
             )}
           >
@@ -80,12 +80,12 @@ export function Sidebar({ className }: SidebarProps) {
                       className={cn(
                         "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                         isActive
-                          ? "bg-blue-50 text-blue-600"
+                          ? "bg-tribe-50 text-tribe-600"
                           : "text-gray-600 hover:bg-gray-50"
                       )}
                     >
                       {isActive && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-tribe-600" />
                       )}
                       <span className={cn("text-base", isActive && "-ml-4")}>
                         {space.emoji}
@@ -111,14 +111,14 @@ export function Sidebar({ className }: SidebarProps) {
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-blue-50 text-blue-600"
+                      ? "bg-tribe-50 text-tribe-600"
                       : "text-gray-700 hover:bg-gray-50"
                   )}
                 >
                   <item.icon
                     className={cn(
                       "h-5 w-5",
-                      isActive ? "text-blue-600" : "text-gray-400"
+                      isActive ? "text-tribe-600" : "text-gray-400"
                     )}
                   />
                   {item.name}

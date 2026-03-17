@@ -60,7 +60,7 @@ export function UserProfilePanel({
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-bold text-gray-900">{user.name}</h2>
             {user.isAdmin && (
-              <span className="rounded bg-blue-100 px-1.5 py-0.5 text-xs font-medium text-blue-600">
+              <span className="rounded bg-tribe-100 px-1.5 py-0.5 text-xs font-medium text-tribe-600">
                 Founder
               </span>
             )}

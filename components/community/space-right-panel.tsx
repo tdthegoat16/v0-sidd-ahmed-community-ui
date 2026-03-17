@@ -31,7 +31,7 @@ export function SpaceRightPanel({ space }: SpaceRightPanelProps) {
         <div className="flex items-center gap-3 rounded-lg p-2">
           <Avatar className="h-9 w-9">
             <AvatarImage src={sidd.avatar} alt={sidd.name} />
-            <AvatarFallback className="bg-blue-600 text-white text-xs">
+            <AvatarFallback className="bg-tribe-600 text-white text-xs">
               SA
             </AvatarFallback>
           </Avatar>

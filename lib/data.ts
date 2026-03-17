@@ -47,7 +47,7 @@ export const communityMembers: CommunityMember[] = [
     commentsCount: 312,
     spacesJoined: 12,
     isOnline: true,
-    color: "bg-blue-600",
+    color: "bg-tribe-600",
     isAdmin: true,
   },
   {
@@ -609,7 +609,7 @@ export const currentUser = {
   commentsCount: 312,
   spacesJoined: 12,
   isOnline: true,
-  color: "bg-blue-600",
+  color: "bg-tribe-600",
   coursesCreated: 6,
   membersMentored: 500,
   socials: {
